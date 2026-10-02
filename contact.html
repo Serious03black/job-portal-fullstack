@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us | AXYTES Solutions Pvt. Ltd.</title>
+  <meta name="description" content="Contact AXYTES Solutions for staffing, recruitment and payroll enquiries. Get in touch with our team in Mumbai." />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 64px; align-items: start; }
+    .info-card { display: flex; gap: 20px; padding: 24px; background: var(--gray-50); border-radius: var(--radius-md); margin-bottom: 20px; border: 1px solid var(--gray-100); transition: var(--transition); }
+    .info-card:hover { box-shadow: var(--shadow-md); border-color: var(--primary-light); }
+    .info-icon { width: 52px; height: 52px; background: linear-gradient(135deg, #dbeafe, #ede9fe); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
+    .info-title { font-weight: 700; color: var(--gray-800); margin-bottom: 4px; }
+    .info-text { color: var(--gray-500); font-size: 0.9rem; line-height: 1.6; }
+    .map-placeholder { background: linear-gradient(135deg, #dbeafe, #e0eaff); border-radius: var(--radius-lg); height: 280px; display: flex; align-items: center; justify-content: center; font-size: 3rem; margin-top: 24px; }
+    @media(max-width:768px) { .contact-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo"><div class="nav-logo-icon">AX</div><div class="nav-logo-text"><span>AXYTES</span><span>Solutions Pvt. Ltd.</span></div></a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="services.html" class="nav-link">Services</a>
+        <a href="industries.html" class="nav-link">Industries</a>
+        <a href="employers.html" class="nav-link">For Employers</a>
+        <a href="jobs.html" class="nav-link">Jobs</a>
+        <a href="contact.html" class="nav-link active">Contact</a>
+      </div>
+      <div class="nav-actions">
+        <a href="candidate/login.html" class="btn btn-outline btn-sm">Job Seeker Login</a>
+        <a href="employee/login.html" class="btn btn-primary btn-sm">Employee Portal</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section style="background:var(--gradient-hero);padding:80px 0 64px">
+    <div class="container" style="text-align:center">
+      <div class="section-label" style="background:rgba(255,255,255,0.15);color:white">📞 Contact Us</div>
+      <h1 style="color:white;margin-bottom:16px">Get In Touch With AXYTES</h1>
+      <p style="color:rgba(255,255,255,0.8);font-size:1.1rem;max-width:520px;margin:0 auto">Whether you're an employer looking to hire or a candidate seeking opportunities — our team is ready to help you.</p>
+    </div>
+  </section>
+
+  <!-- CONTACT CONTENT -->
+  <section class="section">
+    <div class="container">
+      <div class="contact-grid">
+        <!-- Contact Info -->
+        <div>
+          <div class="section-label">Reach Us</div>
+          <h2 class="section-title" style="margin-bottom:24px">Let's Start a Conversation</h2>
+
+          <div class="info-card">
+            <div class="info-icon">📍</div>
+            <div>
+              <div class="info-title">Office Address</div>
+              <div class="info-text">AXYTES Solutions Pvt. Ltd.<br />Office No. XXX, XYZ Business Park<br />Andheri East, Mumbai — 400069<br />Maharashtra, India</div>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon">📞</div>
+            <div>
+              <div class="info-title">Phone</div>
+              <div class="info-text">
+                <a href="tel:+919XXXXXXXXX" style="color:var(--primary-light);font-weight:600">+91 9XXX-XXXXXX</a><br/>
+                Mon – Sat: 9:00 AM – 7:00 PM
+              </div>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon">✉️</div>
+            <div>
+              <div class="info-title">Email</div>
+              <div class="info-text">
+                General: <a href="mailto:info@axytes.in" style="color:var(--primary-light);font-weight:600">info@axytes.in</a><br/>
+                Recruitment: <a href="mailto:recruitment@axytes.in" style="color:var(--primary-light);font-weight:600">recruitment@axytes.in</a><br/>
+                HR Support: <a href="mailto:hr@axytes.in" style="color:var(--primary-light);font-weight:600">hr@axytes.in</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon">🕐</div>
+            <div>
+              <div class="info-title">Business Hours</div>
+              <div class="info-text">
+                Monday – Friday: 9:00 AM – 7:00 PM<br/>
+                Saturday: 9:00 AM – 2:00 PM<br/>
+                Sunday: Closed
+              </div>
+            </div>
+          </div>
+
+          <div class="map-placeholder">🗺️ Google Maps Integration</div>
+        </div>
+
+        <!-- Contact Form -->
+        <div style="background:white;border-radius:var(--radius-xl);padding:40px;box-shadow:var(--shadow-xl);border:1px solid var(--gray-100)">
+          <h3 style="margin-bottom:6px">Send Us a Message</h3>
+          <p style="color:var(--gray-500);font-size:0.9rem;margin-bottom:28px">We'll get back to you within 24 hours.</p>
+
+          <div id="formSuccess" style="display:none;background:#d1fae5;border:1px solid #6ee7b7;color:#065f46;padding:16px;border-radius:8px;margin-bottom:20px;font-size:0.9rem">
+            ✅ Thank you! Your message has been sent. We'll get back to you soon.
+          </div>
+
+          <form id="contactForm">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+              <div class="form-group"><label class="form-label">First Name *</label><input type="text" id="cFirstName" class="form-control" placeholder="John" required /></div>
+              <div class="form-group"><label class="form-label">Last Name *</label><input type="text" id="cLastName" class="form-control" placeholder="Doe" required /></div>
+            </div>
+            <div class="form-group"><label class="form-label">Email *</label><input type="email" id="cEmail" class="form-control" placeholder="you@company.com" required /></div>
+            <div class="form-group"><label class="form-label">Phone</label><input type="tel" id="cPhone" class="form-control" placeholder="+91 XXXXX XXXXX" /></div>
+            <div class="form-group">
+              <label class="form-label">I am a *</label>
+              <select id="cType" class="form-control" required>
+                <option value="">Select...</option>
+                <option>Employer / HR Manager</option>
+                <option>Job Seeker / Candidate</option>
+                <option>Employee (via AXYTES)</option>
+                <option>Business Partner</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Subject *</label>
+              <select id="cSubject" class="form-control" required>
+                <option value="">Select Subject</option>
+                <option>Staffing / Manpower Enquiry</option>
+                <option>Permanent Recruitment</option>
+                <option>Payroll Services</option>
+                <option>Job Application</option>
+                <option>Employee Support</option>
+                <option>General Enquiry</option>
+              </select>
+            </div>
+            <div class="form-group"><label class="form-label">Message *</label><textarea id="cMessage" class="form-control" placeholder="Please describe your requirement in detail..." rows="5" required></textarea></div>
+            <button type="submit" class="btn btn-primary w-full" id="contactBtn" style="justify-content:center;padding:14px;font-size:1rem">Send Message →</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo"><div class="footer-logo-icon">AX</div><div class="footer-logo-text">AXYTES</div></div>
+          <p>Leading staffing, recruitment, manpower and payroll solutions company.</p>
+        </div>
+        <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+        <div class="footer-col"><h4>Portals</h4><ul><li><a href="candidate/login.html">Candidate Login</a></li><li><a href="employee/login.html">Employee Portal</a></li><li><a href="admin/login.html">Admin Panel</a></li></ul></div>
+        <div class="footer-col"><h4>Legal</h4><ul><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms & Conditions</a></li><li><a href="disclaimer.html">Disclaimer</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><div>© 2024 AXYTES Solutions Pvt. Ltd. All Rights Reserved.</div><div>📞 +91-XXXX-XXXXXX | ✉ info@axytes.in</div></div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const btn = document.getElementById('contactBtn');
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+      setTimeout(() => {
+        document.getElementById('formSuccess').style.display = 'block';
+        this.reset();
+        btn.textContent = 'Send Message →';
+        btn.disabled = false;
+        window.scrollTo({ top: document.getElementById('formSuccess').offsetTop - 100, behavior: 'smooth' });
+      }, 1200);
+    });
+  </script>
+</body>
+</html>

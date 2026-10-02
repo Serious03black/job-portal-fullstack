@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For Employers | Hire Staff with AXYTES Solutions Pvt. Ltd.</title>
+  <meta name="description" content="Hire verified candidates, outsource payroll, and scale your temporary or permanent workforce with AXYTES. Fast turnaround, 100% compliance, guaranteed satisfaction." />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .emp-hero {
+      background: var(--gradient-hero);
+      color: white;
+      padding: 80px 0 60px;
+    }
+    .emp-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .request-form-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      box-shadow: var(--shadow-xl);
+      color: var(--gray-800);
+    }
+    .models-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 36px;
+    }
+    .model-card {
+      background: white;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--gray-200);
+      padding: 28px;
+      transition: var(--transition);
+      position: relative;
+    }
+    .model-card:hover {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-4px);
+    }
+    .model-card.featured {
+      border: 2px solid var(--accent);
+      background: #fafcff;
+    }
+    .model-badge {
+      position: absolute;
+      top: -12px;
+      right: 20px;
+      background: var(--accent);
+      color: white;
+      font-size: 0.75rem;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .step-timeline {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 40px;
+    }
+    .step-box {
+      background: white;
+      padding: 24px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--gray-100);
+      box-shadow: var(--shadow-sm);
+      text-align: center;
+      position: relative;
+    }
+    .step-num {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--gradient-hero);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin: 0 auto 16px;
+    }
+    @media (max-width: 900px) {
+      .emp-grid-2 { grid-template-columns: 1fr; }
+      .models-grid { grid-template-columns: 1fr; }
+      .step-timeline { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .step-timeline { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="mainNav" role="navigation">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon">AX</div>
+        <div class="nav-logo-text">
+          <span>AXYTES</span>
+          <span>Solutions Pvt. Ltd.</span>
+        </div>
+      </a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <div class="nav-dropdown">
+          <a href="services.html" class="nav-link">Services ▾</a>
+          <div class="dropdown-menu">
+            <a href="services.html#staffing" class="dropdown-item">🏢 Staffing Solutions</a>
+            <a href="services.html#recruitment" class="dropdown-item">🔍 Permanent Recruitment</a>
+            <a href="services.html#payroll" class="dropdown-item">💰 Payroll Processing</a>
+            <a href="services.html#manpower" class="dropdown-item">👥 Manpower Supply</a>
+            <a href="services.html#executive" class="dropdown-item">👔 Executive Search</a>
+            <a href="services.html#training" class="dropdown-item">📚 Training & Development</a>
+          </div>
+        </div>
+        <a href="industries.html" class="nav-link">Industries</a>
+        <a href="employers.html" class="nav-link active">For Employers</a>
+        <a href="jobs.html" class="nav-link">Jobs</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </div>
+
+      <div class="nav-actions">
+        <a href="candidate/login.html" class="btn btn-outline btn-sm">Job Seeker Login</a>
+        <a href="employee/login.html" class="btn btn-primary btn-sm">Employee Portal</a>
+        <a href="admin/login.html" class="btn btn-sm" style="background:var(--gray-800);color:white">Admin</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO WITH EMBEDDED TALENT REQUEST FORM -->
+  <header class="emp-hero">
+    <div class="container">
+      <div class="emp-grid-2">
+        <div>
+          <div class="section-label" style="background:rgba(255,255,255,0.2);color:white;display:inline-block;padding:4px 14px;border-radius:20px;font-size:0.85rem;margin-bottom:14px">Workforce Partnership</div>
+          <h1 style="font-size:2.8rem;margin-bottom:16px;line-height:1.2">Fast, Compliant & Scalable Hiring for Your Business</h1>
+          <p style="color:rgba(255,255,255,0.85);font-size:1.05rem;line-height:1.6;margin-bottom:28px">
+            Join 200+ companies that trust AXYTES for contract staffing, executive search, factory manpower, and seamless payroll outsourcing.
+          </p>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;align-items:center;gap:10px">
+              <span style="color:#86efac;font-size:1.2rem">✔</span>
+              <span><strong>48-Hour Turnaround:</strong> First candidate profiles delivered within 2 business days.</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px">
+              <span style="color:#86efac;font-size:1.2rem">✔</span>
+              <span><strong>Zero Legal Liabilities:</strong> 100% PF, ESIC & labor law compliance indemnification.</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px">
+              <span style="color:#86efac;font-size:1.2rem">✔</span>
+              <span><strong>Free Replacement Warranty:</strong> Up to 90 days guarantee on permanent hires.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- TALENT REQUEST FORM -->
+        <div class="request-form-card">
+          <h3 style="color:var(--primary);margin-bottom:6px">Post a Requirement</h3>
+          <p style="color:var(--gray-500);font-size:0.85rem;margin-bottom:20px">Our corporate recruitment manager will connect within 2 business hours.</p>
+
+          <form id="talentRequestForm" onsubmit="handleTalentSubmit(event)">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+              <div class="form-group">
+                <label class="form-label">Company Name *</label>
+                <input type="text" class="form-control" required placeholder="e.g. Acme Corp" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Contact Person *</label>
+                <input type="text" class="form-control" required placeholder="Full Name" />
+              </div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+              <div class="form-group">
+                <label class="form-label">Work Email *</label>
+                <input type="email" class="form-control" required placeholder="name@company.com" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Phone / WhatsApp *</label>
+                <input type="tel" class="form-control" required placeholder="+91 XXXXX XXXXX" />
+              </div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+              <div class="form-group">
+                <label class="form-label">Service Required *</label>
+                <select class="form-control" required>
+                  <option value="">Select Service</option>
+                  <option>Temporary / Contract Staffing</option>
+                  <option>Permanent Direct Hire</option>
+                  <option>Payroll Management & Outsourcing</option>
+                  <option>Blue Collar / Manpower Supply</option>
+                  <option>Executive Leadership Search</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Number of Positions *</label>
+                <select class="form-control" required>
+                  <option>1 – 5 Positions</option>
+                  <option>6 – 20 Positions</option>
+                  <option>21 – 50 Positions</option>
+                  <option>50+ Bulk Hiring</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Job Title / Role Description</label>
+              <textarea class="form-control" rows="2" placeholder="Briefly describe roles, skill sets, and location..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width:100%;padding:14px;font-weight:700">Submit Staffing Request →</button>
+            <div id="talentSuccessMsg" style="display:none;margin-top:12px;padding:10px;background:#dcfce7;color:#15803d;border-radius:6px;font-size:0.85rem;text-align:center">
+              ✓ Thank you! Your staffing requirement has been logged. An AXYTES account lead will contact you shortly.
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- ENGAGEMENT MODELS -->
+  <section class="section" style="background:var(--gray-50)">
+    <div class="container">
+      <div class="section-header" style="text-align:center">
+        <div class="section-label">Flexible Engagement</div>
+        <h2 class="section-title">Hiring Models Tailored to Your Growth</h2>
+        <p class="section-subtitle">Choose the staffing structure that best fits your operational budget and timeline.</p>
+      </div>
+
+      <div class="models-grid">
+
+        <!-- MODEL 1 -->
+        <div class="model-card">
+          <div style="font-size:2rem;margin-bottom:12px">⚡</div>
+          <h3 style="color:var(--primary);margin-bottom:8px">Contract Staffing</h3>
+          <p style="color:var(--gray-600);font-size:0.9rem;line-height:1.6">
+            Candidates are deployed at your location while on AXYTES payroll. Ideal for seasonal demand, sudden project ramp-ups, or avoiding fixed headcounts.
+          </p>
+          <ul style="margin:16px 0;padding-left:18px;color:var(--gray-700);font-size:0.85rem;display:flex;flex-direction:column;gap:8px">
+            <li>Zero statutory liabilities for client</li>
+            <li>Easy payroll & compliance management</li>
+            <li>Flexible extension or roll-off terms</li>
+          </ul>
+          <a href="#talentRequestForm" class="btn btn-outline btn-sm" style="width:100%">Choose Contract</a>
+        </div>
+
+        <!-- MODEL 2 -->
+        <div class="model-card featured">
+          <div class="model-badge">Most Popular</div>
+          <div style="font-size:2rem;margin-bottom:12px">🤝</div>
+          <h3 style="color:var(--primary);margin-bottom:8px">Permanent Recruitment</h3>
+          <p style="color:var(--gray-600);font-size:0.9rem;line-height:1.6">
+            Direct hiring for your core internal team. We source, screen, assess, and coordinate interviews until the candidate successfully joins your rolls.
+          </p>
+          <ul style="margin:16px 0;padding-left:18px;color:var(--gray-700);font-size:0.85rem;display:flex;flex-direction:column;gap:8px">
+            <li>Success-based pricing model</li>
+            <li>90-Day free candidate replacement</li>
+            <li>Comprehensive background verification</li>
+          </ul>
+          <a href="#talentRequestForm" class="btn btn-primary btn-sm" style="width:100%">Hire Permanent</a>
+        </div>
+
+        <!-- MODEL 3 -->
+        <div class="model-card">
+          <div style="font-size:2rem;margin-bottom:12px">🔄</div>
+          <h3 style="color:var(--primary);margin-bottom:8px">Contract-to-Hire (C2H)</h3>
+          <p style="color:var(--gray-600);font-size:0.9rem;line-height:1.6">
+            Test candidate skills, culture fit, and on-job delivery for 3 to 6 months before making a permanent offer. Minimize costly bad hires.
+          </p>
+          <ul style="margin:16px 0;padding-left:18px;color:var(--gray-700);font-size:0.85rem;display:flex;flex-direction:column;gap:8px">
+            <li>Evaluate actual performance first</li>
+            <li>Seamless transition to internal payroll</li>
+            <li>Negotiated nominal conversion fee</li>
+          </ul>
+          <a href="#talentRequestForm" class="btn btn-outline btn-sm" style="width:100%">Explore C2H</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 4-STEP RECRUITMENT WORKFLOW -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header" style="text-align:center">
+        <div class="section-label">How We Work</div>
+        <h2 class="section-title">Our 4-Step Precision Hiring Process</h2>
+        <p class="section-subtitle">Predictable, transparent, and structured delivery from intake to onboarding.</p>
+      </div>
+
+      <div class="step-timeline">
+        <div class="step-box">
+          <div class="step-num">1</div>
+          <h4 style="color:var(--primary);margin-bottom:8px">Need Assessment</h4>
+          <p style="color:var(--gray-600);font-size:0.85rem;line-height:1.5">We analyze your role requirements, required competencies, salary budget, and organizational culture.</p>
+        </div>
+
+        <div class="step-box">
+          <div class="step-num">2</div>
+          <h4 style="color:var(--primary);margin-bottom:8px">Targeted Sourcing</h4>
+          <p style="color:var(--gray-600);font-size:0.85rem;line-height:1.5">Leveraging our proprietary database of 10,000+ candidates, job portals, and specialized headhunting.</p>
+        </div>
+
+        <div class="step-box">
+          <div class="step-num">3</div>
+          <h4 style="color:var(--primary);margin-bottom:8px">Vetting & Shortlist</h4>
+          <p style="color:var(--gray-600);font-size:0.85rem;line-height:1.5">Technical screening, preliminary interviews, notice period verification, and detailed profile dossiers.</p>
+        </div>
+
+        <div class="step-box">
+          <div class="step-num">4</div>
+          <h4 style="color:var(--primary);margin-bottom:8px">Offer & Onboard</h4>
+          <p style="color:var(--gray-600);font-size:0.85rem;line-height:1.5">Salary negotiation assistance, candidate notice follow-up, day-1 onboarding support and BGV checks.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <div class="footer-logo-icon">AX</div>
+            <div class="footer-logo-text">AXYTES</div>
+          </div>
+          <p>AXYTES Solutions Pvt. Ltd. connects top talent with leading enterprises across India.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Our Services</a></li>
+            <li><a href="industries.html">Industries</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="careers.html">Careers at AXYTES</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Portals</h4>
+          <ul>
+            <li><a href="candidate/login.html">Candidate Login</a></li>
+            <li><a href="candidate/register.html">Register as Candidate</a></li>
+            <li><a href="employee/login.html">Employee Portal</a></li>
+            <li><a href="employers.html">Employer Solutions</a></li>
+            <li><a href="admin/login.html">Admin Panel</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="jobs.html">Browse Jobs</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms & Conditions</a></li>
+            <li><a href="disclaimer.html">Disclaimer</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2024 AXYTES Solutions Pvt. Ltd. All Rights Reserved.</div>
+        <div>📞 +91-XXXX-XXXXXX | ✉ info@axytes.in | 📍 Mumbai, India</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function handleTalentSubmit(e) {
+      e.preventDefault();
+      document.getElementById('talentSuccessMsg').style.display = 'block';
+      setTimeout(() => {
+        document.getElementById('talentRequestForm').reset();
+      }, 3000);
+    }
+  </script>
+</body>
+</html>

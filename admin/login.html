@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login | AXYTES Admin Panel</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body style="background:var(--gray-900);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px">
+  <div style="width:100%;max-width:440px">
+    <div style="text-align:center;margin-bottom:32px">
+      <div style="width:56px;height:56px;background:var(--gradient-hero);border-radius:14px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.2rem;color:white;margin:0 auto 16px">AX</div>
+      <div style="font-family:var(--font-heading);font-size:1.4rem;font-weight:800;color:white">AXYTES Admin</div>
+      <div style="font-size:0.8rem;color:var(--gray-500);margin-top:4px">Authorized Personnel Only</div>
+    </div>
+
+    <div style="background:#1e293b;border-radius:var(--radius-xl);padding:40px;border:1px solid rgba(255,255,255,0.06);box-shadow:0 25px 60px rgba(0,0,0,0.5)">
+      <h3 style="color:white;margin-bottom:6px;text-align:center">Sign In</h3>
+      <p style="color:var(--gray-500);font-size:0.85rem;text-align:center;margin-bottom:28px">Access the HR & Admin Management Panel</p>
+
+      <div id="alertMsg" style="display:none;padding:14px;border-radius:8px;margin-bottom:20px;font-size:0.9rem"></div>
+
+      <form id="adminLoginForm">
+        <div class="form-group">
+          <label class="form-label" style="color:var(--gray-300)">Username / Email</label>
+          <input type="text" id="adminUser" class="form-control" placeholder="admin@axytes.in" style="background:#0f172a;border-color:rgba(255,255,255,0.1);color:white" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label" style="color:var(--gray-300)">Password</label>
+          <div style="position:relative">
+            <input type="password" id="adminPass" class="form-control" placeholder="Enter admin password" style="background:#0f172a;border-color:rgba(255,255,255,0.1);color:white;padding-right:48px" required />
+            <button type="button" onclick="document.getElementById('adminPass').type=document.getElementById('adminPass').type==='password'?'text':'password'" style="position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--gray-500);cursor:pointer;background:none;border:none">👁</button>
+          </div>
+        </div>
+        <div style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.2);border-radius:8px;padding:12px 16px;margin-bottom:20px">
+          <div style="display:flex;align-items:center;gap:8px;font-size:0.82rem;color:#fca5a5">
+            🔐 <span>This is a secured admin area. All activities are logged and monitored.</span>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary w-full" id="adminLoginBtn" style="justify-content:center;font-size:1rem;padding:14px">
+          🔐 Access Admin Panel
+        </button>
+      </form>
+
+      <div style="margin-top:20px;text-align:center">
+        <a href="../index.html" style="font-size:0.82rem;color:var(--gray-600)">← Back to AXYTES Website</a>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:20px;font-size:0.78rem;color:var(--gray-600)">
+      © 2024 AXYTES Solutions Pvt. Ltd. | All Rights Reserved
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const user = document.getElementById('adminUser').value.trim();
+      const pass = document.getElementById('adminPass').value;
+      const btn = document.getElementById('adminLoginBtn');
+      const msg = document.getElementById('alertMsg');
+
+      if (!user || !pass) {
+        msg.style.display = 'block';
+        msg.style.background = 'rgba(239,68,68,0.15)';
+        msg.style.color = '#fca5a5';
+        msg.style.border = '1px solid rgba(239,68,68,0.3)';
+        msg.textContent = 'Please enter your credentials.';
+        return;
+      }
+
+      btn.textContent = '🔓 Verifying...';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        localStorage.setItem('adminSession', JSON.stringify({ user, name: 'Admin User', role: 'super_admin', loginTime: Date.now() }));
+        window.location.href = 'dashboard.html';
+      }, 1200);
+    });
+  </script>
+</body>
+</html>

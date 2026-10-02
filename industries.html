@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Industries We Serve | AXYTES Solutions Pvt. Ltd.</title>
+  <meta name="description" content="AXYTES provides specialized staffing, recruitment, and payroll solutions across Manufacturing, IT, BFSI, Healthcare, Logistics, Retail, and Infrastructure in India." />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .industry-hero {
+      background: var(--gradient-hero);
+      color: white;
+      padding: 80px 0 60px;
+      text-align: center;
+    }
+    .industries-showcase {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+      margin-top: 48px;
+    }
+    .ind-card-deep {
+      background: white;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--gray-100);
+      box-shadow: var(--shadow-sm);
+      padding: 36px;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .ind-card-deep:hover {
+      box-shadow: var(--shadow-xl);
+      border-color: var(--primary-light);
+      transform: translateY(-4px);
+    }
+    .ind-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .ind-icon-box {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      flex-shrink: 0;
+    }
+    .ind-roles-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+    .ind-role-badge {
+      background: var(--gray-100);
+      color: var(--gray-700);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+    @media (max-width: 800px) {
+      .industries-showcase {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="mainNav" role="navigation">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon">AX</div>
+        <div class="nav-logo-text">
+          <span>AXYTES</span>
+          <span>Solutions Pvt. Ltd.</span>
+        </div>
+      </a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <div class="nav-dropdown">
+          <a href="services.html" class="nav-link">Services ▾</a>
+          <div class="dropdown-menu">
+            <a href="services.html#staffing" class="dropdown-item">🏢 Staffing Solutions</a>
+            <a href="services.html#recruitment" class="dropdown-item">🔍 Permanent Recruitment</a>
+            <a href="services.html#payroll" class="dropdown-item">💰 Payroll Processing</a>
+            <a href="services.html#manpower" class="dropdown-item">👥 Manpower Supply</a>
+            <a href="services.html#executive" class="dropdown-item">👔 Executive Search</a>
+            <a href="services.html#training" class="dropdown-item">📚 Training & Development</a>
+          </div>
+        </div>
+        <a href="industries.html" class="nav-link active">Industries</a>
+        <a href="employers.html" class="nav-link">For Employers</a>
+        <a href="jobs.html" class="nav-link">Jobs</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </div>
+
+      <div class="nav-actions">
+        <a href="candidate/login.html" class="btn btn-outline btn-sm">Job Seeker Login</a>
+        <a href="employee/login.html" class="btn btn-primary btn-sm">Employee Portal</a>
+        <a href="admin/login.html" class="btn btn-sm" style="background:var(--gray-800);color:white">Admin</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="industry-hero">
+    <div class="container">
+      <div class="section-label" style="background:rgba(255,255,255,0.2);color:white;display:inline-block;padding:4px 14px;border-radius:20px;font-size:0.85rem;margin-bottom:14px">Domain Expertise</div>
+      <h1 style="font-size:2.8rem;margin-bottom:16px">Industries We Specialize In</h1>
+      <p style="max-width:720px;margin:0 auto;color:rgba(255,255,255,0.85);font-size:1.1rem">Every sector has unique staffing requirements, compliance rules, and skill sets. Our dedicated vertical heads ensure deep sector alignment and rapid turnaround.</p>
+    </div>
+  </header>
+
+  <!-- INDUSTRIES GRID -->
+  <main class="section">
+    <div class="container">
+
+      <div class="industries-showcase">
+
+        <!-- 1. Manufacturing & Engineering -->
+        <article class="ind-card-deep">
+          <div>
+            <div class="ind-header">
+              <div class="ind-icon-box" style="background:#fee2e2;color:#b91c1c">🏭</div>
+              <div>
+                <h3 style="color:var(--primary);font-size:1.4rem;margin-bottom:4px">Manufacturing & Heavy Engineering</h3>
+                <span style="font-size:0.85rem;color:var(--gray-500)">Automotive, Industrial Machinery, Metals & Mining</span>
+              </div>
+            </div>
+            <p style="color:var(--gray-600);line-height:1.6;font-size:0.95rem">
+              From shop-floor machinists to plant heads and quality assurance leads, we supply vetted personnel to India's major manufacturing corridors including Pune, Chennai, NCR, and Sanand.
+            </p>
+            <div class="ind-roles-list">
+              <span class="ind-role-badge">CNC / VMC Operators</span>
+              <span class="ind-role-badge">Production Supervisors</span>
+              <span class="ind-role-badge">Quality Control (QA/QC)</span>
+              <span class="ind-role-badge">Maintenance Engineers</span>
+              <span class="ind-role-badge">Plant Managers</span>
+            </div>
+          </div>
+          <div style="margin-top:24px;padding-top:16px;border-top:1px solid var(--gray-100);display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:0.85rem;color:var(--primary);font-weight:600">3,400+ Candidates Placed</span>
+            <a href="employers.html?industry=Manufacturing" class="btn btn-outline btn-sm">Hire in Manufacturing →</a>
+          </div>
+        </article>
+
+        <!-- 2. IT, Tech & Software -->
+        <article class="ind-card-deep">
+          <div>
+            <div class="ind-header">
+              <div class="ind-icon-box" style="background:#dbeafe;color:#1d4ed8">💻</div>
+              <div>
+                <h3 style="color:var(--primary);font-size:1.4rem;margin-bottom:4px">IT, Cloud & Digital Technologies</h3>
+                <span style="font-size:0.85rem;color:var(--gray-500)">Software Products, SaaS, IT Services & AI</span>
+              </div>
+            </div>
+            <p style="color:var(--gray-600);line-height:1.6;font-size:0.95rem">
+              Rapidly deploy high-demand developers, cloud architects, cybersecurity specialists, and DevOps engineers on contract or permanent basis to scale modern tech stacks.
+            </p>
+            <div class="ind-roles-list">
+              <span class="ind-role-badge">Full Stack Developers</span>
+              <span class="ind-role-badge">DevOps & Cloud Engineers</span>
+              <span class="ind-role-badge">Data Analysts & BI</span>
+              <span class="ind-role-badge">QA Automation</span>
+              <span class="ind-role-badge">Scrum Masters</span>
+            </div>
+          </div>
+          <div style="margin-top:24px;padding-top:16px;border-top:1px solid var(--gray-100);display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:0.85rem;color:var(--primary);font-weight:600">2,800+ Placements</span>
+            <a href="employers.html?industry=IT" class="btn btn-outline btn-sm">Hire Tech Talent →</a>
+          </div>
+        </article>
+
+        <!-- 3. BFSI & FinTech -->
+        <article class="ind-card-deep">
+          <div>
+            <div class="ind-header">
+              <div class="ind-icon-box" style="background:#dcfce7;color:#15803d">🏦</div>
+              <div>
+                <h3 style="color:var(--primary);font-size:1.4rem;margin-bottom:4px">BFSI, FinTech & Insurance</h3>
+                <span style="font-size:0.85rem;color:var(--gray-500)">Commercial Banks, NBFCs, Wealth Management</span>
+              </div>
+            </div>
+            <p style="color:var(--gray-600);line-height:1.6;font-size:0.95rem">
+              Complete workforce solutions for branch operations, field loan officers, credit verification analysts, underwriting teams, and FinTech product specialists with strict KYC compliance.
+            </p>
+            <div class="ind-roles-list">
+              <span class="ind-role-badge">Relationship Managers</span>
+              <span class="ind-role-badge">Loan Verification Officers</span>
+              <span class="ind-role-badge">Credit Underwriters</span>
+              <span class="ind-role-badge">Compliance & Audit</span>
+              <span class="ind-role-badge">Collections & Recovery</span>
+            </div>
+          </div>
+          <div style="margin-top:24px;padding-top:16px;border-top:1px solid var(--gray-100);display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:0.85rem;color:var(--primary);font-weight:600">2,100+ Placements</span>
+            <a href="employers.html?industry=BFSI" class="btn btn-outline btn-sm">Hire BFSI Talent →</a>
+          </div>
+        </article>
+
+        <!-- 4. Logistics, Supply Chain & Warehousing -->
+        <article class="ind-card-deep">
+          <div>
+            <div class="ind-header">
+              <div class="ind-icon-box" style="background:#fef3c7;color:#b45309">🚚</div>
+              <div>
+                <h3 style="color:var(--primary);font-size:1.4rem;margin-bottom:4px">Logistics, 3PL & Warehousing</h3>
+                <span style="font-size:0.85rem;color:var(--gray-500)">E-Commerce Fulfilment, Freight, Supply Chain</span>
+              </div>
+            </div>
+            <p style="color:var(--gray-600);line-height:1.6;font-size:0.95rem">
+              High-volume workforce mobilization for hub operations, dispatch coordination, inventory controllers, last-mile delivery supervisors, and warehouse managers during peak sale seasons.
+            </p>
+            <div class="ind-roles-list">
+              <span class="ind-role-badge">Warehouse Managers</span>
+              <span class="ind-role-badge">Inventory Controllers</span>
+              <span class="ind-role-badge">Forklift Drivers</span>
+              <span class="ind-role-badge">Dispatch Coordinators</span>
+              <span class="ind-role-badge">Fleet Managers</span>
+            </div>
+          </div>
+          <div style="margin-top:24px;padding-top:16px;border-top:1px solid var(--gray-100);display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:0.85rem;color:var(--primary);font-weight:600">4,200+ Blue & Grey Collar Placed</span>
+            <a href="employers.html?industry=Logistics" class="btn btn-outline btn-sm">Hire Logistics Staff →</a>
+          </div>
+        </article>
+
+        <!-- 5. Healthcare, Lifesciences & Pharma -->
+        <article class="ind-card-deep">
+          <div>
+            <div class="ind-header">
+              <div class="ind-icon-box" style="background:#ede9fe;color:#6d28d9">🏥</div>
+              <div>
+                <h3 style="color:var(--primary);font-size:1.4rem;margin-bottom:4px">Healthcare, Diagnostics & Pharma</h3>
+                <span style="font-size:0.85rem;color:var(--gray-500)">Hospitals, Clinical Research, Diagnostics, Drug Mfg</span>
+              </div>
+            </div>
+            <p style="color:var(--gray-600);line-height:1.6;font-size:0.95rem">
+              Credentialed medical officers, lab technicians, pharmacy sales representatives, hospital admin personnel, and clinical research associates compliant with health regulatory bodies.
+            </p>
+            <div class="ind-roles-list">
+              <span class="ind-role-badge">Medical Representatives</span>
+              <span class="ind-role-badge">Clinical Research Associates</span>
+              <span class="ind-role-badge">Hospital Operations Staff</span>
+              <span class="ind-role-badge">Lab Technicians</span>
+              <span class="ind-role-badge">Regulatory Affairs</span>
+            </div>
+          </div>
+          <div style="margin-top:24px;padding-top:16px;border-top:1px solid var(--gray-100);display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:0.85rem;color:var(--primary);font-weight:600">1,200+ Healthcare Hires</span>
+            <a href="employers.html?industry=Healthcare" class="btn btn-outline btn-sm">Hire Healthcare Staff →</a>
+          </div>
+        </article>
+
+        <!-- 6. Retail, FMCG & Consumer Durables -->
+        <article class="ind-card-deep">
+          <div>
+            <div class="ind-header">
+              <div class="ind-icon-box" style="background:#fce7f3;color:#be185d">🛍</div>
+              <div>
+                <h3 style="color:var(--primary);font-size:1.4rem;margin-bottom:4px">Retail, FMCG & Consumer Goods</h3>
+                <span style="font-size:0.85rem;color:var(--gray-500)">Supermarket Chains, Fashion, Quick Commerce, FMCG</span>
+              </div>
+            </div>
+            <p style="color:var(--gray-600);line-height:1.6;font-size:0.95rem">
+              Energize your retail footprint with proactive store managers, visual merchandisers, cashiers, brand promoters, and regional area sales managers with proven sales track records.
+            </p>
+            <div class="ind-roles-list">
+              <span class="ind-role-badge">Store Managers</span>
+              <span class="ind-role-badge">Brand Promoters</span>
+              <span class="ind-role-badge">Cashiers & POS Staff</span>
+              <span class="ind-role-badge">Area Sales Managers (ASM)</span>
+              <span class="ind-role-badge">Visual Merchandisers</span>
+            </div>
+          </div>
+          <div style="margin-top:24px;padding-top:16px;border-top:1px solid var(--gray-100);display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:0.85rem;color:var(--primary);font-weight:600">3,100+ Retail Professionals</span>
+            <a href="employers.html?industry=Retail" class="btn btn-outline btn-sm">Hire Retail Teams →</a>
+          </div>
+        </article>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- CTA -->
+  <section class="cta-strip">
+    <div class="container">
+      <h2>Don't See Your Industry Listed?</h2>
+      <p>AXYTES provides tailored manpower and payroll outsourcing across 25+ specialized industry domains. Let's discuss your custom workforce profile.</p>
+      <div class="cta-btns">
+        <a href="contact.html" class="btn btn-white btn-lg">Consult Industry Practice Head</a>
+        <a href="jobs.html" class="btn btn-lg" style="background:rgba(255,255,255,0.15);color:white;border:2px solid rgba(255,255,255,0.4)">Explore Jobs by Sector</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <div class="footer-logo-icon">AX</div>
+            <div class="footer-logo-text">AXYTES</div>
+          </div>
+          <p>AXYTES Solutions Pvt. Ltd. provides specialized staffing and talent solutions across India's fastest-growing industries.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Our Services</a></li>
+            <li><a href="industries.html">Industries</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="careers.html">Careers at AXYTES</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Portals</h4>
+          <ul>
+            <li><a href="candidate/login.html">Candidate Login</a></li>
+            <li><a href="candidate/register.html">Register as Candidate</a></li>
+            <li><a href="employee/login.html">Employee Portal</a></li>
+            <li><a href="employers.html">Employer Solutions</a></li>
+            <li><a href="admin/login.html">Admin Panel</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="jobs.html">Browse Jobs</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms & Conditions</a></li>
+            <li><a href="disclaimer.html">Disclaimer</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2024 AXYTES Solutions Pvt. Ltd. All Rights Reserved.</div>
+        <div>📞 +91-XXXX-XXXXXX | ✉ info@axytes.in | 📍 Mumbai, India</div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

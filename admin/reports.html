@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reports & Analytics | AXYTES Admin Panel</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    body { background: var(--gray-50); }
+    .admin-sidebar { background: var(--gray-900); }
+    .admin-sidebar .sidebar-section-label { color: var(--gray-600); }
+    .admin-sidebar .sidebar-link { color: var(--gray-400); }
+    .admin-sidebar .sidebar-link:hover { background: rgba(255,255,255,0.05); color: var(--white); }
+    .admin-sidebar .sidebar-link.active { background: rgba(37,99,235,0.25); color: var(--white); border-left-color: var(--accent); }
+    .admin-card { background: white; border-radius: var(--radius-lg); border: 1px solid var(--gray-200); box-shadow: var(--shadow-sm); padding: 24px; margin-bottom: 24px; }
+    .bar-chart-flex { display: flex; align-items: flex-end; gap: 16px; height: 200px; padding: 20px 0 10px; border-bottom: 2px solid var(--gray-200); }
+    .chart-col { flex: 1; display: flex; flex-direction: column; align-items: center; height: 100%; justify-content: flex-end; }
+    .bar-fill { width: 100%; border-radius: 6px 6px 0 0; background: var(--gradient-hero); transition: height 0.8s ease; }
+  </style>
+</head>
+<body>
+<div class="dashboard-layout">
+  <!-- ADMIN SIDEBAR -->
+  <nav class="sidebar admin-sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo-icon">AX</div>
+      <div class="sidebar-logo-text"><span>AXYTES</span><span>Admin Panel</span></div>
+    </div>
+    <div class="sidebar-nav">
+      <div class="sidebar-section-label">Overview</div>
+      <a class="sidebar-link" href="dashboard.html"><span class="icon">📊</span> Dashboard</a>
+      <a class="sidebar-link active" href="reports.html"><span class="icon">📈</span> Reports</a>
+
+      <div class="sidebar-section-label" style="margin-top:16px">Recruitment</div>
+      <a class="sidebar-link" href="candidates.html"><span class="icon">👥</span> Candidates</a>
+      <a class="sidebar-link" href="jobs.html"><span class="icon">💼</span> Job Listings</a>
+
+      <div class="sidebar-section-label" style="margin-top:16px">HR Management</div>
+      <a class="sidebar-link" href="employees.html"><span class="icon">🏢</span> Employees & Leaves</a>
+
+      <div class="sidebar-section-label" style="margin-top:16px">Account</div>
+      <a class="sidebar-link" href="login.html" onclick="localStorage.removeItem('adminSession')"><span class="icon">🚪</span> Logout</a>
+    </div>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="sidebar-user-avatar">SA</div>
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-name">Super Admin</div>
+          <div class="sidebar-user-role">HR Operations Head</div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-content">
+    <div class="topbar">
+      <div>
+        <div style="font-weight:700;color:var(--primary);font-size:1.2rem">Recruitment & Operational Reports</div>
+        <div style="font-size:0.85rem;color:var(--gray-500)">Monthly KPIs, placement conversion rates, and payroll analytics</div>
+      </div>
+      <div style="display:flex;gap:10px">
+        <select class="form-control" style="max-width:180px">
+          <option>Q3 (Jul – Sep 2024)</option>
+          <option>Q2 (Apr – Jun 2024)</option>
+          <option>Financial Year 2023-24</option>
+        </select>
+        <button class="btn btn-primary" onclick="alert('Exporting Complete Analytical PDF Report...')">Download PDF Summary</button>
+      </div>
+    </div>
+
+    <!-- METRICS STRIP -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px">
+      <div style="background:white;padding:20px;border-radius:12px;border:1px solid var(--gray-200);box-shadow:var(--shadow-sm)">
+        <div style="font-size:0.85rem;color:var(--gray-500)">Placements Concluded</div>
+        <div style="font-size:1.8rem;font-weight:800;color:var(--primary)">342</div>
+        <div style="font-size:0.8rem;color:#16a34a;margin-top:4px">↑ +18.4% vs last quarter</div>
+      </div>
+      <div style="background:white;padding:20px;border-radius:12px;border:1px solid var(--gray-200);box-shadow:var(--shadow-sm)">
+        <div style="font-size:0.85rem;color:var(--gray-500)">Avg. Time-To-Fill</div>
+        <div style="font-size:1.8rem;font-weight:800;color:#0284c7">14.2 Days</div>
+        <div style="font-size:0.8rem;color:#16a34a;margin-top:4px">↓ 2.5 days faster</div>
+      </div>
+      <div style="background:white;padding:20px;border-radius:12px;border:1px solid var(--gray-200);box-shadow:var(--shadow-sm)">
+        <div style="font-size:0.85rem;color:var(--gray-500)">Offer Acceptance Rate</div>
+        <div style="font-size:1.8rem;font-weight:800;color:#16a34a">91.8%</div>
+        <div style="font-size:0.8rem;color:#16a34a;margin-top:4px">Industry benchmark: 82%</div>
+      </div>
+      <div style="background:white;padding:20px;border-radius:12px;border:1px solid var(--gray-200);box-shadow:var(--shadow-sm)">
+        <div style="font-size:0.85rem;color:var(--gray-500)">Gross Payroll Disbursed</div>
+        <div style="font-size:1.8rem;font-weight:800;color:#9333ea">₹ 4.12 Cr</div>
+        <div style="font-size:0.8rem;color:var(--gray-500);margin-top:4px">September 2024 Cycle</div>
+      </div>
+    </div>
+
+    <!-- MONTHLY HIRING VELOCITY BAR CHART -->
+    <div class="admin-card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+        <h3 style="color:var(--primary);margin:0">Monthly Candidate Placements (2024)</h3>
+        <span style="font-size:0.85rem;color:var(--gray-500)">Total: 968 Placements YTD</span>
+      </div>
+
+      <div class="bar-chart-flex">
+        <div class="chart-col"><div class="bar-fill" style="height:45%"></div><small style="margin-top:8px">May (45)</small></div>
+        <div class="chart-col"><div class="bar-fill" style="height:62%"></div><small style="margin-top:8px">Jun (62)</small></div>
+        <div class="chart-col"><div class="bar-fill" style="height:78%"></div><small style="margin-top:8px">Jul (78)</small></div>
+        <div class="chart-col"><div class="bar-fill" style="height:92%"></div><small style="margin-top:8px">Aug (92)</small></div>
+        <div class="chart-col"><div class="bar-fill" style="height:100%;background:linear-gradient(180deg,#3b82f6,#1d4ed8)"></div><small style="margin-top:8px"><strong>Sep (118)</strong></small></div>
+        <div class="chart-col"><div class="bar-fill" style="height:85%;opacity:0.6"></div><small style="margin-top:8px">Oct (Est. 95)</small></div>
+      </div>
+    </div>
+
+    <!-- SECTOR REVENUE & CANDIDATE BREAKDOWN -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+      <div class="admin-card">
+        <h3 style="color:var(--primary);margin-bottom:16px">Placements by Industry Sector</h3>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:0.85rem;margin-bottom:4px">
+              <span>Manufacturing & Engineering</span>
+              <strong>38% (368 hires)</strong>
+            </div>
+            <div style="height:8px;background:var(--gray-200);border-radius:10px;overflow:hidden">
+              <div style="width:38%;height:100%;background:#2563eb"></div>
+            </div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:0.85rem;margin-bottom:4px">
+              <span>Logistics & 3PL Warehousing</span>
+              <strong>27% (261 hires)</strong>
+            </div>
+            <div style="height:8px;background:var(--gray-200);border-radius:10px;overflow:hidden">
+              <div style="width:27%;height:100%;background:#06b6d4"></div>
+            </div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:0.85rem;margin-bottom:4px">
+              <span>IT & Software Engineering</span>
+              <strong>19% (184 hires)</strong>
+            </div>
+            <div style="height:8px;background:var(--gray-200);border-radius:10px;overflow:hidden">
+              <div style="width:19%;height:100%;background:#8b5cf6"></div>
+            </div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;font-size:0.85rem;margin-bottom:4px">
+              <span>BFSI & Retail FMCG</span>
+              <strong>16% (155 hires)</strong>
+            </div>
+            <div style="height:8px;background:var(--gray-200);border-radius:10px;overflow:hidden">
+              <div style="width:16%;height:100%;background:#10b981"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="admin-card">
+        <h3 style="color:var(--primary);margin-bottom:16px">Recruiter Performance Leaderboard</h3>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Recruiter</th>
+                <th>Domain</th>
+                <th>Target</th>
+                <th>Achieved</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Amrita Sen</strong></td>
+                <td>Manufacturing</td>
+                <td>40</td>
+                <td><span class="badge badge-success">48 (120%)</span></td>
+              </tr>
+              <tr>
+                <td><strong>Vikas Nair</strong></td>
+                <td>IT & Cloud</td>
+                <td>30</td>
+                <td><span class="badge badge-success">35 (116%)</span></td>
+              </tr>
+              <tr>
+                <td><strong>Karan Joshi</strong></td>
+                <td>Logistics</td>
+                <td>50</td>
+                <td><span class="badge badge-success">52 (104%)</span></td>
+              </tr>
+              <tr>
+                <td><strong>Pooja Roy</strong></td>
+                <td>BFSI</td>
+                <td>35</td>
+                <td><span class="badge badge-warning">32 (91%)</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

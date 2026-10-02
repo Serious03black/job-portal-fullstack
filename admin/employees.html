@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Employees & Leave Approvals | AXYTES Admin Panel</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    body { background: var(--gray-50); }
+    .admin-sidebar { background: var(--gray-900); }
+    .admin-sidebar .sidebar-section-label { color: var(--gray-600); }
+    .admin-sidebar .sidebar-link { color: var(--gray-400); }
+    .admin-sidebar .sidebar-link:hover { background: rgba(255,255,255,0.05); color: var(--white); }
+    .admin-sidebar .sidebar-link.active { background: rgba(37,99,235,0.25); color: var(--white); border-left-color: var(--accent); }
+    .admin-card { background: white; border-radius: var(--radius-lg); border: 1px solid var(--gray-200); box-shadow: var(--shadow-sm); padding: 24px; margin-bottom: 24px; }
+    .nav-tabs-custom { display: flex; gap: 8px; border-bottom: 2px solid var(--gray-200); margin-bottom: 20px; }
+    .tab-btn { padding: 10px 20px; font-weight: 600; cursor: pointer; border: none; background: none; border-bottom: 3px solid transparent; margin-bottom: -2px; }
+    .tab-btn.active { color: var(--primary); border-bottom-color: var(--primary); }
+  </style>
+</head>
+<body>
+<div class="dashboard-layout">
+  <!-- ADMIN SIDEBAR -->
+  <nav class="sidebar admin-sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo-icon">AX</div>
+      <div class="sidebar-logo-text"><span>AXYTES</span><span>Admin Panel</span></div>
+    </div>
+    <div class="sidebar-nav">
+      <div class="sidebar-section-label">Overview</div>
+      <a class="sidebar-link" href="dashboard.html"><span class="icon">📊</span> Dashboard</a>
+      <a class="sidebar-link" href="reports.html"><span class="icon">📈</span> Reports</a>
+
+      <div class="sidebar-section-label" style="margin-top:16px">Recruitment</div>
+      <a class="sidebar-link" href="candidates.html"><span class="icon">👥</span> Candidates</a>
+      <a class="sidebar-link" href="jobs.html"><span class="icon">💼</span> Job Listings</a>
+
+      <div class="sidebar-section-label" style="margin-top:16px">HR Management</div>
+      <a class="sidebar-link active" href="employees.html"><span class="icon">🏢</span> Employees & Leaves</a>
+
+      <div class="sidebar-section-label" style="margin-top:16px">Account</div>
+      <a class="sidebar-link" href="login.html" onclick="localStorage.removeItem('adminSession')"><span class="icon">🚪</span> Logout</a>
+    </div>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="sidebar-user-avatar">SA</div>
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-name">Super Admin</div>
+          <div class="sidebar-user-role">HR Operations Head</div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-content">
+    <div class="topbar">
+      <div>
+        <div style="font-weight:700;color:var(--primary);font-size:1.2rem">Deputed Associates & Leave Approvals</div>
+        <div style="font-size:0.85rem;color:var(--gray-500)">Manage payroll associates and approve/reject leave requests</div>
+      </div>
+      <button class="btn btn-primary" onclick="alert('Exporting full associate roster CSV...')">Export Employee Roster</button>
+    </div>
+
+    <!-- TABS -->
+    <div class="nav-tabs-custom">
+      <button class="tab-btn active" onclick="switchTab('leaves', this)">🏖 Pending Leave Requests (3)</button>
+      <button class="tab-btn" onclick="switchTab('roster', this)">👥 All Deputed Associates (128)</button>
+    </div>
+
+    <!-- 1. LEAVE APPROVALS TAB -->
+    <div id="tab-leaves" class="admin-card">
+      <h3 style="color:var(--primary);margin-bottom:16px">Pending Leave Approvals</h3>
+      <div class="table-responsive">
+        <table class="table" id="leaveTable">
+          <thead>
+            <tr>
+              <th>Employee Name & Code</th>
+              <th>Client Deputation</th>
+              <th>Leave Type</th>
+              <th>Dates Requested</th>
+              <th>Days</th>
+              <th>Reason</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Rahul Sharma</strong><br /><small style="color:var(--gray-500)">AXY-2024-089</small></td>
+              <td>Tata Motors Plant</td>
+              <td><span class="badge badge-warning">Casual Leave</span></td>
+              <td>14-Oct-2024 to 15-Oct-2024</td>
+              <td><strong>2 Days</strong></td>
+              <td>Family religious function</td>
+              <td>
+                <div style="display:flex;gap:6px">
+                  <button class="btn btn-sm" style="background:#dcfce7;color:#15803d" onclick="handleLeaveAction(this, 'Approved')">Approve</button>
+                  <button class="btn btn-sm" style="background:#fee2e2;color:#991b1b" onclick="handleLeaveAction(this, 'Rejected')">Reject</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Priya Patel</strong><br /><small style="color:var(--gray-500)">AXY-2024-112</small></td>
+              <td>Bajaj Auto Logistics</td>
+              <td><span class="badge badge-info">Sick Leave</span></td>
+              <td>10-Oct-2024 to 11-Oct-2024</td>
+              <td><strong>2 Days</strong></td>
+              <td>Severe seasonal viral fever</td>
+              <td>
+                <div style="display:flex;gap:6px">
+                  <button class="btn btn-sm" style="background:#dcfce7;color:#15803d" onclick="handleLeaveAction(this, 'Approved')">Approve</button>
+                  <button class="btn btn-sm" style="background:#fee2e2;color:#991b1b" onclick="handleLeaveAction(this, 'Rejected')">Reject</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Aniket Kulkarni</strong><br /><small style="color:var(--gray-500)">AXY-2024-045</small></td>
+              <td>Amazon Fulfillment Center</td>
+              <td><span class="badge badge-danger">Emergency Leave</span></td>
+              <td>12-Oct-2024</td>
+              <td><strong>1 Day</strong></td>
+              <td>Urgent medical checkup for parents</td>
+              <td>
+                <div style="display:flex;gap:6px">
+                  <button class="btn btn-sm" style="background:#dcfce7;color:#15803d" onclick="handleLeaveAction(this, 'Approved')">Approve</button>
+                  <button class="btn btn-sm" style="background:#fee2e2;color:#991b1b" onclick="handleLeaveAction(this, 'Rejected')">Reject</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 2. ASSOCIATES ROSTER TAB -->
+    <div id="tab-roster" class="admin-card" style="display:none">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+        <h3 style="color:var(--primary);margin:0">Active Employee Roster</h3>
+        <input type="text" placeholder="Search employee..." class="form-control" style="max-width:250px" onkeyup="filterRoster(this.value)" />
+      </div>
+
+      <div class="table-responsive">
+        <table class="table" id="rosterTable">
+          <thead>
+            <tr>
+              <th>Emp Code</th>
+              <th>Name</th>
+              <th>Designation</th>
+              <th>Client Site</th>
+              <th>Gross Salary</th>
+              <th>PF / UAN</th>
+              <th>Status</th>
+              <th>Profile</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>AXY-089</strong></td>
+              <td>Rahul Sharma</td>
+              <td>Senior Production Supervisor</td>
+              <td>Tata Motors, Pune</td>
+              <td>₹35,000</td>
+              <td>101489201948</td>
+              <td><span class="badge badge-success">Active</span></td>
+              <td><button class="btn btn-outline btn-sm" onclick="alert('Rahul Sharma: Joining 12-Jan-2023 | Bank: HDFC Bank')">View</button></td>
+            </tr>
+            <tr>
+              <td><strong>AXY-112</strong></td>
+              <td>Priya Patel</td>
+              <td>Dispatch Coordinator</td>
+              <td>Bajaj Auto Logistics</td>
+              <td>₹24,000</td>
+              <td>101894721049</td>
+              <td><span class="badge badge-success">Active</span></td>
+              <td><button class="btn btn-outline btn-sm" onclick="alert('Priya Patel: Joining 05-Mar-2023 | Bank: ICICI Bank')">View</button></td>
+            </tr>
+            <tr>
+              <td><strong>AXY-045</strong></td>
+              <td>Aniket Kulkarni</td>
+              <td>Inventory Controller</td>
+              <td>Amazon Fulfillment Bhiwandi</td>
+              <td>₹28,000</td>
+              <td>101294819201</td>
+              <td><span class="badge badge-success">Active</span></td>
+              <td><button class="btn btn-outline btn-sm" onclick="alert('Aniket Kulkarni: Joining 18-Aug-2022 | Bank: SBI')">View</button></td>
+            </tr>
+            <tr>
+              <td><strong>AXY-164</strong></td>
+              <td>Sneha Deshmukh</td>
+              <td>Quality Inspector</td>
+              <td>Mahindra & Mahindra, Chakan</td>
+              <td>₹26,500</td>
+              <td>101672819283</td>
+              <td><span class="badge badge-success">Active</span></td>
+              <td><button class="btn btn-outline btn-sm" onclick="alert('Sneha Deshmukh: Joining 10-Nov-2023 | Bank: Axis Bank')">View</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function switchTab(tab, btn) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-leaves').style.display = tab === 'leaves' ? 'block' : 'none';
+    document.getElementById('tab-roster').style.display = tab === 'roster' ? 'block' : 'none';
+  }
+
+  function handleLeaveAction(btn, action) {
+    const row = btn.closest('tr');
+    const tdAction = row.querySelector('td:last-child');
+    if (action === 'Approved') {
+      tdAction.innerHTML = '<span class="badge badge-success">✓ Approved</span>';
+    } else {
+      tdAction.innerHTML = '<span class="badge badge-danger">✗ Rejected</span>';
+    }
+  }
+
+  function filterRoster(query) {
+    const q = query.toLowerCase();
+    document.querySelectorAll('#rosterTable tbody tr').forEach(r => {
+      r.style.display = r.textContent.toLowerCase().includes(q) ? '' : 'none';
+    });
+  }
+</script>
+</body>
+</html>

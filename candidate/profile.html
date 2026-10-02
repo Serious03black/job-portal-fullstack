@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Profile | AXYTES Candidate Portal</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    body { background: var(--gray-50); }
+    .profile-card { background: white; border-radius: var(--radius-lg); padding: 32px; border: 1px solid var(--gray-200); box-shadow: var(--shadow-sm); margin-bottom: 24px; }
+    .profile-header-banner {
+      background: var(--gradient-hero); border-radius: var(--radius-lg);
+      padding: 36px 32px; color: white; display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px;
+    }
+    .profile-avatar-large {
+      width: 80px; height: 80px; border-radius: 50%; background: white; color: var(--primary);
+      display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 800; border: 3px solid rgba(255,255,255,0.8);
+    }
+    .skill-chip {
+      background: #eff6ff; color: #1d4ed8; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600;
+      display: inline-flex; align-items: center; gap: 6px; border: 1px solid #bfdbfe;
+    }
+    .skill-chip .remove { cursor: pointer; color: #94a3b8; font-weight: bold; }
+    .skill-chip .remove:hover { color: #ef4444; }
+  </style>
+</head>
+<body>
+<div class="dashboard-layout">
+  <!-- SIDEBAR -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo-icon">AX</div>
+      <div class="sidebar-logo-text"><span>AXYTES</span><span>Candidate Portal</span></div>
+    </div>
+    <div class="sidebar-nav">
+      <div class="sidebar-section-label">Main Menu</div>
+      <a class="sidebar-link" href="dashboard.html"><span class="icon">🏠</span> Dashboard</a>
+      <a class="sidebar-link active" href="profile.html"><span class="icon">👤</span> My Profile</a>
+      <a class="sidebar-link" href="job-search.html"><span class="icon">🔍</span> Search Jobs</a>
+      <a class="sidebar-link" href="applied-jobs.html"><span class="icon">📋</span> Applied Jobs</a>
+      <div class="sidebar-section-label" style="margin-top:16px">Account</div>
+      <a class="sidebar-link" href="login.html" onclick="localStorage.removeItem('candidateSession')"><span class="icon">🚪</span> Logout</a>
+    </div>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="sidebar-user-avatar" id="avatarInitials">RS</div>
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-name" id="userNameDisplay">Rahul Sharma</div>
+          <div class="sidebar-user-role">Job Seeker</div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-content">
+    <div class="topbar">
+      <div style="font-weight:700;color:var(--primary);font-size:1.2rem">Candidate Profile & Resume</div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <a href="applied-jobs.html" class="btn btn-outline btn-sm">View Applications</a>
+        <a href="../jobs.html" class="btn btn-primary btn-sm">Find Jobs</a>
+      </div>
+    </div>
+
+    <!-- BANNER -->
+    <div class="profile-header-banner">
+      <div style="display:flex;align-items:center;gap:20px">
+        <div class="profile-avatar-large">RS</div>
+        <div>
+          <h2 style="margin:0 0 6px 0;font-size:1.8rem">Rahul Sharma</h2>
+          <div style="opacity:0.9;font-size:0.95rem">Senior Production Supervisor | Mechanical Engineering</div>
+          <div style="margin-top:8px;font-size:0.85rem;opacity:0.8;display:flex;gap:16px;flex-wrap:wrap">
+            <span>📍 Pune, Maharashtra</span>
+            <span>✉ rahul.sharma@example.com</span>
+            <span>📱 +91 98765 43210</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <span class="badge" style="background:#22c55e;color:white;padding:8px 16px;font-size:0.85rem">Profile 85% Completed</span>
+      </div>
+    </div>
+
+    <!-- EDIT PROFILE FORM -->
+    <div class="profile-card">
+      <h3 style="color:var(--primary);margin-bottom:20px;border-bottom:1px solid var(--gray-100);padding-bottom:12px">
+        1. Personal & Contact Information
+      </h3>
+      <div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:16px">
+        <div class="form-group">
+          <label class="form-label">Full Name</label>
+          <input type="text" class="form-control" value="Rahul Sharma" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input type="email" class="form-control" value="rahul.sharma@example.com" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Mobile Number</label>
+          <input type="tel" class="form-control" value="+91 98765 43210" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Current City</label>
+          <input type="text" class="form-control" value="Pune, Maharashtra" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Preferred Work Location(s)</label>
+          <input type="text" class="form-control" value="Pune, Mumbai, Navi Mumbai" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Date of Birth</label>
+          <input type="date" class="form-control" value="1996-05-14" />
+        </div>
+      </div>
+    </div>
+
+    <!-- WORK & EXPERIENCE -->
+    <div class="profile-card">
+      <h3 style="color:var(--primary);margin-bottom:20px;border-bottom:1px solid var(--gray-100);padding-bottom:12px">
+        2. Experience & Compensation Details
+      </h3>
+      <div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:16px">
+        <div class="form-group">
+          <label class="form-label">Total Work Experience</label>
+          <select class="form-control">
+            <option>Fresh Graduate / 0 yrs</option>
+            <option>1 – 2 Years</option>
+            <option>3 – 5 Years</option>
+            <option selected>5 – 8 Years</option>
+            <option>8+ Years</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Current Annual CTC (INR)</label>
+          <input type="text" class="form-control" value="₹ 4,80,000 / year" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Expected Annual CTC (INR)</label>
+          <input type="text" class="form-control" value="₹ 6,50,000 / year" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Notice Period</label>
+          <select class="form-control">
+            <option>Immediate / Serving Notice</option>
+            <option selected>15 Days</option>
+            <option>30 Days</option>
+            <option>60 Days</option>
+            <option>90 Days</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Current Company / Employer</label>
+          <input type="text" class="form-control" value="Precision Auto Parts Pvt Ltd" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Current Designation</label>
+          <input type="text" class="form-control" value="Production Supervisor" />
+        </div>
+      </div>
+    </div>
+
+    <!-- KEY SKILLS -->
+    <div class="profile-card">
+      <h3 style="color:var(--primary);margin-bottom:16px;border-bottom:1px solid var(--gray-100);padding-bottom:12px">
+        3. Key Skills & Domain Competencies
+      </h3>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px" id="skillsContainer">
+        <span class="skill-chip">CNC Programming <span class="remove" onclick="this.parentElement.remove()">×</span></span>
+        <span class="skill-chip">Shop Floor Management <span class="remove" onclick="this.parentElement.remove()">×</span></span>
+        <span class="skill-chip">Lean Six Sigma <span class="remove" onclick="this.parentElement.remove()">×</span></span>
+        <span class="skill-chip">ISO 9001 Audits <span class="remove" onclick="this.parentElement.remove()">×</span></span>
+        <span class="skill-chip">5S & Kaizen <span class="remove" onclick="this.parentElement.remove()">×</span></span>
+        <span class="skill-chip">AutoCAD <span class="remove" onclick="this.parentElement.remove()">×</span></span>
+      </div>
+      <div style="display:flex;gap:12px;max-width:450px">
+        <input type="text" id="newSkillInput" class="form-control" placeholder="Add a skill (e.g. PLC, Python)..." />
+        <button class="btn btn-outline" onclick="addSkill()">+ Add</button>
+      </div>
+    </div>
+
+    <!-- RESUME ATTACHMENT -->
+    <div class="profile-card">
+      <h3 style="color:var(--primary);margin-bottom:16px;border-bottom:1px solid var(--gray-100);padding-bottom:12px">
+        4. Uploaded Resume / CV
+      </h3>
+      <div style="display:flex;align-items:center;justify-content:space-between;background:var(--gray-50);padding:20px;border-radius:12px;border:1.5px dashed var(--gray-300)">
+        <div style="display:flex;align-items:center;gap:16px">
+          <div style="font-size:2.5rem;color:var(--primary)">📄</div>
+          <div>
+            <div style="font-weight:700;color:var(--gray-800)">Rahul_Sharma_Resume_2024.pdf</div>
+            <div style="font-size:0.85rem;color:var(--gray-500)">Uploaded 2 weeks ago • 1.4 MB • PDF Document</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px">
+          <button class="btn btn-outline btn-sm" onclick="alert('Downloading resume copy...')">Download</button>
+          <label class="btn btn-primary btn-sm" style="margin:0;cursor:pointer">
+            Replace File <input type="file" style="display:none" onchange="alert('New resume uploaded successfully!')" />
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;justify-content:flex-end;gap:16px;margin-bottom:40px">
+      <button class="btn btn-outline" onclick="location.reload()">Discard Changes</button>
+      <button class="btn btn-primary btn-lg" onclick="saveProfile()">Save & Update Profile</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function addSkill() {
+    const input = document.getElementById('newSkillInput');
+    const val = input.value.trim();
+    if (!val) return;
+    const chip = document.createElement('span');
+    chip.className = 'skill-chip';
+    chip.innerHTML = `${val} <span class="remove" onclick="this.parentElement.remove()">×</span>`;
+    document.getElementById('skillsContainer').appendChild(chip);
+    input.value = '';
+  }
+
+  function saveProfile() {
+    alert('✓ Profile updated successfully! Your updated profile is now visible to AXYTES recruiting specialists.');
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manage Jobs | AXYTES Admin Panel</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    body { background: var(--gray-50); }
+    .admin-sidebar { background: var(--gray-900); }
+    .admin-sidebar .sidebar-section-label { color: var(--gray-600); }
+    .admin-sidebar .sidebar-link { color: var(--gray-400); }
+    .admin-sidebar .sidebar-link:hover { background: rgba(255,255,255,0.05); color: var(--white); }
+    .admin-sidebar .sidebar-link.active { background: rgba(37,99,235,0.25); color: var(--white); border-left-color: var(--accent); }
+    .admin-card { background: white; border-radius: var(--radius-lg); border: 1px solid var(--gray-200); box-shadow: var(--shadow-sm); padding: 24px; margin-bottom: 24px; }
+  </style>
+</head>
+<body>
+<div class="dashboard-layout">
+  <!-- ADMIN SIDEBAR -->
+  <nav class="sidebar admin-sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo-icon">AX</div>
+      <div class="sidebar-logo-text"><span>AXYTES</span><span>Admin Panel</span></div>
+    </div>
+    <div class="sidebar-nav">
+      <div class="sidebar-section-label">Overview</div>
+      <a class="sidebar-link" href="dashboard.html"><span class="icon">📊</span> Dashboard</a>
+      <a class="sidebar-link" href="reports.html"><span class="icon">📈</span> Reports</a>
+
+      <div class="sidebar-section-label" style="margin-top:16px">Recruitment</div>
+      <a class="sidebar-link" href="candidates.html"><span class="icon">👥</span> Candidates</a>
+      <a class="sidebar-link active" href="jobs.html"><span class="icon">💼</span> Job Listings</a>
+
+      <div class="sidebar-section-label" style="margin-top:16px">HR Management</div>
+      <a class="sidebar-link" href="employees.html"><span class="icon">🏢</span> Employees & Leaves</a>
+
+      <div class="sidebar-section-label" style="margin-top:16px">Account</div>
+      <a class="sidebar-link" href="login.html" onclick="localStorage.removeItem('adminSession')"><span class="icon">🚪</span> Logout</a>
+    </div>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="sidebar-user-avatar">SA</div>
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-name">Super Admin</div>
+          <div class="sidebar-user-role">HR Operations Head</div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-content">
+    <div class="topbar">
+      <div>
+        <div style="font-weight:700;color:var(--primary);font-size:1.2rem">Job Openings Management</div>
+        <div style="font-size:0.85rem;color:var(--gray-500)">Post, edit, and monitor public recruitment mandates</div>
+      </div>
+      <button class="btn btn-primary" onclick="openJobModal()">+ Post New Job</button>
+    </div>
+
+    <!-- STATS -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px">
+      <div style="background:white;padding:20px;border-radius:12px;border:1px solid var(--gray-200);box-shadow:var(--shadow-sm)">
+        <div style="font-size:0.85rem;color:var(--gray-500)">Total Postings</div>
+        <div style="font-size:1.8rem;font-weight:800;color:var(--primary)">24</div>
+      </div>
+      <div style="background:white;padding:20px;border-radius:12px;border:1px solid var(--gray-200);box-shadow:var(--shadow-sm)">
+        <div style="font-size:0.85rem;color:var(--gray-500)">Active / Open</div>
+        <div style="font-size:1.8rem;font-weight:800;color:#16a34a">19</div>
+      </div>
+      <div style="background:white;padding:20px;border-radius:12px;border:1px solid var(--gray-200);box-shadow:var(--shadow-sm)">
+        <div style="font-size:0.85rem;color:var(--gray-500)">Total Applications</div>
+        <div style="font-size:1.8rem;font-weight:800;color:#2563eb">642</div>
+      </div>
+      <div style="background:white;padding:20px;border-radius:12px;border:1px solid var(--gray-200);box-shadow:var(--shadow-sm)">
+        <div style="font-size:0.85rem;color:var(--gray-500)">Closed This Month</div>
+        <div style="font-size:1.8rem;font-weight:800;color:#9333ea">5</div>
+      </div>
+    </div>
+
+    <!-- JOBS TABLE -->
+    <div class="admin-card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+        <h3 style="color:var(--primary);margin:0">Active Job Mandates</h3>
+        <input type="text" id="jobSearchInput" placeholder="Filter by title or location..." class="form-control" style="max-width:300px" onkeyup="filterJobsTable()" />
+      </div>
+
+      <div class="table-responsive">
+        <table class="table" id="jobsTable">
+          <thead>
+            <tr>
+              <th>Job Title</th>
+              <th>Client / Industry</th>
+              <th>Location</th>
+              <th>Job Type</th>
+              <th>Applicants</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Production Supervisor</strong><br /><small style="color:var(--gray-500)">JOB-2024-001</small></td>
+              <td>Auto OEM • Manufacturing</td>
+              <td>Pune, MH</td>
+              <td><span class="badge badge-info">Full-Time</span></td>
+              <td><strong>48</strong> candidates</td>
+              <td><span class="badge badge-success">Active</span></td>
+              <td>
+                <button class="btn btn-outline btn-sm" onclick="alert('Viewing 48 applicants...')">Applicants</button>
+                <button class="btn btn-sm" style="background:#fee2e2;color:#991b1b" onclick="toggleJobStatus(this)">Close</button>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Full Stack Java Developer</strong><br /><small style="color:var(--gray-500)">JOB-2024-002</small></td>
+              <td>FinTech Client • IT</td>
+              <td>Mumbai / Hybrid</td>
+              <td><span class="badge badge-info">Full-Time</span></td>
+              <td><strong>82</strong> candidates</td>
+              <td><span class="badge badge-success">Active</span></td>
+              <td>
+                <button class="btn btn-outline btn-sm" onclick="alert('Viewing 82 applicants...')">Applicants</button>
+                <button class="btn btn-sm" style="background:#fee2e2;color:#991b1b" onclick="toggleJobStatus(this)">Close</button>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Warehouse & Logistics Executive</strong><br /><small style="color:var(--gray-500)">JOB-2024-003</small></td>
+              <td>3PL E-Commerce • Logistics</td>
+              <td>Bhiwandi, Thane</td>
+              <td><span class="badge badge-warning">Contract</span></td>
+              <td><strong>124</strong> candidates</td>
+              <td><span class="badge badge-success">Active</span></td>
+              <td>
+                <button class="btn btn-outline btn-sm" onclick="alert('Viewing 124 applicants...')">Applicants</button>
+                <button class="btn btn-sm" style="background:#fee2e2;color:#991b1b" onclick="toggleJobStatus(this)">Close</button>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Branch Relationship Manager</strong><br /><small style="color:var(--gray-500)">JOB-2024-004</small></td>
+              <td>Private Bank • BFSI</td>
+              <td>Navi Mumbai</td>
+              <td><span class="badge badge-info">Full-Time</span></td>
+              <td><strong>36</strong> candidates</td>
+              <td><span class="badge badge-success">Active</span></td>
+              <td>
+                <button class="btn btn-outline btn-sm" onclick="alert('Viewing 36 applicants...')">Applicants</button>
+                <button class="btn btn-sm" style="background:#fee2e2;color:#991b1b" onclick="toggleJobStatus(this)">Close</button>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Field Sales Officer (FMCG)</strong><br /><small style="color:var(--gray-500)">JOB-2024-005</small></td>
+              <td>Beverages Brand • Retail</td>
+              <td>Nashik, MH</td>
+              <td><span class="badge badge-info">Full-Time</span></td>
+              <td><strong>19</strong> candidates</td>
+              <td><span class="badge badge-secondary">Closed</span></td>
+              <td>
+                <button class="btn btn-outline btn-sm" onclick="alert('Viewing 19 applicants...')">Applicants</button>
+                <button class="btn btn-sm" style="background:#dcfce7;color:#15803d" onclick="toggleJobStatus(this)">Reopen</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- POST JOB MODAL -->
+<div id="jobModal" class="modal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);z-index:9999;align-items:center;justify-content:center">
+  <div style="background:white;border-radius:16px;padding:32px;max-width:600px;width:90%;box-shadow:var(--shadow-xl);max-height:90vh;overflow-y:auto">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+      <h3 style="color:var(--primary);margin:0">Create New Job Mandate</h3>
+      <button onclick="closeJobModal()" style="background:none;border:none;font-size:1.5rem;cursor:pointer">×</button>
+    </div>
+    <form onsubmit="handleCreateJob(event)">
+      <div class="form-group">
+        <label class="form-label">Job Title *</label>
+        <input type="text" id="mJobTitle" class="form-control" required placeholder="e.g. Senior Machine Operator" />
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div class="form-group">
+          <label class="form-label">Industry *</label>
+          <select class="form-control" id="mJobIndustry" required>
+            <option>Manufacturing</option>
+            <option>IT & Software</option>
+            <option>BFSI</option>
+            <option>Logistics</option>
+            <option>Healthcare</option>
+            <option>Retail</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Job Type *</label>
+          <select class="form-control" id="mJobType" required>
+            <option>Full-Time</option>
+            <option>Contract Staffing</option>
+            <option>Temporary</option>
+          </select>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div class="form-group">
+          <label class="form-label">Location (City) *</label>
+          <input type="text" id="mJobLoc" class="form-control" required placeholder="e.g. Pune, MH" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Salary Range *</label>
+          <input type="text" class="form-control" required placeholder="e.g. ₹25,000–35,000/mo" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Job Description & Qualifications</label>
+        <textarea class="form-control" rows="3" placeholder="Enter key duties and required skills..."></textarea>
+      </div>
+      <div style="display:flex;justify-content:flex-end;gap:12px;margin-top:20px">
+        <button type="button" class="btn btn-outline" onclick="closeJobModal()">Cancel</button>
+        <button type="submit" class="btn btn-primary">Publish Job Opening</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  function openJobModal() { document.getElementById('jobModal').style.display = 'flex'; }
+  function closeJobModal() { document.getElementById('jobModal').style.display = 'none'; }
+
+  function handleCreateJob(e) {
+    e.preventDefault();
+    const title = document.getElementById('mJobTitle').value;
+    const ind = document.getElementById('mJobIndustry').value;
+    const loc = document.getElementById('mJobLoc').value;
+    const type = document.getElementById('mJobType').value;
+
+    const tbody = document.querySelector('#jobsTable tbody');
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><strong>${title}</strong><br /><small style="color:var(--gray-500)">JOB-2024-NEW</small></td>
+      <td>Client Mandate • ${ind}</td>
+      <td>${loc}</td>
+      <td><span class="badge badge-info">${type}</span></td>
+      <td><strong>0</strong> candidates</td>
+      <td><span class="badge badge-success">Active</span></td>
+      <td>
+        <button class="btn btn-outline btn-sm" onclick="alert('Viewing 0 applicants...')">Applicants</button>
+        <button class="btn btn-sm" style="background:#fee2e2;color:#991b1b" onclick="toggleJobStatus(this)">Close</button>
+      </td>
+    `;
+    tbody.prepend(tr);
+    closeJobModal();
+    alert('✓ Job published successfully! It is now live on the public job board.');
+  }
+
+  function toggleJobStatus(btn) {
+    const row = btn.closest('tr');
+    const badge = row.querySelector('td:nth-child(6) span');
+    if (badge.textContent.trim() === 'Active') {
+      badge.textContent = 'Closed';
+      badge.className = 'badge badge-secondary';
+      btn.textContent = 'Reopen';
+      btn.style.background = '#dcfce7';
+      btn.style.color = '#15803d';
+    } else {
+      badge.textContent = 'Active';
+      badge.className = 'badge badge-success';
+      btn.textContent = 'Close';
+      btn.style.background = '#fee2e2';
+      btn.style.color = '#991b1b';
+    }
+  }
+
+  function filterJobsTable() {
+    const q = document.getElementById('jobSearchInput').value.toLowerCase();
+    const rows = document.querySelectorAll('#jobsTable tbody tr');
+    rows.forEach(r => {
+      r.style.display = r.textContent.toLowerCase().includes(q) ? '' : 'none';
+    });
+  }
+</script>
+</body>
+</html>

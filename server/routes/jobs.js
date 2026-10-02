@@ -1,14 +1,53 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
+const Job = require('../models/Job');
 const { getDb, saveDb } = require('../db');
 
 // List jobs with multi-facet filtering and search
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   const { kw, loc, cat, type, status } = req.query;
+
+  try {
+    if (mongoose.connection.readyState === 1) {
+      const query = {};
+      if (status) {
+        query.status = new RegExp(`^${status}$`, 'i');
+      }
+      if (loc) {
+        query.location = new RegExp(loc, 'i');
+      }
+      if (cat) {
+        query.category = new RegExp(cat, 'i');
+      }
+      if (type) {
+        query.type = new RegExp(type, 'i');
+      }
+      if (kw) {
+        query.$or = [
+          { title: new RegExp(kw, 'i') },
+          { description: new RegExp(kw, 'i') },
+          { company: new RegExp(kw, 'i') },
+          { skills: new RegExp(kw, 'i') }
+        ];
+      }
+
+      const jobs = await Job.find(query).sort({ createdAt: -1 });
+      return res.json({
+        success: true,
+        source: 'MongoDB Atlas',
+        total: jobs.length,
+        jobs
+      });
+    }
+  } catch (err) {
+    console.error('Mongo list jobs error, using fallback:', err.message);
+  }
+
+  // Fallback to local DB
   const db = getDb();
   let results = [...db.jobs];
 
-  // Filter by active status by default unless specified
   if (status) {
     results = results.filter(j => j.status.toLowerCase() === status.toLowerCase());
   }
@@ -46,7 +85,18 @@ router.get('/', (req, res) => {
 });
 
 // Single job details
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
+  try {
+    if (mongoose.connection.readyState === 1) {
+      const job = await Job.findOne({ id: req.params.id });
+      if (job) {
+        return res.json({ success: true, job });
+      }
+    }
+  } catch (err) {
+    console.error('Mongo single job error:', err.message);
+  }
+
   const db = getDb();
   const job = db.jobs.find(j => j.id === req.params.id);
   if (!job) {
@@ -56,16 +106,47 @@ router.get('/:id', (req, res) => {
 });
 
 // Create new job posting (Admin)
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   const { title, company, location, type, category, salary, experience, openings, description, skills } = req.body;
-  const db = getDb();
 
   if (!title || !location) {
     return res.status(400).json({ success: false, message: 'Title and location are mandatory.' });
   }
 
+  const skillsArr = Array.isArray(skills) ? skills : (skills ? skills.split(',').map(s => s.trim()) : []);
+  const jobId = `JOB-${new Date().getFullYear()}-${Date.now().toString().slice(-4)}`;
+
+  try {
+    if (mongoose.connection.readyState === 1) {
+      const newJob = await Job.create({
+        id: jobId,
+        title,
+        company: company || 'Client Mandate',
+        location,
+        type: type || 'Full-time',
+        category: category || 'General',
+        salary: salary || 'Negotiable',
+        experience: experience || '1 – 3 Years',
+        openings: Number(openings) || 1,
+        status: 'Active',
+        description: description || '',
+        skills: skillsArr,
+        postedDate: new Date().toISOString().split('T')[0]
+      });
+
+      return res.status(201).json({
+        success: true,
+        message: 'Job posting published to MongoDB Atlas.',
+        job: newJob
+      });
+    }
+  } catch (err) {
+    console.error('Mongo create job error, using fallback:', err.message);
+  }
+
+  const db = getDb();
   const newJob = {
-    id: `JOB-${new Date().getFullYear()}-${String(db.jobs.length + 1).padStart(3, '0')}`,
+    id: jobId,
     title,
     company: company || 'Client Mandate',
     location,
@@ -76,7 +157,7 @@ router.post('/', (req, res) => {
     openings: Number(openings) || 1,
     status: 'Active',
     description: description || '',
-    skills: Array.isArray(skills) ? skills : (skills ? skills.split(',').map(s => s.trim()) : []),
+    skills: skillsArr,
     postedDate: new Date().toISOString().split('T')[0]
   };
 
@@ -91,7 +172,18 @@ router.post('/', (req, res) => {
 });
 
 // Update or toggle job status
-router.put('/:id', (req, res) => {
+router.put('/:id', async (req, res) => {
+  try {
+    if (mongoose.connection.readyState === 1) {
+      const job = await Job.findOneAndUpdate({ id: req.params.id }, req.body, { new: true });
+      if (job) {
+        return res.json({ success: true, message: 'Job updated successfully (MongoDB).', job });
+      }
+    }
+  } catch (err) {
+    console.error('Mongo update job error:', err.message);
+  }
+
   const db = getDb();
   const job = db.jobs.find(j => j.id === req.params.id);
   if (!job) {
@@ -110,7 +202,18 @@ router.put('/:id', (req, res) => {
 });
 
 // Delete job
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
+  try {
+    if (mongoose.connection.readyState === 1) {
+      const deleted = await Job.findOneAndDelete({ id: req.params.id });
+      if (deleted) {
+        return res.json({ success: true, message: 'Job removed from MongoDB Atlas.', job: deleted });
+      }
+    }
+  } catch (err) {
+    console.error('Mongo delete job error:', err.message);
+  }
+
   const db = getDb();
   const index = db.jobs.findIndex(j => j.id === req.params.id);
   if (index === -1) {

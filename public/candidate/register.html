@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register as Candidate | AXYTES Solutions</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    .auth-page { grid-template-columns: 1fr 1.4fr; }
+    .auth-form-container { max-width: 560px; padding: 36px 44px; }
+    .step-form { display: none; }
+    .step-form.active { display: block; }
+  </style>
+</head>
+<body>
+<div class="auth-page">
+  <div class="auth-panel-left">
+    <div>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:40px">
+        <div style="width:44px;height:44px;background:rgba(255,255,255,0.2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;color:white">AX</div>
+        <div style="font-family:var(--font-heading);font-size:1.2rem;font-weight:800;color:white">AXYTES</div>
+      </div>
+      <h2>Start Your Career Journey</h2>
+      <p>Join thousands of professionals who found their dream jobs through AXYTES. Register in minutes, it's completely free!</p>
+      <div class="auth-features">
+        <div class="auth-feature"><div class="auth-feature-icon">✅</div><span>Free registration — always</span></div>
+        <div class="auth-feature"><div class="auth-feature-icon">⚡</div><span>Get shortlisted within 48 hours</span></div>
+        <div class="auth-feature"><div class="auth-feature-icon">🔔</div><span>Personalised job alerts</span></div>
+        <div class="auth-feature"><div class="auth-feature-icon">🛡</div><span>Your data is 100% secure</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="auth-panel-right">
+    <div class="auth-form-container">
+      <div class="auth-form-logo">
+        <div style="width:36px;height:36px;background:var(--gradient-hero);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;color:white">AX</div>
+        <span style="font-family:var(--font-heading);font-size:1.05rem;font-weight:700;color:var(--primary)">Create Account</span>
+      </div>
+
+      <div class="steps" style="margin-bottom:28px" id="stepIndicator">
+        <div class="step active" id="step-ind-1"><div class="step-circle">1</div><div class="step-label">Personal</div></div>
+        <div class="step" id="step-ind-2"><div class="step-circle">2</div><div class="step-label">Professional</div></div>
+        <div class="step" id="step-ind-3"><div class="step-circle">3</div><div class="step-label">Account</div></div>
+      </div>
+
+      <div id="alertMsg" style="display:none;padding:14px;border-radius:8px;margin-bottom:16px;font-size:0.9rem"></div>
+
+      <!-- STEP 1 -->
+      <div class="step-form active" id="form-1">
+        <h3 style="margin-bottom:4px">Personal Information</h3>
+        <p class="text-muted text-small" style="margin-bottom:20px">Tell us about yourself</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <div class="form-group"><label class="form-label">First Name *</label><input type="text" id="firstName" class="form-control" placeholder="Rahul" required /></div>
+          <div class="form-group"><label class="form-label">Last Name *</label><input type="text" id="lastName" class="form-control" placeholder="Sharma" required /></div>
+        </div>
+        <div class="form-group"><label class="form-label">Mobile Number *</label><input type="tel" id="mobile" class="form-control" placeholder="+91 XXXXX XXXXX" required /></div>
+        <div class="form-group"><label class="form-label">Date of Birth</label><input type="date" id="dob" class="form-control" /></div>
+        <div class="form-group">
+          <label class="form-label">Gender</label>
+          <select id="gender" class="form-control"><option value="">Select Gender</option><option>Male</option><option>Female</option><option>Other</option></select>
+        </div>
+        <div class="form-group"><label class="form-label">Current City / Location *</label><input type="text" id="city" class="form-control" placeholder="Mumbai, Maharashtra" required /></div>
+        <button class="btn btn-primary w-full" onclick="goStep(2)" style="justify-content:center">Continue →</button>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="step-form" id="form-2">
+        <h3 style="margin-bottom:4px">Professional Details</h3>
+        <p class="text-muted text-small" style="margin-bottom:20px">Your career background</p>
+        <div class="form-group">
+          <label class="form-label">Highest Education *</label>
+          <select id="education" class="form-control"><option value="">Select Education</option><option>10th / SSC</option><option>12th / HSC</option><option>Diploma</option><option>ITI</option><option>Graduate (B.A./B.Com/B.Sc)</option><option>Graduate (B.E./B.Tech)</option><option>Post Graduate</option><option>MBA/PGDM</option><option>PhD</option></select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Total Experience</label>
+          <select id="experience" class="form-control"><option value="fresher">Fresher (0 years)</option><option>Less than 1 year</option><option>1–2 years</option><option>2–5 years</option><option>5–10 years</option><option>10+ years</option></select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Preferred Job Category *</label>
+          <select id="jobCategory" class="form-control"><option value="">Select Category</option><option>Manufacturing / Production</option><option>Sales / Marketing</option><option>IT / Technology</option><option>Logistics / Warehouse</option><option>Admin / Back Office</option><option>HR / Recruitment</option><option>Finance / Accounts</option><option>Healthcare</option><option>Customer Service</option></select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Expected Salary (₹/month)</label>
+          <input type="text" id="salary" class="form-control" placeholder="e.g. 25000" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Key Skills (comma separated)</label>
+          <input type="text" id="skills" class="form-control" placeholder="e.g. MS Excel, Communication, Machine Operation" />
+        </div>
+        <div style="display:flex;gap:12px">
+          <button class="btn btn-outline" onclick="goStep(1)">← Back</button>
+          <button class="btn btn-primary" onclick="goStep(3)" style="flex:1;justify-content:center">Continue →</button>
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="step-form" id="form-3">
+        <h3 style="margin-bottom:4px">Account Setup</h3>
+        <p class="text-muted text-small" style="margin-bottom:20px">Create your login credentials</p>
+        <div class="form-group"><label class="form-label">Email Address *</label><input type="email" id="regEmail" class="form-control" placeholder="you@email.com" required /></div>
+        <div class="form-group">
+          <label class="form-label">Password *</label>
+          <div style="position:relative">
+            <input type="password" id="regPass" class="form-control" placeholder="Min. 8 characters" required style="padding-right:48px" />
+            <button type="button" onclick="togglePwd('regPass')" style="position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--gray-400);cursor:pointer;background:none;border:none">👁</button>
+          </div>
+          <div id="passStrength" style="height:4px;border-radius:4px;margin-top:8px;background:var(--gray-200);overflow:hidden"><div id="passBar" style="height:100%;width:0%;background:var(--success);transition:all 0.3s"></div></div>
+        </div>
+        <div class="form-group"><label class="form-label">Confirm Password *</label><input type="password" id="regPassConfirm" class="form-control" placeholder="Repeat password" required /></div>
+        <div class="form-group">
+          <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-size:0.87rem;color:var(--gray-600)">
+            <input type="checkbox" id="agreeTerms" style="margin-top:3px" />
+            <span>I agree to the <a href="../terms.html" style="color:var(--primary-light)">Terms & Conditions</a> and <a href="../privacy.html" style="color:var(--primary-light)">Privacy Policy</a></span>
+          </label>
+        </div>
+        <div style="display:flex;gap:12px">
+          <button class="btn btn-outline" onclick="goStep(2)">← Back</button>
+          <button class="btn btn-primary" onclick="registerSubmit()" id="regBtn" style="flex:1;justify-content:center">Create Account 🎉</button>
+        </div>
+        <div style="margin-top:20px;text-align:center;font-size:0.9rem;color:var(--gray-600)">Already registered? <a href="login.html" style="color:var(--primary-light);font-weight:700">Sign In</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  let currentStep = 1;
+
+  function goStep(n) {
+    ['form-1','form-2','form-3'].forEach((id,i) => {
+      document.getElementById(id).classList.toggle('active', i === n-1);
+      const ind = document.getElementById(`step-ind-${i+1}`);
+      if (i+1 < n) { ind.className = 'step done'; ind.querySelector('.step-circle').textContent = '✓'; }
+      else if (i+1 === n) { ind.className = 'step active'; ind.querySelector('.step-circle').textContent = i+1; }
+      else { ind.className = 'step'; ind.querySelector('.step-circle').textContent = i+1; }
+    });
+    currentStep = n;
+  }
+
+  function togglePwd(id) { const el = document.getElementById(id); el.type = el.type==='password'?'text':'password'; }
+
+  document.getElementById('regPass').addEventListener('input', function() {
+    const v = this.value;
+    let strength = 0;
+    if (v.length >= 8) strength += 34;
+    if (/[A-Z]/.test(v)) strength += 33;
+    if (/[0-9!@#$%]/.test(v)) strength += 33;
+    document.getElementById('passBar').style.width = strength + '%';
+    document.getElementById('passBar').style.background = strength < 40 ? '#ef4444' : strength < 70 ? '#f59e0b' : '#10b981';
+  });
+
+  function registerSubmit() {
+    const email = document.getElementById('regEmail').value;
+    const pass = document.getElementById('regPass').value;
+    const confirm = document.getElementById('regPassConfirm').value;
+    const agreed = document.getElementById('agreeTerms').checked;
+    const msg = document.getElementById('alertMsg');
+
+    if (!email || !pass) { showAlert('Please fill all required fields.', 'error'); return; }
+    if (pass !== confirm) { showAlert('Passwords do not match.', 'error'); return; }
+    if (pass.length < 8) { showAlert('Password must be at least 8 characters.', 'error'); return; }
+    if (!agreed) { showAlert('Please agree to the Terms & Conditions.', 'error'); return; }
+
+    document.getElementById('regBtn').textContent = 'Creating account...';
+    document.getElementById('regBtn').disabled = true;
+
+    setTimeout(() => {
+      localStorage.setItem('candidateSession', JSON.stringify({ email, name: document.getElementById('firstName').value + ' ' + document.getElementById('lastName').value, role: 'candidate', loginTime: Date.now() }));
+      window.location.href = 'dashboard.html';
+    }, 1500);
+  }
+
+  function showAlert(msg, type) {
+    const el = document.getElementById('alertMsg');
+    el.style.display = 'block';
+    el.style.background = type === 'error' ? '#fee2e2' : '#d1fae5';
+    el.style.color = type === 'error' ? '#991b1b' : '#065f46';
+    el.textContent = msg;
+  }
+</script>
+</body>
+</html>

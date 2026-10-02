@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AXYTES Solutions Pvt. Ltd. | Staffing, Recruitment & Payroll Solutions</title>
+  <meta name="description" content="AXYTES Solutions Pvt. Ltd. is a leading staffing, recruitment, manpower and payroll solutions company. We connect top talent with leading organizations across India." />
+  <meta name="keywords" content="staffing, recruitment, manpower, payroll, HR solutions, AXYTES, hiring" />
+  <link rel="canonical" href="https://www.axytes.in/" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    /* ── HOME PAGE SPECIFIC ── */
+    .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .hero-visual { position: relative; animation: float 4s ease-in-out infinite; }
+    .hero-card-float {
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 16px;
+      padding: 20px 24px;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      animation: fadeInUp 0.6s ease forwards;
+    }
+    .hero-card-float .hcf-icon { font-size: 1.4rem; }
+    .hero-card-float small { display: block; font-weight: 400; color: rgba(255,255,255,0.7); font-size: 0.78rem; margin-top: 2px; }
+
+    .search-section {
+      background: var(--white);
+      padding: 0;
+      margin-top: -36px;
+      position: relative;
+      z-index: 10;
+    }
+    .search-box-outer {
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-xl);
+      padding: 36px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .search-row { display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 16px; align-items: end; }
+
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .service-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 36px 28px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--gray-100);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--gradient-hero);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: var(--transition);
+    }
+    .service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .service-card:hover::before { transform: scaleX(1); }
+
+    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .why-list { display: flex; flex-direction: column; gap: 24px; margin-top: 28px; }
+    .why-item { display: flex; gap: 16px; align-items: flex-start; }
+    .why-icon { width: 44px; height: 44px; border-radius: 10px; background: linear-gradient(135deg,#dbeafe,#e0eaff); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+
+    .stats-strip { background: var(--gradient-hero); padding: 64px 0; }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; text-align: center; }
+    .stat-item { color: white; }
+    .stat-item .num { font-family: var(--font-heading); font-size: 2.8rem; font-weight: 800; line-height: 1; }
+    .stat-item .lbl { font-size: 0.95rem; color: rgba(255,255,255,0.75); margin-top: 8px; }
+
+    .industries-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .industry-card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 28px 20px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--gray-100);
+      transition: var(--transition);
+      cursor: pointer;
+    }
+    .industry-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--primary-light); }
+    .industry-card .i-icon { font-size: 2rem; margin-bottom: 12px; display: block; }
+    .industry-card h4 { font-size: 0.9rem; color: var(--gray-700); font-weight: 600; }
+
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .testimonial-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--gray-100);
+      position: relative;
+    }
+    .testimonial-card::before { content: '"'; position: absolute; top: 16px; right: 24px; font-size: 5rem; color: var(--gray-100); font-family: Georgia, serif; line-height: 1; }
+    .stars { color: #f59e0b; font-size: 0.9rem; margin-bottom: 14px; }
+    .testimonial-text { color: var(--gray-600); font-size: 0.95rem; line-height: 1.7; margin-bottom: 20px; }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+    .author-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--gradient-hero); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 0.9rem; }
+    .author-name { font-weight: 700; font-size: 0.9rem; color: var(--gray-800); }
+    .author-title { font-size: 0.8rem; color: var(--gray-500); }
+
+    .cta-strip {
+      background: var(--gradient-hero);
+      padding: 80px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-strip h2 { color: white; margin-bottom: 16px; }
+    .cta-strip p { color: rgba(255,255,255,0.8); font-size: 1.1rem; max-width: 540px; margin: 0 auto 32px; }
+    .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    @media (max-width: 1024px) {
+      .hero-grid { grid-template-columns: 1fr; text-align: center; }
+      .hero-visual { display: none; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .why-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .industries-grid { grid-template-columns: repeat(2, 1fr); }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .search-row { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .industries-grid { grid-template-columns: repeat(2, 1fr); }
+      .search-row { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════ NAVBAR ═══════════════════ -->
+  <nav class="navbar" id="mainNav" role="navigation" aria-label="Main Navigation">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon">AX</div>
+        <div class="nav-logo-text">
+          <span>AXYTES</span>
+          <span>Solutions Pvt. Ltd.</span>
+        </div>
+      </a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <div class="nav-dropdown">
+          <a href="services.html" class="nav-link">Services ▾</a>
+          <div class="dropdown-menu">
+            <a href="services.html#staffing" class="dropdown-item">🏢 Staffing Solutions</a>
+            <a href="services.html#recruitment" class="dropdown-item">🔍 Recruitment</a>
+            <a href="services.html#payroll" class="dropdown-item">💰 Payroll Processing</a>
+            <a href="services.html#manpower" class="dropdown-item">👥 Manpower Supply</a>
+            <a href="services.html#training" class="dropdown-item">📚 Training & Development</a>
+          </div>
+        </div>
+        <a href="industries.html" class="nav-link">Industries</a>
+        <a href="employers.html" class="nav-link">For Employers</a>
+        <a href="jobs.html" class="nav-link">Jobs</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </div>
+
+      <div class="nav-actions">
+        <a href="candidate/login.html" class="btn btn-outline btn-sm">Job Seeker Login</a>
+        <a href="employee/login.html" class="btn btn-primary btn-sm">Employee Portal</a>
+        <a href="admin/login.html" class="btn btn-sm" style="background:var(--gray-800);color:white">Admin</a>
+        <div class="hamburger" id="hamburger" aria-label="Toggle menu" tabindex="0">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════ HERO ═══════════════════ -->
+  <section class="hero" aria-label="Hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content fade-in-up">
+          <div class="section-label">🚀 India's Growing Staffing Partner</div>
+          <h1>Connecting <span style="color:#7dd3fc">Top Talent</span> With Leading Organizations</h1>
+          <p>AXYTES Solutions delivers end-to-end staffing, recruitment, manpower supply and payroll solutions. We help businesses grow with the right people at the right time.</p>
+          <div class="hero-actions">
+            <a href="jobs.html" class="btn btn-white btn-lg">🔍 Find Jobs</a>
+            <a href="employers.html" class="btn btn-lg" style="background:rgba(255,255,255,0.15);color:white;border:2px solid rgba(255,255,255,0.4)">Hire Talent →</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-card-float delay-1">
+            <span class="hcf-icon">✅</span>
+            <div><span>Placement Rate</span><small>95% successful placements in 30 days</small></div>
+          </div>
+          <div class="hero-card-float delay-2">
+            <span class="hcf-icon">👥</span>
+            <div><span>Active Candidates</span><small>10,000+ verified profiles ready to hire</small></div>
+          </div>
+          <div class="hero-card-float delay-3">
+            <span class="hcf-icon">🏆</span>
+            <div><span>Trusted by 200+ Clients</span><small>Across manufacturing, IT, BFSI & more</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ JOB SEARCH BOX ═══════════════════ -->
+  <section class="search-section" aria-label="Job Search">
+    <div class="container">
+      <div class="search-box-outer">
+        <h3 style="color:var(--primary);margin-bottom:8px;">🔍 Search Jobs</h3>
+        <p style="color:var(--gray-500);font-size:0.9rem;margin-bottom:24px;">Discover thousands of opportunities across India</p>
+        <div class="search-row">
+          <div class="form-group" style="margin:0">
+            <label class="form-label">Job Title / Keywords</label>
+            <div class="search-bar">
+              <span class="search-icon">🔍</span>
+              <input type="text" id="searchKeywords" placeholder="e.g. Data Entry, Sales, Engineer" aria-label="Search keywords" />
+            </div>
+          </div>
+          <div class="form-group" style="margin:0">
+            <label class="form-label">Location</label>
+            <div class="search-bar">
+              <span class="search-icon">📍</span>
+              <input type="text" id="searchLocation" placeholder="City, State" aria-label="Job location" />
+            </div>
+          </div>
+          <div class="form-group" style="margin:0">
+            <label class="form-label">Category</label>
+            <select class="form-control" id="searchCategory" aria-label="Job category">
+              <option value="">All Categories</option>
+              <option>Manufacturing</option>
+              <option>IT & Technology</option>
+              <option>BFSI</option>
+              <option>Healthcare</option>
+              <option>Logistics</option>
+              <option>Retail</option>
+              <option>Engineering</option>
+              <option>Admin / Office</option>
+            </select>
+          </div>
+          <button class="btn btn-primary" onclick="searchJobs()" id="searchBtn">Search Jobs</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ STATS STRIP ═══════════════════ -->
+  <section class="stats-strip" aria-label="Company Statistics">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item fade-in-up">
+          <div class="num" id="stat1">0</div>
+          <div class="lbl">Candidates Placed</div>
+        </div>
+        <div class="stat-item fade-in-up delay-1">
+          <div class="num" id="stat2">0</div>
+          <div class="lbl">Client Companies</div>
+        </div>
+        <div class="stat-item fade-in-up delay-2">
+          <div class="num" id="stat3">0</div>
+          <div class="lbl">Active Job Openings</div>
+        </div>
+        <div class="stat-item fade-in-up delay-3">
+          <div class="num" id="stat4">0</div>
+          <div class="lbl">Years of Experience</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ SERVICES ═══════════════════ -->
+  <section class="section" id="services" aria-label="Our Services">
+    <div class="container">
+      <div class="section-header center">
+        <div class="section-label">What We Do</div>
+        <h2 class="section-title">Comprehensive HR & Staffing Solutions</h2>
+        <p class="section-desc">From temporary staffing to permanent recruitment, we offer a full spectrum of workforce solutions tailored to your business needs.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="card-icon">🏢</div>
+          <h3>Temporary Staffing</h3>
+          <p style="color:var(--gray-500);margin-top:10px;font-size:0.93rem;line-height:1.7">Scale your workforce up or down with our flexible temporary staffing solutions. Quick deployment, fully compliant, cost-effective.</p>
+          <a href="services.html#staffing" style="color:var(--primary-light);font-weight:600;font-size:0.9rem;margin-top:16px;display:inline-flex;align-items:center;gap:4px">Learn More →</a>
+        </div>
+        <div class="service-card">
+          <div class="card-icon">🔍</div>
+          <h3>Permanent Recruitment</h3>
+          <p style="color:var(--gray-500);margin-top:10px;font-size:0.93rem;line-height:1.7">End-to-end permanent hiring — from sourcing, screening and interviewing to onboarding. We find your next top performer.</p>
+          <a href="services.html#recruitment" style="color:var(--primary-light);font-weight:600;font-size:0.9rem;margin-top:16px;display:inline-flex;align-items:center;gap:4px">Learn More →</a>
+        </div>
+        <div class="service-card">
+          <div class="card-icon">💰</div>
+          <h3>Payroll Processing</h3>
+          <p style="color:var(--gray-500);margin-top:10px;font-size:0.93rem;line-height:1.7">Accurate, timely and fully compliant payroll management including PF, ESIC, TDS calculations and salary slip generation.</p>
+          <a href="services.html#payroll" style="color:var(--primary-light);font-weight:600;font-size:0.9rem;margin-top:16px;display:inline-flex;align-items:center;gap:4px">Learn More →</a>
+        </div>
+        <div class="service-card">
+          <div class="card-icon">👥</div>
+          <h3>Manpower Supply</h3>
+          <p style="color:var(--gray-500);margin-top:10px;font-size:0.93rem;line-height:1.7">Dedicated manpower solutions for manufacturing, warehousing, construction and industrial sectors with complete compliance management.</p>
+          <a href="services.html#manpower" style="color:var(--primary-light);font-weight:600;font-size:0.9rem;margin-top:16px;display:inline-flex;align-items:center;gap:4px">Learn More →</a>
+        </div>
+        <div class="service-card">
+          <div class="card-icon">📋</div>
+          <h3>HR Compliance</h3>
+          <p style="color:var(--gray-500);margin-top:10px;font-size:0.93rem;line-height:1.7">Stay compliant with labour laws, PF/ESIC registration, Shop Act, Contract Labour Act and all statutory requirements.</p>
+          <a href="services.html#compliance" style="color:var(--primary-light);font-weight:600;font-size:0.9rem;margin-top:16px;display:inline-flex;align-items:center;gap:4px">Learn More →</a>
+        </div>
+        <div class="service-card">
+          <div class="card-icon">📚</div>
+          <h3>Training & Development</h3>
+          <p style="color:var(--gray-500);margin-top:10px;font-size:0.93rem;line-height:1.7">Upskill your workforce with our customized training programs including soft skills, technical skills and leadership development.</p>
+          <a href="services.html#training" style="color:var(--primary-light);font-weight:600;font-size:0.9rem;margin-top:16px;display:inline-flex;align-items:center;gap:4px">Learn More →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ WHY AXYTES ═══════════════════ -->
+  <section class="section section-alt" id="why-us" aria-label="Why Choose AXYTES">
+    <div class="container">
+      <div class="why-grid">
+        <div>
+          <div class="section-label">Why AXYTES</div>
+          <h2 class="section-title">Your Trusted Workforce Partner</h2>
+          <p class="section-desc">We go beyond simple staffing. AXYTES becomes an extension of your HR team — understanding your culture, goals and growth plans.</p>
+          <div class="why-list">
+            <div class="why-item">
+              <div class="why-icon">⚡</div>
+              <div>
+                <h4>Fast Turnaround</h4>
+                <p style="color:var(--gray-500);font-size:0.9rem;margin-top:4px">We deliver shortlisted candidates within 48–72 hours of requirement submission.</p>
+              </div>
+            </div>
+            <div class="why-item">
+              <div class="why-icon">✅</div>
+              <div>
+                <h4>Background Verified Candidates</h4>
+                <p style="color:var(--gray-500);font-size:0.9rem;margin-top:4px">Every candidate goes through thorough background, education and reference verification.</p>
+              </div>
+            </div>
+            <div class="why-item">
+              <div class="why-icon">📊</div>
+              <div>
+                <h4>100% Statutory Compliance</h4>
+                <p style="color:var(--gray-500);font-size:0.9rem;margin-top:4px">Complete PF, ESIC, TDS, Contract Labour Act compliance so you stay risk-free.</p>
+              </div>
+            </div>
+            <div class="why-item">
+              <div class="why-icon">🤝</div>
+              <div>
+                <h4>Dedicated Account Manager</h4>
+                <p style="color:var(--gray-500);font-size:0.9rem;margin-top:4px">Every client gets a dedicated account manager as a single point of contact.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+          <div style="background:var(--gradient-hero);border-radius:var(--radius-lg);padding:32px;color:white;text-align:center">
+            <div style="font-size:2.5rem;font-weight:800;font-family:var(--font-heading)">95%</div>
+            <div style="font-size:0.9rem;color:rgba(255,255,255,0.8);margin-top:6px">Placement Success Rate</div>
+          </div>
+          <div style="background:var(--white);border-radius:var(--radius-lg);padding:32px;box-shadow:var(--shadow-md);text-align:center">
+            <div style="font-size:2.5rem;font-weight:800;font-family:var(--font-heading);color:var(--primary)">48h</div>
+            <div style="font-size:0.9rem;color:var(--gray-500);margin-top:6px">Avg. Candidate Delivery</div>
+          </div>
+          <div style="background:var(--white);border-radius:var(--radius-lg);padding:32px;box-shadow:var(--shadow-md);text-align:center">
+            <div style="font-size:2.5rem;font-weight:800;font-family:var(--font-heading);color:var(--primary)">15+</div>
+            <div style="font-size:0.9rem;color:var(--gray-500);margin-top:6px">Industries Served</div>
+          </div>
+          <div style="background:linear-gradient(135deg,#0ea5e9,#38bdf8);border-radius:var(--radius-lg);padding:32px;color:white;text-align:center">
+            <div style="font-size:2.5rem;font-weight:800;font-family:var(--font-heading)">200+</div>
+            <div style="font-size:0.9rem;color:rgba(255,255,255,0.8);margin-top:6px">Happy Clients</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ INDUSTRIES ═══════════════════ -->
+  <section class="section" id="industries" aria-label="Industries We Serve">
+    <div class="container">
+      <div class="section-header center">
+        <div class="section-label">Industries</div>
+        <h2 class="section-title">We Serve Across All Major Sectors</h2>
+        <p class="section-desc">From manufacturing floors to corporate offices, we have the expertise and candidate network to support every industry.</p>
+      </div>
+      <div class="industries-grid">
+        <div class="industry-card"><span class="i-icon">🏭</span><h4>Manufacturing</h4></div>
+        <div class="industry-card"><span class="i-icon">💻</span><h4>IT & Technology</h4></div>
+        <div class="industry-card"><span class="i-icon">🏦</span><h4>BFSI</h4></div>
+        <div class="industry-card"><span class="i-icon">🏥</span><h4>Healthcare</h4></div>
+        <div class="industry-card"><span class="i-icon">🚛</span><h4>Logistics & SCM</h4></div>
+        <div class="industry-card"><span class="i-icon">🛒</span><h4>Retail & FMCG</h4></div>
+        <div class="industry-card"><span class="i-icon">🏗️</span><h4>Construction</h4></div>
+        <div class="industry-card"><span class="i-icon">🎓</span><h4>Education</h4></div>
+        <div class="industry-card"><span class="i-icon">🍽️</span><h4>Hospitality</h4></div>
+        <div class="industry-card"><span class="i-icon">⚡</span><h4>Energy & Utilities</h4></div>
+        <div class="industry-card"><span class="i-icon">🏢</span><h4>Real Estate</h4></div>
+        <div class="industry-card"><span class="i-icon">📡</span><h4>Telecom</h4></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ TESTIMONIALS ═══════════════════ -->
+  <section class="section section-alt" aria-label="Client Testimonials">
+    <div class="container">
+      <div class="section-header center">
+        <div class="section-label">Testimonials</div>
+        <h2 class="section-title">What Our Clients Say</h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"AXYTES delivered 50 shop floor workers within a week. Their compliance management is excellent and the team is very professional."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">RK</div>
+            <div>
+              <div class="author-name">Rajesh Kumar</div>
+              <div class="author-title">HR Manager, Precision Industries Ltd.</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"The payroll outsourcing from AXYTES has saved us significant time. Zero errors, always on time, and fully PF/ESIC compliant."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">SM</div>
+            <div>
+              <div class="author-name">Sunita Mehta</div>
+              <div class="author-title">CFO, TechVista Solutions</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"We've been using AXYTES for permanent recruitment for 2 years. Quality of candidates is top-notch and the turnaround is amazingly fast."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">AP</div>
+            <div>
+              <div class="author-name">Anil Patel</div>
+              <div class="author-title">Director, MetroLogistics Pvt. Ltd.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ FEATURED JOBS ═══════════════════ -->
+  <section class="section" aria-label="Featured Jobs">
+    <div class="container">
+      <div class="section-header" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:36px">
+        <div>
+          <div class="section-label">Latest Openings</div>
+          <h2 class="section-title" style="margin-bottom:0">Featured Job Opportunities</h2>
+        </div>
+        <a href="jobs.html" class="btn btn-outline">View All Jobs →</a>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px" id="featuredJobs">
+        <!-- Jobs rendered by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ CTA ═══════════════════ -->
+  <section class="cta-strip" aria-label="Call to Action">
+    <div class="container">
+      <h2>Ready to Transform Your Workforce?</h2>
+      <p>Whether you're hiring talent or searching for your dream job — AXYTES has you covered.</p>
+      <div class="cta-btns">
+        <a href="employers.html" class="btn btn-white btn-lg">I'm an Employer</a>
+        <a href="candidate/register.html" class="btn btn-lg" style="background:rgba(255,255,255,0.15);color:white;border:2px solid rgba(255,255,255,0.4)">I'm a Job Seeker</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ FOOTER ═══════════════════ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <div class="footer-logo-icon">AX</div>
+            <div class="footer-logo-text">AXYTES</div>
+          </div>
+          <p>AXYTES Solutions Pvt. Ltd. is a leading staffing, recruitment and payroll solutions company committed to connecting top talent with leading organizations.</p>
+          <div style="margin-top:20px;display:flex;gap:12px">
+            <a href="#" style="width:36px;height:36px;background:rgba(255,255,255,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-size:0.9rem;transition:var(--transition)" onmouseenter="this.style.background='rgba(255,255,255,0.2)'" onmouseleave="this.style.background='rgba(255,255,255,0.1)'">in</a>
+            <a href="#" style="width:36px;height:36px;background:rgba(255,255,255,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-size:0.9rem;transition:var(--transition)" onmouseenter="this.style.background='rgba(255,255,255,0.2)'" onmouseleave="this.style.background='rgba(255,255,255,0.1)'">tw</a>
+            <a href="#" style="width:36px;height:36px;background:rgba(255,255,255,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-size:0.9rem;transition:var(--transition)" onmouseenter="this.style.background='rgba(255,255,255,0.2)'" onmouseleave="this.style.background='rgba(255,255,255,0.1)'">fb</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Our Services</a></li>
+            <li><a href="industries.html">Industries</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="careers.html">Careers at AXYTES</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Portals</h4>
+          <ul>
+            <li><a href="candidate/login.html">Candidate Login</a></li>
+            <li><a href="candidate/register.html">Register as Candidate</a></li>
+            <li><a href="employee/login.html">Employee Portal</a></li>
+            <li><a href="employers.html">Employer Solutions</a></li>
+            <li><a href="admin/login.html">Admin Panel</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="jobs.html">Browse All Jobs</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms & Conditions</a></li>
+            <li><a href="disclaimer.html">Disclaimer</a></li>
+            <li><a href="sitemap.html">Sitemap</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2024 AXYTES Solutions Pvt. Ltd. All Rights Reserved.</div>
+        <div>📞 +91-XXXX-XXXXXX | ✉ info@axytes.in | 📍 Mumbai, India</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ── Navbar hamburger ──
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger && hamburger.addEventListener('click', () => {
+      navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+      navLinks.style.flexDirection = 'column';
+      navLinks.style.position = 'absolute';
+      navLinks.style.top = '72px';
+      navLinks.style.left = '0';
+      navLinks.style.right = '0';
+      navLinks.style.background = 'white';
+      navLinks.style.padding = '16px';
+      navLinks.style.borderBottom = '1px solid #e2e8f0';
+      navLinks.style.zIndex = '999';
+    });
+
+    // ── Animated Stats Counter ──
+    const statsConfig = [
+      { id: 'stat1', end: 15000, suffix: '+', label: 'Candidates Placed' },
+      { id: 'stat2', end: 200, suffix: '+', label: 'Client Companies' },
+      { id: 'stat3', end: 500, suffix: '+', label: 'Active Job Openings' },
+      { id: 'stat4', end: 8, suffix: '+', label: 'Years of Experience' }
+    ];
+
+    function animateCounter(el, end, suffix) {
+      let current = 0;
+      const step = Math.ceil(end / 60);
+      const timer = setInterval(() => {
+        current += step;
+        if (current >= end) { current = end; clearInterval(timer); }
+        el.textContent = (current >= 1000 ? (current/1000).toFixed(0) + 'K' : current) + suffix;
+      }, 30);
+    }
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          statsConfig.forEach(s => {
+            const el = document.getElementById(s.id);
+            if (el) animateCounter(el, s.end, s.suffix);
+          });
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.3 });
+
+    const statsStrip = document.querySelector('.stats-strip');
+    if (statsStrip) observer.observe(statsStrip);
+
+    // ── Featured Jobs ──
+    const featuredJobs = [
+      { title: 'Production Supervisor', company: 'Confidential Client', loc: 'Pune, Maharashtra', type: 'Full-time', salary: '₹25,000–35,000/mo', tag: 'Urgent', category: 'Manufacturing' },
+      { title: 'Sales Executive', company: 'Leading FMCG Co.', loc: 'Mumbai, Maharashtra', type: 'Full-time', salary: '₹20,000–30,000/mo', tag: 'Hot', category: 'Retail' },
+      { title: 'Data Entry Operator', company: 'Confidential MNC', loc: 'Navi Mumbai', type: 'Contract', salary: '₹12,000–18,000/mo', tag: 'New', category: 'Admin' },
+      { title: 'Warehouse Executive', company: 'Logistics Leader', loc: 'Bhiwandi, Maharashtra', type: 'Full-time', salary: '₹18,000–25,000/mo', tag: 'Urgent', category: 'Logistics' },
+      { title: 'HR Executive', company: 'IT Company', loc: 'Thane, Maharashtra', type: 'Full-time', salary: '₹20,000–28,000/mo', tag: '', category: 'HR' },
+      { title: 'Machine Operator', company: 'Auto Parts Mfg.', loc: 'Pune, Maharashtra', type: 'Full-time', salary: '₹15,000–22,000/mo', tag: 'Urgent', category: 'Manufacturing' },
+    ];
+
+    const tagColors = { Urgent: 'badge-danger', Hot: 'badge-warning', New: 'badge-success' };
+    const container = document.getElementById('featuredJobs');
+    if (container) {
+      container.innerHTML = featuredJobs.map((j,i) => `
+        <div style="background:white;border-radius:14px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,0.06);border:1.5px solid #f1f5f9;transition:all 0.3s;cursor:pointer" 
+             onmouseenter="this.style.boxShadow='0 8px 32px rgba(26,58,107,0.12)';this.style.borderColor='#2563eb';this.style.transform='translateY(-2px)'"
+             onmouseleave="this.style.boxShadow='0 2px 12px rgba(0,0,0,0.06)';this.style.borderColor='#f1f5f9';this.style.transform='translateY(0)'"
+             onclick="window.location='jobs.html'">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px">
+            <div>
+              <h4 style="color:var(--primary);margin-bottom:4px">${j.title}</h4>
+              <div style="color:var(--gray-500);font-size:0.85rem">${j.company}</div>
+            </div>
+            ${j.tag ? `<span class="badge ${tagColors[j.tag]}">${j.tag}</span>` : ''}
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px">
+            <span style="color:var(--gray-500);font-size:0.83rem">📍 ${j.loc}</span>
+            <span style="color:var(--gray-500);font-size:0.83rem">🕐 ${j.type}</span>
+            <span style="color:var(--gray-500);font-size:0.83rem">💰 ${j.salary}</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span class="badge badge-info" style="font-size:0.75rem">${j.category}</span>
+            <a href="candidate/login.html" class="btn btn-primary btn-sm">Apply Now</a>
+          </div>
+        </div>`).join('');
+    }
+
+    // ── Search Jobs redirect ──
+    function searchJobs() {
+      const kw = document.getElementById('searchKeywords').value;
+      const loc = document.getElementById('searchLocation').value;
+      const cat = document.getElementById('searchCategory').value;
+      window.location.href = `jobs.html?kw=${encodeURIComponent(kw)}&loc=${encodeURIComponent(loc)}&cat=${encodeURIComponent(cat)}`;
+    }
+    document.getElementById('searchKeywords').addEventListener('keypress', e => { if(e.key==='Enter') searchJobs(); });
+  </script>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | AXYTES Solutions Pvt. Ltd.</title>
+  <meta name="description" content="Learn about AXYTES Solutions Pvt. Ltd., our mission, values, leadership team and commitment to connecting top talent with leading organizations." />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .team-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; }
+    .team-card { background: white; border-radius: var(--radius-lg); padding: 28px 24px; text-align: center; box-shadow: var(--shadow-sm); border: 1px solid var(--gray-100); transition: var(--transition); }
+    .team-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .team-avatar { width: 72px; height: 72px; border-radius: 50%; background: var(--gradient-hero); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; font-weight: 800; color: white; margin: 0 auto 16px; }
+    .value-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    .timeline { position: relative; padding-left: 32px; }
+    .timeline::before { content: ''; position: absolute; left: 8px; top: 4px; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--primary-light), var(--accent)); }
+    .timeline-item { position: relative; margin-bottom: 32px; }
+    .timeline-dot { position: absolute; left: -28px; top: 4px; width: 16px; height: 16px; border-radius: 50%; background: var(--primary-light); border: 3px solid white; box-shadow: 0 0 0 2px var(--primary-light); }
+    .timeline-year { font-size: 0.78rem; font-weight: 700; color: var(--primary-light); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.08em; }
+    .timeline-text { color: var(--gray-600); font-size: 0.92rem; }
+    @media(max-width:768px) { .team-grid{grid-template-columns:1fr} .value-grid{grid-template-columns:1fr} }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo"><div class="nav-logo-icon">AX</div><div class="nav-logo-text"><span>AXYTES</span><span>Solutions Pvt. Ltd.</span></div></a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link active">About</a>
+        <a href="services.html" class="nav-link">Services</a>
+        <a href="industries.html" class="nav-link">Industries</a>
+        <a href="employers.html" class="nav-link">For Employers</a>
+        <a href="jobs.html" class="nav-link">Jobs</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </div>
+      <div class="nav-actions">
+        <a href="candidate/login.html" class="btn btn-outline btn-sm">Job Seeker Login</a>
+        <a href="employee/login.html" class="btn btn-primary btn-sm">Employee Portal</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section style="background:var(--gradient-hero);padding:96px 0 80px">
+    <div class="container">
+      <div style="max-width:680px">
+        <div class="section-label" style="background:rgba(255,255,255,0.15);color:white">About AXYTES</div>
+        <h1 style="color:white;margin-bottom:20px">India's Trusted Staffing & Workforce Solutions Partner</h1>
+        <p style="color:rgba(255,255,255,0.85);font-size:1.1rem;line-height:1.7">AXYTES Solutions Pvt. Ltd. is a fast-growing staffing, recruitment, manpower supply and payroll solutions company committed to connecting organizations with top talent and helping professionals build successful careers.</p>
+        <div style="display:flex;gap:16px;margin-top:32px;flex-wrap:wrap">
+          <a href="contact.html" class="btn btn-white btn-lg">Get in Touch</a>
+          <a href="services.html" class="btn btn-lg" style="background:rgba(255,255,255,0.15);color:white;border:2px solid rgba(255,255,255,0.4)">Our Services →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION & VISION -->
+  <section class="section">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:28px">
+        <div style="background:var(--gradient-hero);border-radius:var(--radius-lg);padding:36px;color:white">
+          <div style="font-size:2rem;margin-bottom:16px">🎯</div>
+          <h3 style="color:white;margin-bottom:12px">Our Mission</h3>
+          <p style="color:rgba(255,255,255,0.85);font-size:0.95rem;line-height:1.7">To deliver reliable, compliant and efficient staffing and payroll solutions that empower businesses to grow and individuals to achieve their career aspirations.</p>
+        </div>
+        <div style="background:white;border-radius:var(--radius-lg);padding:36px;box-shadow:var(--shadow-md);border:1px solid var(--gray-100)">
+          <div style="font-size:2rem;margin-bottom:16px">🔭</div>
+          <h3 style="margin-bottom:12px">Our Vision</h3>
+          <p style="color:var(--gray-500);font-size:0.95rem;line-height:1.7">To be the most trusted and innovative workforce solutions company in India, setting new standards in staffing quality, compliance and candidate experience.</p>
+        </div>
+        <div style="background:white;border-radius:var(--radius-lg);padding:36px;box-shadow:var(--shadow-md);border:1px solid var(--gray-100)">
+          <div style="font-size:2rem;margin-bottom:16px">⭐</div>
+          <h3 style="margin-bottom:12px">Our Promise</h3>
+          <p style="color:var(--gray-500);font-size:0.95rem;line-height:1.7">Speed, quality and full statutory compliance in every engagement. We treat every client and candidate relationship as a long-term partnership, not a transaction.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO WE ARE -->
+  <section class="section section-alt">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center">
+        <div>
+          <div class="section-label">Who We Are</div>
+          <h2 class="section-title">A Team of Workforce Professionals</h2>
+          <p style="color:var(--gray-500);line-height:1.8;margin-bottom:20px">AXYTES Solutions Pvt. Ltd. was founded with a clear purpose: to bridge the gap between talented professionals and companies that need them. We specialize in temporary and permanent staffing, payroll management, and compliance services across a wide range of industries.</p>
+          <p style="color:var(--gray-500);line-height:1.8;margin-bottom:28px">With a dedicated team of HR professionals, recruiters and compliance specialists, we provide end-to-end workforce solutions that help organizations focus on their core business while we handle their staffing needs.</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+            <div style="background:white;border-radius:var(--radius-md);padding:20px;border:1px solid var(--gray-100);text-align:center">
+              <div style="font-size:1.8rem;font-weight:800;color:var(--primary);font-family:var(--font-heading)">8+</div>
+              <div style="font-size:0.85rem;color:var(--gray-500);margin-top:4px">Years Experience</div>
+            </div>
+            <div style="background:white;border-radius:var(--radius-md);padding:20px;border:1px solid var(--gray-100);text-align:center">
+              <div style="font-size:1.8rem;font-weight:800;color:var(--primary);font-family:var(--font-heading)">15K+</div>
+              <div style="font-size:0.85rem;color:var(--gray-500);margin-top:4px">Candidates Placed</div>
+            </div>
+            <div style="background:white;border-radius:var(--radius-md);padding:20px;border:1px solid var(--gray-100);text-align:center">
+              <div style="font-size:1.8rem;font-weight:800;color:var(--primary);font-family:var(--font-heading)">200+</div>
+              <div style="font-size:0.85rem;color:var(--gray-500);margin-top:4px">Client Companies</div>
+            </div>
+            <div style="background:white;border-radius:var(--radius-md);padding:20px;border:1px solid var(--gray-100);text-align:center">
+              <div style="font-size:1.8rem;font-weight:800;color:var(--primary);font-family:var(--font-heading)">15+</div>
+              <div style="font-size:0.85rem;color:var(--gray-500);margin-top:4px">Industries Served</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">Founded</div>
+              <h4>AXYTES Solutions Established</h4>
+              <p class="timeline-text">Started with a small team focused on blue-collar staffing in Mumbai's manufacturing sector.</p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">Year 2</div>
+              <h4>Expanded to Permanent Recruitment</h4>
+              <p class="timeline-text">Launched permanent hiring services for IT, BFSI and corporate clients across Maharashtra.</p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">Year 4</div>
+              <h4>Payroll & Compliance Division</h4>
+              <p class="timeline-text">Added payroll outsourcing, PF/ESIC management and contract labour compliance services.</p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">Year 6</div>
+              <h4>Pan-India Operations</h4>
+              <p class="timeline-text">Expanded candidate network and client base across major Indian cities with 200+ client organizations.</p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-year">Today</div>
+              <h4>Digital Transformation</h4>
+              <p class="timeline-text">Launched AXYTES digital platform for candidates, employees and employers with full HR digitization.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header center">
+        <div class="section-label">Our Values</div>
+        <h2 class="section-title">What We Stand For</h2>
+      </div>
+      <div class="value-grid">
+        <div class="card"><div class="card-icon">🤝</div><h3>Integrity</h3><p style="color:var(--gray-500);margin-top:10px;font-size:0.93rem">We operate with complete transparency and honesty in every client and candidate relationship.</p></div>
+        <div class="card"><div class="card-icon">⚡</div><h3>Speed</h3><p style="color:var(--gray-500);margin-top:10px;font-size:0.93rem">We understand urgency. Our team delivers qualified candidates within 48–72 hours of receiving a requirement.</p></div>
+        <div class="card"><div class="card-icon">✅</div><h3>Compliance</h3><p style="color:var(--gray-500);margin-top:10px;font-size:0.93rem">100% statutory compliance with PF, ESIC, TDS and all applicable labour laws — always.</p></div>
+        <div class="card"><div class="card-icon">🌟</div><h3>Quality</h3><p style="color:var(--gray-500);margin-top:10px;font-size:0.93rem">Every candidate is background verified and skill-assessed before being presented to clients.</p></div>
+        <div class="card"><div class="card-icon">🔒</div><h3>Confidentiality</h3><p style="color:var(--gray-500);margin-top:10px;font-size:0.93rem">Client and candidate data is always kept secure and confidential with strict data protection practices.</p></div>
+        <div class="card"><div class="card-icon">💡</div><h3>Innovation</h3><p style="color:var(--gray-500);margin-top:10px;font-size:0.93rem">We continuously invest in technology and process improvements to deliver better staffing outcomes.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="background:var(--gradient-hero);padding:80px 0;text-align:center">
+    <div class="container">
+      <h2 style="color:white;margin-bottom:16px">Ready to Partner With AXYTES?</h2>
+      <p style="color:rgba(255,255,255,0.8);max-width:520px;margin:0 auto 32px;font-size:1.05rem">Let's discuss how we can support your workforce needs or help you find your next opportunity.</p>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+        <a href="contact.html" class="btn btn-white btn-lg">Contact Us</a>
+        <a href="jobs.html" class="btn btn-lg" style="background:rgba(255,255,255,0.15);color:white;border:2px solid rgba(255,255,255,0.4)">Browse Jobs</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand"><div class="footer-logo"><div class="footer-logo-icon">AX</div><div class="footer-logo-text">AXYTES</div></div><p>Leading staffing, recruitment, manpower and payroll solutions company.</p></div>
+        <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+        <div class="footer-col"><h4>Portals</h4><ul><li><a href="candidate/login.html">Candidate Login</a></li><li><a href="employee/login.html">Employee Portal</a></li></ul></div>
+        <div class="footer-col"><h4>Legal</h4><ul><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms & Conditions</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><div>© 2024 AXYTES Solutions Pvt. Ltd. All Rights Reserved.</div></div>
+    </div>
+  </footer>
+</body>
+</html>

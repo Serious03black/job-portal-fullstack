@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Candidate Login | AXYTES Solutions</title>
+  <meta name="description" content="Login to your AXYTES candidate portal to search jobs, track applications and manage your profile." />
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+<div class="auth-page">
+  <!-- LEFT PANEL -->
+  <div class="auth-panel-left">
+    <div>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:40px">
+        <div style="width:44px;height:44px;background:rgba(255,255,255,0.2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1rem;color:white">AX</div>
+        <div>
+          <div style="font-family:var(--font-heading);font-size:1.2rem;font-weight:800;color:white">AXYTES</div>
+          <div style="font-size:0.65rem;color:rgba(255,255,255,0.6);letter-spacing:0.08em;text-transform:uppercase">Solutions Pvt. Ltd.</div>
+        </div>
+      </div>
+      <h2>Welcome Back, Job Seeker!</h2>
+      <p>Login to access thousands of job opportunities, track your applications and build your career with AXYTES.</p>
+      <div class="auth-features">
+        <div class="auth-feature">
+          <div class="auth-feature-icon">🔍</div>
+          <span>Search from 500+ active job openings</span>
+        </div>
+        <div class="auth-feature">
+          <div class="auth-feature-icon">📋</div>
+          <span>Track your application & interview status</span>
+        </div>
+        <div class="auth-feature">
+          <div class="auth-feature-icon">🔔</div>
+          <span>Get real-time job alerts & notifications</span>
+        </div>
+        <div class="auth-feature">
+          <div class="auth-feature-icon">📄</div>
+          <span>Upload & manage your resume & documents</span>
+        </div>
+      </div>
+    </div>
+    <div style="position:absolute;bottom:40px;left:60px;right:60px;background:rgba(255,255,255,0.1);border-radius:12px;padding:20px">
+      <div style="color:rgba(255,255,255,0.9);font-size:0.88rem;font-style:italic">"AXYTES helped me land my dream job in just 10 days. The process was seamless."</div>
+      <div style="color:rgba(255,255,255,0.6);font-size:0.8rem;margin-top:8px">— Priya Sharma, Software Engineer</div>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="auth-panel-right">
+    <div class="auth-form-container">
+      <div class="auth-form-logo">
+        <div style="width:36px;height:36px;background:var(--gradient-hero);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;color:white">AX</div>
+        <span style="font-family:var(--font-heading);font-size:1.05rem;font-weight:700;color:var(--primary)">Candidate Portal</span>
+      </div>
+
+      <h2 style="margin-bottom:6px">Sign In</h2>
+      <p class="text-muted text-small" style="margin-bottom:28px">Access your job seeker dashboard</p>
+
+      <div id="alertMsg" style="display:none;padding:14px;border-radius:8px;margin-bottom:20px;font-size:0.9rem"></div>
+
+      <form id="loginForm" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="loginEmail">Email Address</label>
+          <input type="email" id="loginEmail" class="form-control" placeholder="you@email.com" required autocomplete="email" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="loginPass">Password</label>
+          <div style="position:relative">
+            <input type="password" id="loginPass" class="form-control" placeholder="Enter your password" required autocomplete="current-password" style="padding-right:48px" />
+            <button type="button" onclick="togglePass('loginPass','eyeBtn')" id="eyeBtn" style="position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--gray-400);font-size:1rem;cursor:pointer;background:none;border:none">👁</button>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px">
+          <label style="display:flex;align-items:center;gap:8px;font-size:0.88rem;color:var(--gray-600);cursor:pointer">
+            <input type="checkbox" id="rememberMe" /> Remember me
+          </label>
+          <a href="forgot-password.html" style="font-size:0.88rem;color:var(--primary-light);font-weight:600">Forgot Password?</a>
+        </div>
+        <button type="submit" class="btn btn-primary w-full" id="loginBtn" style="justify-content:center;font-size:1rem;padding:14px">Sign In</button>
+      </form>
+
+      <div style="text-align:center;margin:20px 0;position:relative">
+        <hr style="border-color:var(--gray-200)" />
+        <span style="position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:white;padding:0 12px;font-size:0.8rem;color:var(--gray-400)">or</span>
+      </div>
+
+      <div style="text-align:center">
+        <p style="font-size:0.9rem;color:var(--gray-600)">Don't have an account? <a href="register.html" style="color:var(--primary-light);font-weight:700">Register Free</a></p>
+      </div>
+
+      <div style="margin-top:24px;padding:14px;background:var(--gray-50);border-radius:8px;font-size:0.8rem;color:var(--gray-500);text-align:center">
+        🔒 Secure login protected by 256-bit SSL encryption
+      </div>
+
+      <div style="text-align:center;margin-top:20px">
+        <a href="../index.html" style="font-size:0.85rem;color:var(--gray-400)">← Back to AXYTES Website</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function togglePass(inputId, btnId) {
+    const input = document.getElementById(inputId);
+    input.type = input.type === 'password' ? 'text' : 'password';
+  }
+
+  function showAlert(msg, type) {
+    const el = document.getElementById('alertMsg');
+    el.style.display = 'block';
+    el.style.background = type === 'error' ? '#fee2e2' : '#d1fae5';
+    el.style.color = type === 'error' ? '#991b1b' : '#065f46';
+    el.style.border = `1px solid ${type === 'error' ? '#fca5a5' : '#6ee7b7'}`;
+    el.textContent = msg;
+  }
+
+  document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const email = document.getElementById('loginEmail').value.trim();
+    const pass = document.getElementById('loginPass').value;
+    const btn = document.getElementById('loginBtn');
+
+    if (!email || !pass) { showAlert('Please enter your email and password.', 'error'); return; }
+    if (!email.includes('@')) { showAlert('Please enter a valid email address.', 'error'); return; }
+
+    btn.textContent = 'Signing in...';
+    btn.disabled = true;
+
+    // Demo: store session and redirect
+    setTimeout(() => {
+      localStorage.setItem('candidateSession', JSON.stringify({ email, name: 'Candidate User', role: 'candidate', loginTime: Date.now() }));
+      window.location.href = 'dashboard.html';
+    }, 1200);
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Profile & Bank Details | AXYTES ESS Portal</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    body { background: var(--gray-50); }
+    .profile-card { background: white; border-radius: var(--radius-lg); padding: 32px; border: 1px solid var(--gray-200); box-shadow: var(--shadow-sm); margin-bottom: 24px; }
+    .emp-banner {
+      background: var(--gradient-hero); border-radius: var(--radius-lg);
+      padding: 36px 32px; color: white; display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px;
+    }
+    .emp-avatar {
+      width: 80px; height: 80px; border-radius: 50%; background: white; color: var(--primary);
+      display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 800; border: 3px solid rgba(255,255,255,0.8);
+    }
+    .doc-row {
+      display: flex; justify-content: space-between; align-items: center; padding: 14px 18px;
+      background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 8px; margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+<div class="dashboard-layout">
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo-icon">AX</div>
+      <div class="sidebar-logo-text"><span>AXYTES</span><span>Employee Portal</span></div>
+    </div>
+    <div class="sidebar-nav">
+      <div class="sidebar-section-label">Main Menu</div>
+      <a class="sidebar-link" href="dashboard.html"><span class="icon">🏠</span> Dashboard</a>
+      <a class="sidebar-link active" href="profile.html"><span class="icon">👤</span> My Profile</a>
+      <a class="sidebar-link" href="leave.html"><span class="icon">🏖</span> Leave Management</a>
+      <a class="sidebar-link" href="salary.html"><span class="icon">💰</span> Salary & Payroll</a>
+      <div class="sidebar-section-label" style="margin-top:16px">Account</div>
+      <a class="sidebar-link" href="login.html" onclick="localStorage.removeItem('employeeSession')"><span class="icon">🚪</span> Logout</a>
+    </div>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="sidebar-user-avatar">RS</div>
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-name">Rahul Sharma</div>
+          <div class="sidebar-user-role">Emp ID: AXY-2024-089</div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-content">
+    <div class="topbar">
+      <div style="font-weight:700;color:var(--primary);font-size:1.2rem">Employee Information & Payroll Records</div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <a href="salary.html" class="btn btn-outline btn-sm">Download Payslips</a>
+        <a href="leave.html" class="btn btn-primary btn-sm">Apply Leave</a>
+      </div>
+    </div>
+
+    <!-- BANNER -->
+    <div class="emp-banner">
+      <div style="display:flex;align-items:center;gap:20px">
+        <div class="emp-avatar">RS</div>
+        <div>
+          <h2 style="margin:0 0 6px 0;font-size:1.8rem">Rahul Sharma</h2>
+          <div style="opacity:0.9;font-size:0.95rem">Senior Production Supervisor • Deputed at Tata Motors Facility</div>
+          <div style="margin-top:8px;font-size:0.85rem;opacity:0.8;display:flex;gap:16px;flex-wrap:wrap">
+            <span>🆔 Emp Code: <strong>AXY-2024-089</strong></span>
+            <span>📅 Joining Date: 12-Jan-2023</span>
+            <span>🏢 Department: Operations</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <span class="badge" style="background:#22c55e;color:white;padding:8px 16px;font-size:0.85rem">Active Associate</span>
+      </div>
+    </div>
+
+    <!-- 1. PERSONAL INFORMATION -->
+    <div class="profile-card">
+      <h3 style="color:var(--primary);margin-bottom:20px;border-bottom:1px solid var(--gray-100);padding-bottom:12px">
+        1. Personal & Contact Details
+      </h3>
+      <div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:16px">
+        <div class="form-group">
+          <label class="form-label">Full Name</label>
+          <input type="text" class="form-control" value="Rahul Ramesh Sharma" readonly />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Official Email</label>
+          <input type="email" class="form-control" value="rahul.sharma@axytes.in" readonly />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Contact Number</label>
+          <input type="tel" class="form-control" value="+91 98765 43210" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Permanent Address</label>
+          <input type="text" class="form-control" value="Flat 402, Shivam Apts, Chakan, Pune 410501" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Emergency Contact Name</label>
+          <input type="text" class="form-control" value="Sunita Sharma (Spouse)" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Emergency Contact Phone</label>
+          <input type="tel" class="form-control" value="+91 98220 11223" />
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. BANK & STATUTORY DETAILS (PF / ESI) -->
+    <div class="profile-card">
+      <h3 style="color:var(--primary);margin-bottom:20px;border-bottom:1px solid var(--gray-100);padding-bottom:12px">
+        2. Salary Bank Account & Statutory Registrations
+      </h3>
+      <div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:16px">
+        <div class="form-group">
+          <label class="form-label">Bank Name</label>
+          <input type="text" class="form-control" value="HDFC Bank Ltd." readonly />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Bank Account Number</label>
+          <input type="text" class="form-control" value="50100239847112" readonly />
+        </div>
+        <div class="form-group">
+          <label class="form-label">IFSC Code</label>
+          <input type="text" class="form-control" value="HDFC0001824" readonly />
+        </div>
+        <div class="form-group">
+          <label class="form-label">PAN Number</label>
+          <input type="text" class="form-control" value="ABCPS8492K" readonly />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Universal Account Number (UAN / PF)</label>
+          <input type="text" class="form-control" value="101489201948" readonly />
+        </div>
+        <div class="form-group">
+          <label class="form-label">ESIC Insurance Number</label>
+          <input type="text" class="form-control" value="31049281900010" readonly />
+        </div>
+      </div>
+      <p style="font-size:0.8rem;color:var(--gray-500);margin-top:12px">
+        ℹ To request an update in salary bank credentials or PAN data, please submit an official request ticket to <a href="mailto:payroll@axytes.in">payroll@axytes.in</a>.
+      </p>
+    </div>
+
+    <!-- 3. COMPANY POLICIES & HANDBOOK -->
+    <div class="profile-card">
+      <h3 style="color:var(--primary);margin-bottom:16px;border-bottom:1px solid var(--gray-100);padding-bottom:12px">
+        3. Company Policies & Official Documents
+      </h3>
+      <div>
+        <div class="doc-row">
+          <div>
+            <strong>📘 AXYTES Employee Handbook & Code of Conduct</strong>
+            <div style="font-size:0.8rem;color:var(--gray-500)">Comprehensive guide on leave policies, holidays, ethics & POSH compliance</div>
+          </div>
+          <button class="btn btn-outline btn-sm" onclick="alert('Downloading Employee Handbook PDF...')">Download PDF</button>
+        </div>
+        <div class="doc-row">
+          <div>
+            <strong>📄 Deputation Letter & Appointment Contract</strong>
+            <div style="font-size:0.8rem;color:var(--gray-500)">Client site deputation terms, designation, and compensation annexure</div>
+          </div>
+          <button class="btn btn-outline btn-sm" onclick="alert('Downloading Appointment Letter...')">Download PDF</button>
+        </div>
+        <div class="doc-row">
+          <div>
+            <strong>🏥 Group Mediclaim & Accident Policy Details</strong>
+            <div style="font-size:0.8rem;color:var(--gray-500)">TPA cashless e-card and network hospitals list (Sum Insured: ₹3,00,000)</div>
+          </div>
+          <button class="btn btn-outline btn-sm" onclick="alert('Downloading Health Insurance E-Card...')">Download E-Card</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

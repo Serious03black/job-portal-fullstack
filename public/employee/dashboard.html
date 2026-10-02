@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Employee Dashboard | AXYTES Employee Portal</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    body { background: var(--gray-50); }
+    .attendance-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+    .att-day { background: white; border: 1px solid var(--gray-100); border-radius: 6px; padding: 6px 4px; text-align: center; font-size: 0.72rem; }
+    .att-day.present { background: #d1fae5; border-color: #6ee7b7; color: #065f46; }
+    .att-day.absent { background: #fee2e2; border-color: #fca5a5; color: #991b1b; }
+    .att-day.half { background: #fef3c7; border-color: #fde68a; color: #92400e; }
+    .att-day.holiday { background: #ede9fe; border-color: #c4b5fd; color: #5b21b6; }
+    .att-day.today { border: 2px solid var(--primary-light); }
+    .att-day .day-num { font-weight: 700; font-size: 0.82rem; margin-bottom: 2px; }
+    .leave-bar { display: flex; align-items: center; gap: 12px; background: white; border-radius: var(--radius-sm); padding: 12px 16px; border: 1px solid var(--gray-100); margin-bottom: 8px; }
+    .leave-type-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .payslip-card { background: white; border-radius: var(--radius-md); border: 1px solid var(--gray-100); padding: 20px; margin-bottom: 12px; transition: var(--transition); }
+    .payslip-card:hover { box-shadow: var(--shadow-md); border-color: var(--primary-light); }
+    .checkin-btn { width: 100%; padding: 18px; border-radius: var(--radius-md); font-size: 1rem; font-weight: 700; font-family: var(--font-heading); cursor: pointer; border: none; transition: var(--transition); }
+    .checkin-btn.in { background: var(--success); color: white; }
+    .checkin-btn.out { background: var(--danger); color: white; }
+    .checkin-btn:hover { transform: scale(1.02); }
+  </style>
+</head>
+<body>
+<div class="dashboard-layout">
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo-icon">AX</div>
+      <div class="sidebar-logo-text"><span>AXYTES</span><span>Employee Portal</span></div>
+    </div>
+    <div class="sidebar-nav">
+      <div class="sidebar-section-label">Main Menu</div>
+      <a class="sidebar-link active" href="dashboard.html"><span class="icon">🏠</span> Dashboard</a>
+      <a class="sidebar-link" href="profile.html"><span class="icon">👤</span> My Profile</a>
+      <a class="sidebar-link" href="attendance.html"><span class="icon">📊</span> Attendance</a>
+      <a class="sidebar-link" href="leave.html"><span class="icon">🏖</span> Leave Management</a>
+      <a class="sidebar-link" href="salary.html"><span class="icon">💰</span> Salary & Payroll</a>
+      <a class="sidebar-link" href="documents.html"><span class="icon">📁</span> My Documents</a>
+      <a class="sidebar-link" href="notifications.html"><span class="icon">🔔</span> Notifications <span style="background:#ef4444;color:white;border-radius:100px;font-size:0.68rem;padding:1px 7px;margin-left:4px">2</span></a>
+      <div class="sidebar-section-label" style="margin-top:16px">Account</div>
+      <a class="sidebar-link" href="settings.html"><span class="icon">⚙️</span> Settings</a>
+      <a class="sidebar-link" href="login.html" onclick="localStorage.removeItem('employeeSession')"><span class="icon">🚪</span> Logout</a>
+    </div>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="sidebar-user-avatar" id="avatarInitials">RS</div>
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-name" id="sidebarName">Rahul Sharma</div>
+          <div class="sidebar-user-role" id="sidebarDesig">Senior Executive</div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="main-content">
+    <div class="topbar">
+      <div>
+        <div class="topbar-title">My Dashboard</div>
+        <div style="font-size:0.78rem;color:var(--gray-400)" id="topbarDate">Friday, 02 Oct 2026</div>
+      </div>
+      <div class="topbar-actions">
+        <div class="notif-btn" onclick="window.location='notifications.html'">🔔<span class="notif-dot"></span></div>
+        <a href="../index.html" class="btn btn-outline btn-sm">← Website</a>
+      </div>
+    </div>
+
+    <div class="page-content">
+      <!-- Profile Summary Banner -->
+      <div style="background:var(--gradient-hero);border-radius:var(--radius-lg);padding:28px 32px;color:white;display:flex;align-items:center;gap:24px;margin-bottom:24px;flex-wrap:wrap">
+        <div style="width:72px;height:72px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:1.8rem;font-weight:800;flex-shrink:0" id="bigAvatar">RS</div>
+        <div style="flex:1">
+          <h3 style="color:white;margin-bottom:4px" id="empNameBig">Rahul Sharma</h3>
+          <div style="display:flex;gap:24px;flex-wrap:wrap;margin-top:8px">
+            <div style="font-size:0.85rem;color:rgba(255,255,255,0.8)">🆔 EMP ID: <strong id="empIdBig">AX-EMP-1001</strong></div>
+            <div style="font-size:0.85rem;color:rgba(255,255,255,0.8)">🏢 Dept: <strong>Operations</strong></div>
+            <div style="font-size:0.85rem;color:rgba(255,255,255,0.8)">📅 Joined: <strong>01 Apr 2024</strong></div>
+            <div style="font-size:0.85rem;color:rgba(255,255,255,0.8)">📍 Client: <strong>TechVista Solutions</strong></div>
+          </div>
+        </div>
+        <a href="profile.html" class="btn btn-white btn-sm">View Profile</a>
+      </div>
+
+      <!-- Stat Cards -->
+      <div class="stat-cards">
+        <div class="stat-card">
+          <div class="stat-card-icon green">✅</div>
+          <div class="stat-card-info">
+            <div class="stat-card-value">22</div>
+            <div class="stat-card-label">Days Present (Oct)</div>
+            <div class="stat-card-change change-up">↑ On track</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon orange">🏖</div>
+          <div class="stat-card-info">
+            <div class="stat-card-value">8</div>
+            <div class="stat-card-label">Leave Balance</div>
+            <div class="stat-card-change">Casual + Earned</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon blue">💰</div>
+          <div class="stat-card-info">
+            <div class="stat-card-value">₹28K</div>
+            <div class="stat-card-label">Last Salary (Sep)</div>
+            <div class="stat-card-change change-up">Credited ✓</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon purple">📄</div>
+          <div class="stat-card-info">
+            <div class="stat-card-value">6</div>
+            <div class="stat-card-label">Documents Available</div>
+            <div class="stat-card-change">Ready to download</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px">
+        <!-- Check-in Widget -->
+        <div style="background:white;border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow-sm);border:1px solid var(--gray-100)">
+          <h4 style="margin-bottom:6px">Today's Attendance</h4>
+          <div style="font-size:0.82rem;color:var(--gray-400);margin-bottom:20px" id="todayDate">Friday, 02 October 2026</div>
+          
+          <div style="text-align:center;margin-bottom:20px">
+            <div style="font-size:2.5rem;font-weight:800;font-family:var(--font-heading);color:var(--primary)" id="liveTime">--:--:--</div>
+            <div style="font-size:0.8rem;color:var(--gray-400);margin-top:4px">Current Time</div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px">
+            <div style="background:var(--gray-50);border-radius:8px;padding:12px;text-align:center">
+              <div style="font-size:0.72rem;color:var(--gray-400);margin-bottom:4px">Check In</div>
+              <div style="font-weight:700;color:var(--success);font-size:1rem" id="checkInTime">09:02 AM</div>
+            </div>
+            <div style="background:var(--gray-50);border-radius:8px;padding:12px;text-align:center">
+              <div style="font-size:0.72rem;color:var(--gray-400);margin-bottom:4px">Check Out</div>
+              <div style="font-weight:700;color:var(--gray-400);font-size:1rem" id="checkOutTime">--:-- --</div>
+            </div>
+          </div>
+          
+          <button class="checkin-btn out" id="checkInBtn" onclick="toggleCheckout()">🚪 Check Out</button>
+          <div style="font-size:0.78rem;color:var(--gray-400);text-align:center;margin-top:10px">
+            Status: <span style="color:var(--success);font-weight:600">✅ Present</span>
+          </div>
+        </div>
+
+        <!-- Leave Balance -->
+        <div style="background:white;border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow-sm);border:1px solid var(--gray-100)">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+            <h4>Leave Balance</h4>
+            <a href="leave.html" class="btn btn-primary btn-sm">Apply Leave</a>
+          </div>
+          <div>
+            <div class="leave-bar">
+              <div class="leave-type-dot" style="background:#10b981"></div>
+              <div style="flex:1">
+                <div style="font-size:0.85rem;font-weight:600;color:var(--gray-700)">Casual Leave (CL)</div>
+                <div style="background:var(--gray-100);border-radius:100px;height:6px;margin-top:6px;overflow:hidden"><div style="width:40%;background:#10b981;height:100%;border-radius:100px"></div></div>
+              </div>
+              <div style="font-weight:700;color:var(--gray-800);font-size:0.9rem">4 / 10</div>
+            </div>
+            <div class="leave-bar">
+              <div class="leave-type-dot" style="background:#3b82f6"></div>
+              <div style="flex:1">
+                <div style="font-size:0.85rem;font-weight:600;color:var(--gray-700)">Earned Leave (EL)</div>
+                <div style="background:var(--gray-100);border-radius:100px;height:6px;margin-top:6px;overflow:hidden"><div style="width:60%;background:#3b82f6;height:100%;border-radius:100px"></div></div>
+              </div>
+              <div style="font-weight:700;color:var(--gray-800);font-size:0.9rem">6 / 10</div>
+            </div>
+            <div class="leave-bar">
+              <div class="leave-type-dot" style="background:#f59e0b"></div>
+              <div style="flex:1">
+                <div style="font-size:0.85rem;font-weight:600;color:var(--gray-700)">Sick Leave (SL)</div>
+                <div style="background:var(--gray-100);border-radius:100px;height:6px;margin-top:6px;overflow:hidden"><div style="width:80%;background:#f59e0b;height:100%;border-radius:100px"></div></div>
+              </div>
+              <div style="font-weight:700;color:var(--gray-800);font-size:0.9rem">8 / 10</div>
+            </div>
+          </div>
+          <div style="margin-top:16px;padding:12px;background:var(--gray-50);border-radius:8px;text-align:center">
+            <div style="font-size:0.8rem;color:var(--gray-500)">Total Balance</div>
+            <div style="font-size:1.4rem;font-weight:800;color:var(--primary);font-family:var(--font-heading)">18 Days</div>
+          </div>
+        </div>
+
+        <!-- Salary Summary -->
+        <div style="background:white;border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow-sm);border:1px solid var(--gray-100)">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+            <h4>Salary Summary</h4>
+            <a href="salary.html" style="font-size:0.85rem;color:var(--primary-light);font-weight:600">View All →</a>
+          </div>
+          <div style="margin-bottom:16px">
+            <div style="font-size:0.78rem;color:var(--gray-400);margin-bottom:4px">September 2026</div>
+            <div style="font-size:2rem;font-weight:800;font-family:var(--font-heading);color:var(--primary)">₹28,000</div>
+            <span class="badge badge-success" style="margin-top:6px">✅ Credited — 01 Oct 2026</span>
+          </div>
+          <hr class="divider" />
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;justify-content:space-between;font-size:0.85rem"><span style="color:var(--gray-500)">Basic Salary</span><span style="font-weight:600">₹16,800</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:0.85rem"><span style="color:var(--gray-500)">HRA</span><span style="font-weight:600">₹6,720</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:0.85rem"><span style="color:var(--gray-500)">Other Allowances</span><span style="font-weight:600">₹5,600</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:0.85rem;color:var(--danger)"><span>PF Deduction</span><span>-₹1,120</span></div>
+          </div>
+          <a href="salary.html" class="btn btn-outline btn-sm w-full" style="justify-content:center;margin-top:16px">📄 Download Sep Slip</a>
+        </div>
+      </div>
+
+      <!-- Attendance Calendar + Notifications -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px">
+        <!-- Monthly Attendance Calendar -->
+        <div style="background:white;border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow-sm);border:1px solid var(--gray-100)">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+            <h4>Attendance — October 2026</h4>
+            <a href="attendance.html" style="font-size:0.85rem;color:var(--primary-light);font-weight:600">Details →</a>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:10px">
+            <div style="text-align:center;font-size:0.72rem;font-weight:700;color:var(--gray-400);padding:4px">Mo</div>
+            <div style="text-align:center;font-size:0.72rem;font-weight:700;color:var(--gray-400);padding:4px">Tu</div>
+            <div style="text-align:center;font-size:0.72rem;font-weight:700;color:var(--gray-400);padding:4px">We</div>
+            <div style="text-align:center;font-size:0.72rem;font-weight:700;color:var(--gray-400);padding:4px">Th</div>
+            <div style="text-align:center;font-size:0.72rem;font-weight:700;color:var(--gray-400);padding:4px">Fr</div>
+            <div style="text-align:center;font-size:0.72rem;font-weight:700;color:var(--gray-400);padding:4px">Sa</div>
+            <div style="text-align:center;font-size:0.72rem;font-weight:700;color:var(--gray-400);padding:4px">Su</div>
+          </div>
+          <div id="attCalendar" class="attendance-grid"></div>
+          <div style="display:flex;gap:16px;margin-top:14px;flex-wrap:wrap">
+            <div style="display:flex;align-items:center;gap:6px;font-size:0.75rem;color:var(--gray-500)"><div style="width:10px;height:10px;border-radius:2px;background:#d1fae5"></div>Present</div>
+            <div style="display:flex;align-items:center;gap:6px;font-size:0.75rem;color:var(--gray-500)"><div style="width:10px;height:10px;border-radius:2px;background:#fee2e2"></div>Absent</div>
+            <div style="display:flex;align-items:center;gap=6px;font-size:0.75rem;color:var(--gray-500)"><div style="width:10px;height:10px;border-radius:2px;background:#ede9fe"></div>Holiday</div>
+          </div>
+        </div>
+
+        <!-- Notifications -->
+        <div style="background:white;border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow-sm);border:1px solid var(--gray-100)">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+            <h4>Notifications</h4>
+            <a href="notifications.html" style="font-size:0.85rem;color:var(--primary-light);font-weight:600">All →</a>
+          </div>
+          <div class="notif-item unread">
+            <div class="notif-icon" style="background:#d1fae5">💰</div>
+            <div class="notif-content">
+              <div class="notif-text">Your <strong>September salary slip</strong> is now available for download.</div>
+              <div class="notif-time">Today, 9:00 AM</div>
+            </div>
+          </div>
+          <div class="notif-item unread">
+            <div class="notif-icon" style="background:#dbeafe">📢</div>
+            <div class="notif-content">
+              <div class="notif-text">HR Announcement: Diwali bonus will be credited by <strong>28 Oct 2026</strong>.</div>
+              <div class="notif-time">Yesterday</div>
+            </div>
+          </div>
+          <div class="notif-item">
+            <div class="notif-icon" style="background:#fef3c7">🏖</div>
+            <div class="notif-content">
+              <div class="notif-text">Your leave application for <strong>10 Oct 2026</strong> has been approved.</div>
+              <div class="notif-time">2 days ago</div>
+            </div>
+          </div>
+          <div class="notif-item">
+            <div class="notif-icon" style="background:#fee2e2">⚠️</div>
+            <div class="notif-content">
+              <div class="notif-text">Reminder: Submit your travel claim for September by <strong>05 Oct 2026</strong>.</div>
+              <div class="notif-time">3 days ago</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Documents Quick Access -->
+      <div style="background:white;border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow-sm);border:1px solid var(--gray-100);margin-top:24px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+          <h4>My Documents</h4>
+          <a href="documents.html" style="font-size:0.85rem;color:var(--primary-light);font-weight:600">View All →</a>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:14px" id="quickDocs"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const session = JSON.parse(localStorage.getItem('employeeSession') || '{}');
+  if (!session.empId) window.location.href = 'login.html';
+
+  const name = session.name || 'Employee';
+  const empId = session.empId || 'AX-EMP-1001';
+  const desig = session.designation || 'Executive';
+
+  document.getElementById('sidebarName').textContent = name;
+  document.getElementById('sidebarDesig').textContent = desig;
+  document.getElementById('avatarInitials').textContent = name.split(' ').map(n=>n[0]).join('').toUpperCase().slice(0,2);
+  document.getElementById('bigAvatar').textContent = name.split(' ').map(n=>n[0]).join('').toUpperCase().slice(0,2);
+  document.getElementById('empNameBig').textContent = name;
+  document.getElementById('empIdBig').textContent = empId;
+  document.getElementById('topbarDate').textContent = new Date().toLocaleDateString('en-IN', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+  document.getElementById('todayDate').textContent = new Date().toLocaleDateString('en-IN', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+
+  // Live clock
+  setInterval(() => {
+    document.getElementById('liveTime').textContent = new Date().toLocaleTimeString('en-IN', { hour12: true });
+  }, 1000);
+
+  // Toggle checkout
+  let checkedOut = false;
+  function toggleCheckout() {
+    if (!checkedOut) {
+      checkedOut = true;
+      const now = new Date().toLocaleTimeString('en-IN', { hour:'2-digit', minute:'2-digit', hour12:true });
+      document.getElementById('checkOutTime').textContent = now;
+      document.getElementById('checkOutTime').style.color = 'var(--danger)';
+      document.getElementById('checkInBtn').textContent = '✅ Checked Out';
+      document.getElementById('checkInBtn').style.background = 'var(--gray-300)';
+      document.getElementById('checkInBtn').style.cursor = 'default';
+    }
+  }
+
+  // Build attendance calendar
+  const calData = { 1:'holiday', 2:'present', 3:'present', 4:'holiday', 5:'holiday', 6:'present', 7:'present', 8:'present', 9:'present', 10:'absent', 11:'holiday', 12:'holiday', 13:'present', 14:'present', 15:'present', 16:'present', 17:'present', 18:'holiday', 19:'holiday', 20:'present', 21:'present', 22:'present', 23:'present', 24:'present', 25:'holiday', 26:'holiday', 27:'present', 28:'present', 29:'present', 30:'present', 31:'present' };
+  const calEl = document.getElementById('attCalendar');
+  // Oct 2026 starts on Thursday (index 3 = Thu)
+  let dayOfWeek = 3; // Mon=0 … Sun=6; Oct 1 is Thursday=3
+  for (let i = 0; i < dayOfWeek; i++) {
+    calEl.innerHTML += `<div class="att-day" style="background:transparent;border-color:transparent"></div>`;
+  }
+  for (let d = 1; d <= 31; d++) {
+    const cls = calData[d] || 'holiday';
+    const isToday = d === 2;
+    calEl.innerHTML += `<div class="att-day ${cls}${isToday?' today':''}"><div class="day-num">${d}</div></div>`;
+  }
+
+  // Quick docs
+  const docs = [
+    { name:'Offer Letter', icon:'📜' },
+    { name:'Appointment Letter', icon:'📋' },
+    { name:'Sep Salary Slip', icon:'💰' },
+    { name:'Aug Salary Slip', icon:'💰' },
+    { name:'ID Proof', icon:'🪪' },
+    { name:'Experience Letter', icon:'🏆' },
+  ];
+  document.getElementById('quickDocs').innerHTML = docs.map(d => `
+    <div style="background:var(--gray-50);border-radius:10px;padding:16px 12px;text-align:center;cursor:pointer;transition:all 0.3s;border:1px solid var(--gray-100)"
+         onmouseenter="this.style.background='#dbeafe';this.style.borderColor='#93c5fd'"
+         onmouseleave="this.style.background='var(--gray-50)';this.style.borderColor='var(--gray-100)'"
+         onclick="window.location='documents.html'">
+      <div style="font-size:1.6rem;margin-bottom:8px">${d.icon}</div>
+      <div style="font-size:0.75rem;font-weight:600;color:var(--gray-700)">${d.name}</div>
+    </div>`).join('');
+</script>
+</body>
+</html>

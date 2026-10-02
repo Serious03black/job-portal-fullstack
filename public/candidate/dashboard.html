@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Candidate Dashboard | AXYTES Solutions</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    body { background: var(--gray-50); }
+    .profile-completion { background: linear-gradient(135deg, #dbeafe, #ede9fe); border-radius: var(--radius-md); padding: 20px 24px; margin-bottom: 24px; display: flex; align-items: center; gap: 20px; }
+    .progress-bar-outer { flex: 1; background: rgba(255,255,255,0.5); border-radius: 100px; height: 10px; overflow: hidden; }
+    .progress-bar-inner { height: 100%; background: var(--gradient-hero); border-radius: 100px; transition: width 1s ease; }
+    .job-card { background: var(--white); border-radius: var(--radius-md); padding: 20px; border: 1.5px solid var(--gray-100); margin-bottom: 14px; transition: var(--transition); cursor: pointer; }
+    .job-card:hover { border-color: var(--primary-light); box-shadow: var(--shadow-md); transform: translateX(3px); }
+    .quick-links { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 28px; }
+    .quick-link-btn { background: var(--white); border-radius: var(--radius-md); padding: 20px 16px; text-align: center; box-shadow: var(--shadow-sm); border: 1.5px solid var(--gray-100); cursor: pointer; transition: var(--transition); text-decoration: none; color: inherit; display: block; }
+    .quick-link-btn:hover { border-color: var(--primary-light); transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    .quick-link-btn .ql-icon { font-size: 1.8rem; margin-bottom: 8px; display: block; }
+    .quick-link-btn span { font-size: 0.83rem; font-weight: 600; color: var(--gray-700); }
+    @media(max-width:768px){ .quick-links{grid-template-columns:repeat(2,1fr)} }
+  </style>
+</head>
+<body>
+<div class="dashboard-layout">
+  <!-- SIDEBAR -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo-icon">AX</div>
+      <div class="sidebar-logo-text">
+        <span>AXYTES</span>
+        <span>Candidate Portal</span>
+      </div>
+    </div>
+    <div class="sidebar-nav">
+      <div class="sidebar-section-label">Main Menu</div>
+      <a class="sidebar-link active" href="dashboard.html" id="nav-dashboard"><span class="icon">🏠</span> Dashboard</a>
+      <a class="sidebar-link" href="profile.html"><span class="icon">👤</span> My Profile</a>
+      <a class="sidebar-link" href="job-search.html"><span class="icon">🔍</span> Search Jobs</a>
+      <a class="sidebar-link" href="applied-jobs.html"><span class="icon">📋</span> Applied Jobs</a>
+      <a class="sidebar-link" href="interviews.html"><span class="icon">📅</span> Interviews</a>
+      <div class="sidebar-section-label" style="margin-top:16px">Profile</div>
+      <a class="sidebar-link" href="resume.html"><span class="icon">📄</span> Resume / CV</a>
+      <a class="sidebar-link" href="documents.html"><span class="icon">📁</span> Documents</a>
+      <a class="sidebar-link" href="notifications.html"><span class="icon">🔔</span> Notifications <span style="background:#ef4444;color:white;border-radius:100px;font-size:0.68rem;padding:1px 7px;margin-left:4px">3</span></a>
+      <div class="sidebar-section-label" style="margin-top:16px">Account</div>
+      <a class="sidebar-link" href="settings.html"><span class="icon">⚙️</span> Settings</a>
+      <a class="sidebar-link" href="login.html" onclick="doLogout(event)"><span class="icon">🚪</span> Logout</a>
+    </div>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="sidebar-user-avatar" id="avatarInitials">CU</div>
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-name" id="sidebarName">Candidate User</div>
+          <div class="sidebar-user-role">Job Seeker</div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="main-content">
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <div>
+        <div class="topbar-title">Dashboard</div>
+        <div style="font-size:0.78rem;color:var(--gray-400)" id="topbarDate">Friday, 02 Oct 2026</div>
+      </div>
+      <div class="topbar-actions">
+        <div class="notif-btn" onclick="window.location='notifications.html'">🔔<span class="notif-dot"></span></div>
+        <a href="../index.html" class="btn btn-outline btn-sm">← Website</a>
+      </div>
+    </div>
+
+    <!-- PAGE CONTENT -->
+    <div class="page-content">
+      <!-- Welcome banner -->
+      <div style="background:var(--gradient-hero);border-radius:var(--radius-lg);padding:28px 32px;color:white;display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:16px">
+        <div>
+          <h3 style="color:white;margin-bottom:4px">Welcome back, <span id="welcomeName">Candidate</span>! 👋</h3>
+          <p style="color:rgba(255,255,255,0.8);font-size:0.92rem">You have <strong>3 new job matches</strong> and <strong>1 interview scheduled</strong> this week.</p>
+        </div>
+        <a href="job-search.html" class="btn btn-white">🔍 Browse Jobs</a>
+      </div>
+
+      <!-- Profile Completion -->
+      <div class="profile-completion">
+        <div>
+          <div style="font-weight:700;color:var(--primary);margin-bottom:4px">Profile Completion: 65%</div>
+          <div style="font-size:0.82rem;color:var(--gray-500)">Complete your profile to get better job matches</div>
+        </div>
+        <div class="progress-bar-outer">
+          <div class="progress-bar-inner" id="profileProgress" style="width:65%"></div>
+        </div>
+        <a href="profile.html" class="btn btn-outline btn-sm">Complete Profile</a>
+      </div>
+
+      <!-- Stat Cards -->
+      <div class="stat-cards">
+        <div class="stat-card">
+          <div class="stat-card-icon blue">📋</div>
+          <div class="stat-card-info">
+            <div class="stat-card-value">8</div>
+            <div class="stat-card-label">Jobs Applied</div>
+            <div class="stat-card-change change-up">↑ 2 this week</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon green">👁</div>
+          <div class="stat-card-info">
+            <div class="stat-card-value">23</div>
+            <div class="stat-card-label">Profile Views</div>
+            <div class="stat-card-change change-up">↑ 8 this week</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon orange">📅</div>
+          <div class="stat-card-info">
+            <div class="stat-card-value">1</div>
+            <div class="stat-card-label">Interviews Scheduled</div>
+            <div class="stat-card-change change-up">Upcoming</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon purple">⭐</div>
+          <div class="stat-card-info">
+            <div class="stat-card-value">3</div>
+            <div class="stat-card-label">Shortlisted</div>
+            <div class="stat-card-change change-up">↑ 1 new</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="quick-links">
+        <a href="job-search.html" class="quick-link-btn"><span class="ql-icon">🔍</span><span>Search Jobs</span></a>
+        <a href="profile.html" class="quick-link-btn"><span class="ql-icon">👤</span><span>Edit Profile</span></a>
+        <a href="resume.html" class="quick-link-btn"><span class="ql-icon">📄</span><span>Upload Resume</span></a>
+        <a href="interviews.html" class="quick-link-btn"><span class="ql-icon">📅</span><span>My Interviews</span></a>
+      </div>
+
+      <!-- Two column layout -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+        <!-- Recent Applications -->
+        <div>
+          <div class="table-container">
+            <div class="table-header">
+              <div class="table-title">Recent Applications</div>
+              <a href="applied-jobs.html" style="font-size:0.85rem;color:var(--primary-light);font-weight:600">View All →</a>
+            </div>
+            <div style="padding:16px">
+              <div class="job-card" onclick="window.location='applied-jobs.html'">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start">
+                  <div>
+                    <div style="font-weight:700;color:var(--gray-800);font-size:0.95rem">Production Supervisor</div>
+                    <div style="color:var(--gray-500);font-size:0.82rem;margin-top:3px">Pune, Maharashtra</div>
+                  </div>
+                  <span class="badge badge-warning">Under Review</span>
+                </div>
+                <div style="font-size:0.78rem;color:var(--gray-400);margin-top:10px">Applied on: 28 Sep 2026</div>
+              </div>
+              <div class="job-card" onclick="window.location='applied-jobs.html'">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start">
+                  <div>
+                    <div style="font-weight:700;color:var(--gray-800);font-size:0.95rem">Sales Executive</div>
+                    <div style="color:var(--gray-500);font-size:0.82rem;margin-top:3px">Mumbai, Maharashtra</div>
+                  </div>
+                  <span class="badge badge-success">Shortlisted</span>
+                </div>
+                <div style="font-size:0.78rem;color:var(--gray-400);margin-top:10px">Applied on: 25 Sep 2026</div>
+              </div>
+              <div class="job-card" onclick="window.location='applied-jobs.html'">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start">
+                  <div>
+                    <div style="font-weight:700;color:var(--gray-800);font-size:0.95rem">Data Entry Operator</div>
+                    <div style="color:var(--gray-500);font-size:0.82rem;margin-top:3px">Navi Mumbai</div>
+                  </div>
+                  <span class="badge badge-info">Interview Scheduled</span>
+                </div>
+                <div style="font-size:0.78rem;color:var(--gray-400);margin-top:10px">Applied on: 20 Sep 2026</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Notifications + Upcoming -->
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <!-- Interview Alert -->
+          <div style="background:linear-gradient(135deg,#d1fae5,#a7f3d0);border-radius:var(--radius-md);padding:20px 24px;border:1px solid #6ee7b7">
+            <div style="font-weight:700;color:#065f46;margin-bottom:6px">📅 Interview Scheduled!</div>
+            <div style="font-size:0.88rem;color:#047857">Data Entry Operator role</div>
+            <div style="font-size:0.85rem;color:#059669;margin-top:8px"><strong>Date:</strong> 05 Oct 2026 | <strong>Time:</strong> 11:00 AM</div>
+            <div style="font-size:0.85rem;color:#059669"><strong>Mode:</strong> Online (Zoom)</div>
+            <a href="interviews.html" class="btn btn-sm" style="background:#10b981;color:white;margin-top:12px">View Details</a>
+          </div>
+
+          <!-- Notifications -->
+          <div class="table-container" style="flex:1">
+            <div class="table-header">
+              <div class="table-title">Notifications</div>
+              <a href="notifications.html" style="font-size:0.85rem;color:var(--primary-light);font-weight:600">All →</a>
+            </div>
+            <div style="padding:12px 16px">
+              <div class="notif-item unread">
+                <div class="notif-icon" style="background:#dbeafe">📢</div>
+                <div class="notif-content">
+                  <div class="notif-text">Your application for <strong>Sales Executive</strong> has been shortlisted!</div>
+                  <div class="notif-time">2 hours ago</div>
+                </div>
+              </div>
+              <div class="notif-item unread">
+                <div class="notif-icon" style="background:#d1fae5">📅</div>
+                <div class="notif-content">
+                  <div class="notif-text">Interview scheduled for <strong>Data Entry Operator</strong></div>
+                  <div class="notif-time">Yesterday</div>
+                </div>
+              </div>
+              <div class="notif-item">
+                <div class="notif-icon" style="background:#fef3c7">🔔</div>
+                <div class="notif-content">
+                  <div class="notif-text">5 new jobs match your profile</div>
+                  <div class="notif-time">2 days ago</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recommended Jobs -->
+      <div style="margin-top:28px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+          <h3 style="color:var(--primary)">Recommended Jobs for You</h3>
+          <a href="job-search.html" style="color:var(--primary-light);font-size:0.9rem;font-weight:600">Browse All →</a>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px" id="recommendedJobs"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Auth check
+  const session = JSON.parse(localStorage.getItem('candidateSession') || '{}');
+  if (!session.email) window.location.href = 'login.html';
+
+  const name = session.name || 'Candidate';
+  document.getElementById('welcomeName').textContent = name.split(' ')[0];
+  document.getElementById('sidebarName').textContent = name;
+  document.getElementById('avatarInitials').textContent = name.split(' ').map(n=>n[0]).join('').toUpperCase().slice(0,2);
+  document.getElementById('topbarDate').textContent = new Date().toLocaleDateString('en-IN', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+
+  function doLogout(e) {
+    e.preventDefault();
+    localStorage.removeItem('candidateSession');
+    window.location.href = 'login.html';
+  }
+
+  // Recommended jobs
+  const jobs = [
+    { title:'Warehouse Executive', loc:'Bhiwandi', salary:'₹18–25K', tag:'Urgent', color:'badge-danger' },
+    { title:'HR Executive', loc:'Thane', salary:'₹20–28K', tag:'New', color:'badge-success' },
+    { title:'Machine Operator', loc:'Pune', salary:'₹15–22K', tag:'Hot', color:'badge-warning' },
+  ];
+  document.getElementById('recommendedJobs').innerHTML = jobs.map(j => `
+    <div style="background:white;border-radius:12px;padding:20px;border:1.5px solid #f1f5f9;box-shadow:0 1px 6px rgba(0,0,0,0.05);transition:all 0.3s;cursor:pointer"
+         onmouseenter="this.style.borderColor='#2563eb';this.style.boxShadow='0 4px 16px rgba(26,58,107,0.12)'"
+         onmouseleave="this.style.borderColor='#f1f5f9';this.style.boxShadow='0 1px 6px rgba(0,0,0,0.05)'"
+         onclick="window.location='job-search.html'">
+      <div style="display:flex;justify-content:space-between;margin-bottom:10px">
+        <div style="font-weight:700;color:var(--primary);font-size:0.95rem">${j.title}</div>
+        <span class="badge ${j.color}" style="font-size:0.72rem">${j.tag}</span>
+      </div>
+      <div style="color:var(--gray-500);font-size:0.82rem">📍 ${j.loc}</div>
+      <div style="color:var(--gray-500);font-size:0.82rem;margin-top:4px">💰 ${j.salary}/mo</div>
+      <button class="btn btn-primary btn-sm w-full" style="margin-top:14px;justify-content:center">Apply Now</button>
+    </div>`).join('');
+</script>
+</body>
+</html>

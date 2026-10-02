@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Candidates Management | AXYTES Admin Panel</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    body { background: var(--gray-50); }
+    .admin-sidebar { background: var(--gray-900); }
+    .admin-sidebar .sidebar-link { color: var(--gray-400); }
+    .admin-sidebar .sidebar-link:hover { background: rgba(255,255,255,0.05); color: var(--white); }
+    .admin-sidebar .sidebar-link.active { background: rgba(37,99,235,0.25); color: var(--white); border-left: 3px solid var(--accent); }
+  </style>
+</head>
+<body>
+<div class="dashboard-layout">
+  <nav class="sidebar admin-sidebar">
+    <div class="sidebar-header"><div class="sidebar-logo-icon">AX</div><div class="sidebar-logo-text"><span>AXYTES</span><span>Admin Panel</span></div></div>
+    <div class="sidebar-nav">
+      <a class="sidebar-link" href="dashboard.html"><span class="icon">📊</span> Dashboard</a>
+      <a class="sidebar-link" href="reports.html"><span class="icon">📈</span> Reports</a>
+      <a class="sidebar-link active" href="candidates.html"><span class="icon">👥</span> Candidates</a>
+      <a class="sidebar-link" href="jobs.html"><span class="icon">💼</span> Job Listings</a>
+      <a class="sidebar-link" href="applications.html"><span class="icon">📋</span> Applications</a>
+      <a class="sidebar-link" href="interviews.html"><span class="icon">📅</span> Interviews</a>
+      <a class="sidebar-link" href="employees.html"><span class="icon">🏢</span> Employees</a>
+      <a class="sidebar-link" href="attendance.html"><span class="icon">⏰</span> Attendance</a>
+      <a class="sidebar-link" href="leave.html"><span class="icon">🏖</span> Leave Requests</a>
+      <a class="sidebar-link" href="payroll.html"><span class="icon">💰</span> Payroll</a>
+      <a class="sidebar-link" href="login.html" onclick="localStorage.removeItem('adminSession')"><span class="icon">🚪</span> Logout</a>
+    </div>
+    <div class="sidebar-footer"><div class="sidebar-user"><div class="sidebar-user-avatar">SA</div><div class="sidebar-user-info"><div class="sidebar-user-name">Super Admin</div><div class="sidebar-user-role">Administrator</div></div></div></div>
+  </nav>
+
+  <div class="main-content">
+    <div class="topbar">
+      <div class="topbar-title">Candidates Management</div>
+      <div class="topbar-actions">
+        <div class="search-bar" style="width:250px"><span class="search-icon">🔍</span><input type="text" id="candidateSearch" placeholder="Search candidates..." oninput="filterCandidates()" /></div>
+        <button class="btn btn-primary" onclick="openAddModal()">+ Add Candidate</button>
+      </div>
+    </div>
+
+    <div class="page-content">
+      <!-- Stats -->
+      <div class="stat-cards" style="margin-bottom:24px">
+        <div class="stat-card"><div class="stat-card-icon blue">👥</div><div class="stat-card-info"><div class="stat-card-value">1,284</div><div class="stat-card-label">Total Candidates</div><div class="stat-card-change change-up">↑ 48 this month</div></div></div>
+        <div class="stat-card"><div class="stat-card-icon green">✅</div><div class="stat-card-info"><div class="stat-card-value">956</div><div class="stat-card-label">Active / Available</div></div></div>
+        <div class="stat-card"><div class="stat-card-icon orange">📅</div><div class="stat-card-info"><div class="stat-card-value">213</div><div class="stat-card-label">Applications This Month</div></div></div>
+        <div class="stat-card"><div class="stat-card-icon purple">🏆</div><div class="stat-card-info"><div class="stat-card-value">89</div><div class="stat-card-label">Placed This Month</div></div></div>
+      </div>
+
+      <!-- Filter Bar -->
+      <div style="background:white;border-radius:var(--radius-md);padding:16px 20px;box-shadow:var(--shadow-sm);border:1px solid var(--gray-100);display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-bottom:20px">
+        <select class="form-control" style="width:auto" onchange="filterCandidates()" id="statusFilter">
+          <option value="">All Status</option>
+          <option>New</option><option>Shortlisted</option><option>Interview Scheduled</option><option>Placed</option><option>Rejected</option>
+        </select>
+        <select class="form-control" style="width:auto" onchange="filterCandidates()" id="catFilter">
+          <option value="">All Categories</option>
+          <option>Manufacturing</option><option>IT</option><option>Sales</option><option>Logistics</option><option>Admin</option><option>HR</option>
+        </select>
+        <select class="form-control" style="width:auto" id="sortFilter" onchange="filterCandidates()">
+          <option>Newest First</option><option>Name A–Z</option><option>Name Z–A</option>
+        </select>
+        <button class="btn btn-outline btn-sm" onclick="exportData()">⬇ Export CSV</button>
+      </div>
+
+      <!-- Candidates Table -->
+      <div class="table-container">
+        <div class="table-header">
+          <div class="table-title">All Candidates</div>
+          <div style="font-size:0.85rem;color:var(--gray-400)">Showing <span id="visibleCount">20</span> of <span id="totalCount">1,284</span> candidates</div>
+        </div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th><input type="checkbox" id="selectAll" onchange="toggleSelectAll()" /></th>
+              <th>Candidate</th>
+              <th>Category</th>
+              <th>Location</th>
+              <th>Experience</th>
+              <th>Applied For</th>
+              <th>Status</th>
+              <th>Registered</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="candidateTableBody"></tbody>
+        </table>
+        <!-- Pagination -->
+        <div style="padding:16px 20px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--gray-100)">
+          <div style="font-size:0.85rem;color:var(--gray-500)">Page 1 of 65</div>
+          <div style="display:flex;gap:4px">
+            <button class="btn btn-outline btn-sm">← Prev</button>
+            <button class="btn btn-primary btn-sm">1</button>
+            <button class="btn btn-outline btn-sm">2</button>
+            <button class="btn btn-outline btn-sm">3</button>
+            <button class="btn btn-outline btn-sm">Next →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add Candidate Modal -->
+<div class="modal-overlay" id="addModal">
+  <div class="modal" style="max-width:600px">
+    <div class="modal-header">
+      <div class="modal-title">Add New Candidate</div>
+      <div class="modal-close" onclick="document.getElementById('addModal').classList.remove('open')">✕</div>
+    </div>
+    <div class="modal-body" style="max-height:70vh;overflow-y:auto">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div class="form-group"><label class="form-label">First Name *</label><input type="text" class="form-control" placeholder="First name" /></div>
+        <div class="form-group"><label class="form-label">Last Name *</label><input type="text" class="form-control" placeholder="Last name" /></div>
+      </div>
+      <div class="form-group"><label class="form-label">Email *</label><input type="email" class="form-control" placeholder="candidate@email.com" /></div>
+      <div class="form-group"><label class="form-label">Phone *</label><input type="tel" class="form-control" placeholder="+91 XXXXX XXXXX" /></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div class="form-group"><label class="form-label">Category</label><select class="form-control"><option>Manufacturing</option><option>IT</option><option>Sales</option><option>Logistics</option><option>Admin</option><option>HR</option></select></div>
+        <div class="form-group"><label class="form-label">Experience</label><select class="form-control"><option>Fresher</option><option>1–3 years</option><option>3–5 years</option><option>5+ years</option></select></div>
+      </div>
+      <div class="form-group"><label class="form-label">Current Location</label><input type="text" class="form-control" placeholder="City, State" /></div>
+      <div class="form-group"><label class="form-label">Upload Resume (PDF/DOC)</label><input type="file" class="form-control" /></div>
+      <div class="form-group"><label class="form-label">Notes</label><textarea class="form-control" rows="3" placeholder="Internal notes about this candidate..."></textarea></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="document.getElementById('addModal').classList.remove('open')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveCandidate()">Save Candidate</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const session = JSON.parse(localStorage.getItem('adminSession') || '{}');
+  if (!session.user) window.location.href = 'login.html';
+
+  const candidates = [
+    { name:'Priya Sharma', email:'priya@email.com', cat:'Sales', loc:'Mumbai', exp:'1–3 yrs', applied:'Sales Executive', status:'New', reg:'02 Oct 2026' },
+    { name:'Arjun Mehta', email:'arjun@email.com', cat:'Logistics', loc:'Bhiwandi', exp:'3–5 yrs', applied:'Warehouse Exec', status:'Shortlisted', reg:'01 Oct 2026' },
+    { name:'Sunita Rao', email:'sunita@email.com', cat:'Admin', loc:'Navi Mumbai', exp:'Fresher', applied:'Data Entry', status:'Interview Scheduled', reg:'30 Sep 2026' },
+    { name:'Rajesh Kumar', email:'rajesh@email.com', cat:'Manufacturing', loc:'Pune', exp:'5+ yrs', applied:'Machine Operator', status:'Placed', reg:'28 Sep 2026' },
+    { name:'Divya Nair', email:'divya@email.com', cat:'HR', loc:'Thane', exp:'1–3 yrs', applied:'HR Executive', status:'Rejected', reg:'27 Sep 2026' },
+    { name:'Kiran Patil', email:'kiran@email.com', cat:'Sales', loc:'Mumbai', exp:'1–3 yrs', applied:'Sales Executive', status:'Shortlisted', reg:'26 Sep 2026' },
+    { name:'Anita Kaur', email:'anita@email.com', cat:'Manufacturing', loc:'Pune', exp:'3–5 yrs', applied:'Production Supvr', status:'Interview Scheduled', reg:'25 Sep 2026' },
+    { name:'Rahul Verma', email:'rahulv@email.com', cat:'Logistics', loc:'Mumbai', exp:'Fresher', applied:'Delivery Exec', status:'New', reg:'24 Sep 2026' },
+    { name:'Meera Iyer', email:'meera@email.com', cat:'IT', loc:'Thane', exp:'3–5 yrs', applied:'IT Support', status:'Shortlisted', reg:'23 Sep 2026' },
+    { name:'Suresh Pillai', email:'suresh@email.com', cat:'Admin', loc:'Mumbai', exp:'1–3 yrs', applied:'Office Assistant', status:'Placed', reg:'22 Sep 2026' },
+  ];
+
+  const sMap = { New:'badge-info', Shortlisted:'badge-success', 'Interview Scheduled':'badge-warning', Placed:'badge-gray', Rejected:'badge-danger' };
+
+  function renderCandidates(data) {
+    document.getElementById('visibleCount').textContent = data.length;
+    document.getElementById('candidateTableBody').innerHTML = data.map(c => `
+      <tr>
+        <td><input type="checkbox" /></td>
+        <td>
+          <div style="display:flex;align-items:center;gap:10px">
+            <div class="table-avatar">${c.name.split(' ').map(n=>n[0]).join('')}</div>
+            <div>
+              <div style="font-weight:600;font-size:0.88rem">${c.name}</div>
+              <div style="font-size:0.75rem;color:var(--gray-400)">${c.email}</div>
+            </div>
+          </div>
+        </td>
+        <td><span class="badge badge-info" style="font-size:0.75rem">${c.cat}</span></td>
+        <td style="font-size:0.85rem">📍 ${c.loc}</td>
+        <td style="font-size:0.85rem">${c.exp}</td>
+        <td style="font-size:0.85rem;color:var(--gray-600)">${c.applied}</td>
+        <td><span class="badge ${sMap[c.status]}">${c.status}</span></td>
+        <td style="font-size:0.82rem;color:var(--gray-400)">${c.reg}</td>
+        <td>
+          <div style="display:flex;gap:4px">
+            <button class="btn btn-sm" style="background:#dbeafe;color:#1e40af;padding:5px 10px;font-size:0.78rem;border-radius:6px" onclick="viewCandidate('${c.name}')">View</button>
+            <button class="btn btn-sm" style="background:#d1fae5;color:#065f46;padding:5px 10px;font-size:0.78rem;border-radius:6px" onclick="scheduleInterview('${c.name}')">Interview</button>
+            <button class="btn btn-sm" style="background:#fee2e2;color:#991b1b;padding:5px 10px;font-size:0.78rem;border-radius:6px" onclick="">Delete</button>
+          </div>
+        </td>
+      </tr>`).join('');
+  }
+
+  function filterCandidates() {
+    const q = document.getElementById('candidateSearch').value.toLowerCase();
+    const st = document.getElementById('statusFilter').value;
+    const cat = document.getElementById('catFilter').value;
+    const filtered = candidates.filter(c =>
+      (!q || c.name.toLowerCase().includes(q) || c.email.toLowerCase().includes(q)) &&
+      (!st || c.status === st) &&
+      (!cat || c.cat === cat)
+    );
+    renderCandidates(filtered);
+  }
+
+  function toggleSelectAll() {
+    const checked = document.getElementById('selectAll').checked;
+    document.querySelectorAll('#candidateTableBody input[type=checkbox]').forEach(cb => cb.checked = checked);
+  }
+
+  function openAddModal() { document.getElementById('addModal').classList.add('open'); }
+
+  function saveCandidate() {
+    alert('✅ Candidate saved successfully!');
+    document.getElementById('addModal').classList.remove('open');
+  }
+
+  function viewCandidate(name) { alert(`Opening profile for: ${name}\n(Full profile view would be on a dedicated candidate detail page)`); }
+  function scheduleInterview(name) { alert(`Scheduling interview for: ${name}\n(Interview scheduling modal/page would open here)`); }
+
+  function exportData() {
+    const csv = 'Name,Email,Category,Location,Experience,Applied For,Status,Registered\n' +
+      candidates.map(c => `"${c.name}","${c.email}","${c.cat}","${c.loc}","${c.exp}","${c.applied}","${c.status}","${c.reg}"`).join('\n');
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'axytes_candidates.csv';
+    a.click();
+  }
+
+  renderCandidates(candidates);
+</script>
+</body>
+</html>

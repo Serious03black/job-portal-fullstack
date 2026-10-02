@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard | AXYTES Admin Panel</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    body { background: var(--gray-50); }
+    .admin-sidebar { background: var(--gray-900); }
+    .admin-sidebar .sidebar-section-label { color: var(--gray-600); }
+    .admin-sidebar .sidebar-link { color: var(--gray-400); }
+    .admin-sidebar .sidebar-link:hover { background: rgba(255,255,255,0.05); color: var(--white); }
+    .admin-sidebar .sidebar-link.active { background: rgba(37,99,235,0.25); color: var(--white); border-left-color: var(--accent); }
+    .mini-chart { display: flex; align-items: flex-end; gap: 4px; height: 48px; }
+    .chart-bar { background: var(--gradient-hero); border-radius: 3px 3px 0 0; flex: 1; opacity: 0.7; transition: opacity 0.2s; }
+    .chart-bar:hover { opacity: 1; }
+    .activity-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  </style>
+</head>
+<body>
+<div class="dashboard-layout">
+  <!-- ADMIN SIDEBAR -->
+  <nav class="sidebar admin-sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo-icon">AX</div>
+      <div class="sidebar-logo-text"><span>AXYTES</span><span>Admin Panel</span></div>
+    </div>
+    <div class="sidebar-nav">
+      <div class="sidebar-section-label">Overview</div>
+      <a class="sidebar-link active" href="dashboard.html"><span class="icon">📊</span> Dashboard</a>
+      <a class="sidebar-link" href="reports.html"><span class="icon">📈</span> Reports</a>
+
+      <div class="sidebar-section-label" style="margin-top:16px">Recruitment</div>
+      <a class="sidebar-link" href="candidates.html"><span class="icon">👥</span> Candidates</a>
+      <a class="sidebar-link" href="jobs.html"><span class="icon">💼</span> Job Listings</a>
+      <a class="sidebar-link" href="applications.html"><span class="icon">📋</span> Applications</a>
+      <a class="sidebar-link" href="interviews.html"><span class="icon">📅</span> Interviews</a>
+
+      <div class="sidebar-section-label" style="margin-top:16px">HR Management</div>
+      <a class="sidebar-link" href="employees.html"><span class="icon">🏢</span> Employees</a>
+      <a class="sidebar-link" href="attendance.html"><span class="icon">⏰</span> Attendance</a>
+      <a class="sidebar-link" href="leave.html"><span class="icon">🏖</span> Leave Requests</a>
+      <a class="sidebar-link" href="payroll.html"><span class="icon">💰</span> Payroll</a>
+      <a class="sidebar-link" href="documents.html"><span class="icon">📁</span> Documents</a>
+
+      <div class="sidebar-section-label" style="margin-top:16px">System</div>
+      <a class="sidebar-link" href="notifications.html"><span class="icon">🔔</span> Notifications</a>
+      <a class="sidebar-link" href="users.html"><span class="icon">🔐</span> User Roles</a>
+      <a class="sidebar-link" href="audit-log.html"><span class="icon">📜</span> Audit Log</a>
+      <a class="sidebar-link" href="settings.html"><span class="icon">⚙️</span> Settings</a>
+      <a class="sidebar-link" href="login.html" onclick="localStorage.removeItem('adminSession')"><span class="icon">🚪</span> Logout</a>
+    </div>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="sidebar-user-avatar">SA</div>
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-name" id="adminName">Super Admin</div>
+          <div class="sidebar-user-role">Administrator</div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="main-content">
+    <div class="topbar">
+      <div>
+        <div class="topbar-title">Admin Dashboard</div>
+        <div style="font-size:0.78rem;color:var(--gray-400)" id="topbarDate">Friday, 02 Oct 2026</div>
+      </div>
+      <div class="topbar-actions">
+        <a href="candidates.html" class="btn btn-outline btn-sm">+ Add Candidate</a>
+        <a href="jobs.html" class="btn btn-primary btn-sm">+ Post Job</a>
+        <div class="notif-btn" onclick="window.location='notifications.html'">🔔<span class="notif-dot"></span></div>
+      </div>
+    </div>
+
+    <div class="page-content">
+      <!-- KPI Stats -->
+      <div class="stat-cards" style="grid-template-columns:repeat(4,1fr)">
+        <div class="stat-card">
+          <div class="stat-card-icon blue">👥</div>
+          <div class="stat-card-info">
+            <div class="stat-card-value">1,284</div>
+            <div class="stat-card-label">Total Candidates</div>
+            <div class="stat-card-change change-up">↑ 48 this month</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon green">🏢</div>
+          <div class="stat-card-info">
+            <div class="stat-card-value">347</div>
+            <div class="stat-card-label">Active Employees</div>
+            <div class="stat-card-change change-up">↑ 12 this month</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon orange">💼</div>
+          <div class="stat-card-info">
+            <div class="stat-card-value">56</div>
+            <div class="stat-card-label">Open Job Positions</div>
+            <div class="stat-card-change change-up">↑ 8 new this week</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon purple">📋</div>
+          <div class="stat-card-info">
+            <div class="stat-card-value">213</div>
+            <div class="stat-card-label">Applications (Oct)</div>
+            <div class="stat-card-change change-up">↑ 32 today</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Second row stats -->
+      <div class="stat-cards" style="grid-template-columns:repeat(4,1fr)">
+        <div class="stat-card">
+          <div class="stat-card-icon blue">📅</div>
+          <div class="stat-card-info">
+            <div class="stat-card-value">18</div>
+            <div class="stat-card-label">Interviews Today</div>
+            <div class="stat-card-change">5 pending confirmation</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon orange">🏖</div>
+          <div class="stat-card-info">
+            <div class="stat-card-value">14</div>
+            <div class="stat-card-label">Pending Leave Requests</div>
+            <div class="stat-card-change change-down">⚠ Action required</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon green">💰</div>
+          <div class="stat-card-info">
+            <div class="stat-card-value">₹42L</div>
+            <div class="stat-card-label">Sep Payroll Processed</div>
+            <div class="stat-card-change change-up">✅ Completed</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-icon purple">✅</div>
+          <div class="stat-card-info">
+            <div class="stat-card-value">95%</div>
+            <div class="stat-card-label">Placement Rate</div>
+            <div class="stat-card-change change-up">↑ 3% vs last month</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Charts Row -->
+      <div style="display:grid;grid-template-columns:2fr 1fr;gap:24px;margin-bottom:24px">
+        <!-- Application Trend Chart -->
+        <div class="table-container">
+          <div class="table-header">
+            <div class="table-title">📈 Application Trend — Last 7 Days</div>
+            <a href="reports.html" style="font-size:0.85rem;color:var(--primary-light);font-weight:600">Full Report →</a>
+          </div>
+          <div style="padding:24px">
+            <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:8px;align-items:end;height:120px;margin-bottom:8px">
+              <div style="display:flex;flex-direction:column;align-items:center;height:100%;justify-content:flex-end">
+                <div style="background:var(--gradient-hero);border-radius:4px 4px 0 0;width:100%;height:55%;opacity:0.8"></div>
+                <div style="font-size:0.7rem;color:var(--gray-400);margin-top:4px">26 Sep</div>
+                <div style="font-size:0.78rem;font-weight:700;color:var(--gray-700)">28</div>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;height:100%;justify-content:flex-end">
+                <div style="background:var(--gradient-hero);border-radius:4px 4px 0 0;width:100%;height:70%;opacity:0.85"></div>
+                <div style="font-size:0.7rem;color:var(--gray-400);margin-top:4px">27 Sep</div>
+                <div style="font-size:0.78rem;font-weight:700;color:var(--gray-700)">35</div>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;height:100%;justify-content:flex-end">
+                <div style="background:var(--gradient-hero);border-radius:4px 4px 0 0;width:100%;height:50%;opacity:0.8"></div>
+                <div style="font-size:0.7rem;color:var(--gray-400);margin-top:4px">28 Sep</div>
+                <div style="font-size:0.78rem;font-weight:700;color:var(--gray-700)">25</div>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;height:100%;justify-content:flex-end">
+                <div style="background:var(--gradient-hero);border-radius:4px 4px 0 0;width:100%;height:85%;opacity:0.9"></div>
+                <div style="font-size:0.7rem;color:var(--gray-400);margin-top:4px">29 Sep</div>
+                <div style="font-size:0.78rem;font-weight:700;color:var(--gray-700)">42</div>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;height:100%;justify-content:flex-end">
+                <div style="background:var(--gradient-hero);border-radius:4px 4px 0 0;width:100%;height:60%;opacity:0.85"></div>
+                <div style="font-size:0.7rem;color:var(--gray-400);margin-top:4px">30 Sep</div>
+                <div style="font-size:0.78rem;font-weight:700;color:var(--gray-700)">30</div>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;height:100%;justify-content:flex-end">
+                <div style="background:var(--gradient-hero);border-radius:4px 4px 0 0;width:100%;height:45%;opacity:0.8"></div>
+                <div style="font-size:0.7rem;color:var(--gray-400);margin-top:4px">01 Oct</div>
+                <div style="font-size:0.78rem;font-weight:700;color:var(--gray-700)">22</div>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;height:100%;justify-content:flex-end">
+                <div style="background:var(--gradient-hero);border-radius:4px 4px 0 0;width:100%;height:100%"></div>
+                <div style="font-size:0.7rem;color:var(--primary-light);margin-top:4px;font-weight:600">02 Oct</div>
+                <div style="font-size:0.78rem;font-weight:700;color:var(--primary)">50</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Status Breakdown -->
+        <div class="table-container">
+          <div class="table-header"><div class="table-title">📊 Application Status</div></div>
+          <div style="padding:20px">
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:0.85rem;margin-bottom:5px">
+                  <span style="color:var(--gray-600)">New / Received</span><strong>43%</strong>
+                </div>
+                <div style="background:var(--gray-100);border-radius:100px;height:8px;overflow:hidden"><div style="width:43%;background:#3b82f6;height:100%;border-radius:100px"></div></div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:0.85rem;margin-bottom:5px">
+                  <span style="color:var(--gray-600)">Shortlisted</span><strong>28%</strong>
+                </div>
+                <div style="background:var(--gray-100);border-radius:100px;height:8px;overflow:hidden"><div style="width:28%;background:#10b981;height:100%;border-radius:100px"></div></div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:0.85rem;margin-bottom:5px">
+                  <span style="color:var(--gray-600)">Interview Scheduled</span><strong>15%</strong>
+                </div>
+                <div style="background:var(--gray-100);border-radius:100px;height:8px;overflow:hidden"><div style="width:15%;background:#f59e0b;height:100%;border-radius:100px"></div></div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:0.85rem;margin-bottom:5px">
+                  <span style="color:var(--gray-600)">Placed / Onboarded</span><strong>10%</strong>
+                </div>
+                <div style="background:var(--gray-100);border-radius:100px;height:8px;overflow:hidden"><div style="width:10%;background:#8b5cf6;height:100%;border-radius:100px"></div></div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:0.85rem;margin-bottom:5px">
+                  <span style="color:var(--gray-600)">Rejected</span><strong>4%</strong>
+                </div>
+                <div style="background:var(--gray-100);border-radius:100px;height:8px;overflow:hidden"><div style="width:4%;background:#ef4444;height:100%;border-radius:100px"></div></div>
+              </div>
+            </div>
+            <div style="margin-top:16px;padding:12px;background:var(--gray-50);border-radius:8px;text-align:center">
+              <div style="font-size:0.75rem;color:var(--gray-400)">Total Applications (Oct)</div>
+              <div style="font-size:1.6rem;font-weight:800;font-family:var(--font-heading);color:var(--primary)">213</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tables Row -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+        <!-- Recent Candidates -->
+        <div class="table-container">
+          <div class="table-header">
+            <div class="table-title">👥 Recent Candidates</div>
+            <a href="candidates.html" class="btn btn-outline btn-sm">View All</a>
+          </div>
+          <table class="data-table" id="candidatesTable">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Position Applied</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="candidatesTbody"></tbody>
+          </table>
+        </div>
+
+        <!-- Pending Leave Requests -->
+        <div class="table-container">
+          <div class="table-header">
+            <div class="table-title">🏖 Pending Leave Requests</div>
+            <a href="leave.html" class="btn btn-outline btn-sm">View All</a>
+          </div>
+          <table class="data-table">
+            <thead>
+              <tr><th>Employee</th><th>Type</th><th>Dates</th><th>Action</th></tr>
+            </thead>
+            <tbody id="leaveTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Bottom Row -->
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-top:24px">
+        <!-- Today's Interviews -->
+        <div class="table-container">
+          <div class="table-header"><div class="table-title">📅 Today's Interviews</div><a href="interviews.html" style="font-size:0.85rem;color:var(--primary-light);font-weight:600">All →</a></div>
+          <div style="padding:16px;display:flex;flex-direction:column;gap:10px" id="todayInterviews"></div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="table-container">
+          <div class="table-header"><div class="table-title">⚡ Quick Actions</div></div>
+          <div style="padding:16px;display:flex;flex-direction:column;gap:10px">
+            <a href="jobs.html" class="btn btn-primary" style="justify-content:center">💼 Post New Job</a>
+            <a href="employees.html" class="btn btn-outline" style="justify-content:center">🏢 Add Employee</a>
+            <a href="payroll.html" class="btn btn-outline" style="justify-content:center">💰 Process Payroll</a>
+            <a href="reports.html" class="btn btn-outline" style="justify-content:center">📊 Generate Report</a>
+            <a href="notifications.html" class="btn btn-outline" style="justify-content:center">📢 Send Notification</a>
+            <a href="audit-log.html" class="btn btn-outline" style="justify-content:center">📜 View Audit Log</a>
+          </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="table-container">
+          <div class="table-header"><div class="table-title">📜 Recent Activity</div></div>
+          <div style="padding:16px;display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div class="activity-dot" style="background:#10b981;margin-top:5px"></div>
+              <div><div style="font-size:0.85rem;color:var(--gray-700)">New candidate <strong>Priya Sharma</strong> registered</div><div style="font-size:0.75rem;color:var(--gray-400)">2 min ago</div></div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div class="activity-dot" style="background:#3b82f6;margin-top:5px"></div>
+              <div><div style="font-size:0.85rem;color:var(--gray-700)">Job <strong>Production Supervisor</strong> published</div><div style="font-size:0.75rem;color:var(--gray-400)">15 min ago</div></div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div class="activity-dot" style="background:#f59e0b;margin-top:5px"></div>
+              <div><div style="font-size:0.85rem;color:var(--gray-700)">Leave request approved for <strong>Rahul S.</strong></div><div style="font-size:0.75rem;color:var(--gray-400)">1 hr ago</div></div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div class="activity-dot" style="background:#8b5cf6;margin-top:5px"></div>
+              <div><div style="font-size:0.85rem;color:var(--gray-700)">September payroll processed — <strong>347 employees</strong></div><div style="font-size:0.75rem;color:var(--gray-400)">Yesterday</div></div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <div class="activity-dot" style="background:#ef4444;margin-top:5px"></div>
+              <div><div style="font-size:0.85rem;color:var(--gray-700)"><strong>Admin User</strong> logged in from new IP</div><div style="font-size:0.75rem;color:var(--gray-400)">Yesterday</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const session = JSON.parse(localStorage.getItem('adminSession') || '{}');
+  if (!session.user) window.location.href = 'login.html';
+
+  document.getElementById('adminName').textContent = session.name || 'Admin';
+  document.getElementById('topbarDate').textContent = new Date().toLocaleDateString('en-IN', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+
+  // Candidates table
+  const candidates = [
+    { name:'Priya Sharma', pos:'Sales Executive', status:'New' },
+    { name:'Arjun Mehta', pos:'Warehouse Exec', status:'Shortlisted' },
+    { name:'Sunita Rao', pos:'Data Entry', status:'Interview' },
+    { name:'Rajesh Kumar', pos:'Machine Operator', status:'Placed' },
+    { name:'Divya Nair', pos:'HR Executive', status:'Rejected' },
+  ];
+  const statusMap = { New:'badge-info', Shortlisted:'badge-success', Interview:'badge-warning', Placed:'badge-gray', Rejected:'badge-danger' };
+  document.getElementById('candidatesTbody').innerHTML = candidates.map(c => `
+    <tr>
+      <td><div style="display:flex;align-items:center;gap:10px"><div class="table-avatar">${c.name.split(' ').map(n=>n[0]).join('')}</div><span style="font-weight:600;font-size:0.88rem">${c.name}</span></div></td>
+      <td style="font-size:0.85rem">${c.pos}</td>
+      <td><span class="badge ${statusMap[c.status]}">${c.status}</span></td>
+      <td><a href="candidates.html" style="color:var(--primary-light);font-size:0.82rem;font-weight:600">View</a></td>
+    </tr>`).join('');
+
+  // Leave requests
+  const leaves = [
+    { name:'Rakesh V.', type:'CL', dates:'05–06 Oct' },
+    { name:'Meena G.', type:'SL', dates:'08 Oct' },
+    { name:'Suresh P.', type:'EL', dates:'10–14 Oct' },
+    { name:'Anita K.', type:'CL', dates:'03 Oct' },
+  ];
+  document.getElementById('leaveTableBody').innerHTML = leaves.map(l => `
+    <tr>
+      <td style="font-weight:600;font-size:0.88rem">${l.name}</td>
+      <td><span class="badge badge-info">${l.type}</span></td>
+      <td style="font-size:0.85rem">${l.dates}</td>
+      <td style="display:flex;gap:6px">
+        <button class="btn btn-sm" style="background:#d1fae5;color:#065f46;padding:5px 12px;border-radius:6px;font-size:0.78rem;font-weight:600" onclick="approveLeave(this)">✓ Approve</button>
+        <button class="btn btn-sm" style="background:#fee2e2;color:#991b1b;padding:5px 12px;border-radius:6px;font-size:0.78rem;font-weight:600" onclick="rejectLeave(this)">✕</button>
+      </td>
+    </tr>`).join('');
+
+  function approveLeave(btn) {
+    btn.closest('tr').querySelector('.badge').outerHTML = '<span class="badge badge-success">Approved</span>';
+    btn.closest('td').innerHTML = '<span style="color:#10b981;font-size:0.82rem;font-weight:600">✅ Approved</span>';
+  }
+
+  function rejectLeave(btn) {
+    btn.closest('tr').querySelector('.badge').outerHTML = '<span class="badge badge-danger">Rejected</span>';
+    btn.closest('td').innerHTML = '<span style="color:#ef4444;font-size:0.82rem;font-weight:600">✕ Rejected</span>';
+  }
+
+  // Today's interviews
+  const interviews = [
+    { name:'Arjun Mehta', pos:'Warehouse Exec', time:'10:00 AM', mode:'In-Person' },
+    { name:'Sunita Rao', pos:'Data Entry', time:'11:30 AM', mode:'Online' },
+    { name:'Kiran Patil', pos:'Sales Exec', time:'2:00 PM', mode:'Phone' },
+  ];
+  document.getElementById('todayInterviews').innerHTML = interviews.map(i => `
+    <div style="display:flex;align-items:center;gap:12px;padding:12px;background:var(--gray-50);border-radius:8px">
+      <div class="table-avatar" style="flex-shrink:0">${i.name.split(' ').map(n=>n[0]).join('')}</div>
+      <div style="flex:1;min-width:0">
+        <div style="font-weight:600;font-size:0.87rem;color:var(--gray-800);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${i.name}</div>
+        <div style="font-size:0.75rem;color:var(--gray-400)">${i.pos} • ${i.time}</div>
+      </div>
+      <span class="badge badge-info" style="font-size:0.7rem;flex-shrink:0">${i.mode}</span>
+    </div>`).join('');
+</script>
+</body>
+</html>

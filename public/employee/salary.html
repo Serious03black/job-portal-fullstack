@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Salary & Payroll | AXYTES Employee Portal</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    body { background: var(--gray-50); }
+    .slip-card { background: white; border-radius: var(--radius-md); padding: 24px; border: 1.5px solid var(--gray-100); transition: var(--transition); display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+    .slip-card:hover { border-color: var(--primary-light); box-shadow: var(--shadow-md); }
+    .salary-detail-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--gray-50); font-size: 0.9rem; }
+    .salary-detail-row:last-child { border-bottom: none; }
+  </style>
+</head>
+<body>
+<div class="dashboard-layout">
+  <nav class="sidebar">
+    <div class="sidebar-header"><div class="sidebar-logo-icon">AX</div><div class="sidebar-logo-text"><span>AXYTES</span><span>Employee Portal</span></div></div>
+    <div class="sidebar-nav">
+      <a class="sidebar-link" href="dashboard.html"><span class="icon">🏠</span> Dashboard</a>
+      <a class="sidebar-link" href="profile.html"><span class="icon">👤</span> My Profile</a>
+      <a class="sidebar-link" href="attendance.html"><span class="icon">📊</span> Attendance</a>
+      <a class="sidebar-link" href="leave.html"><span class="icon">🏖</span> Leave Management</a>
+      <a class="sidebar-link active" href="salary.html"><span class="icon">💰</span> Salary & Payroll</a>
+      <a class="sidebar-link" href="documents.html"><span class="icon">📁</span> My Documents</a>
+      <a class="sidebar-link" href="notifications.html"><span class="icon">🔔</span> Notifications</a>
+      <a class="sidebar-link" href="login.html" onclick="localStorage.removeItem('employeeSession')"><span class="icon">🚪</span> Logout</a>
+    </div>
+    <div class="sidebar-footer"><div class="sidebar-user"><div class="sidebar-user-avatar" id="avatarInitials">RS</div><div class="sidebar-user-info"><div class="sidebar-user-name" id="sidebarName">Rahul Sharma</div><div class="sidebar-user-role">Senior Executive</div></div></div></div>
+  </nav>
+
+  <div class="main-content">
+    <div class="topbar">
+      <div class="topbar-title">Salary & Payroll</div>
+      <div class="topbar-actions"><div class="notif-btn">🔔</div></div>
+    </div>
+
+    <div class="page-content">
+      <!-- Current Month Summary -->
+      <div style="display:grid;grid-template-columns:2fr 1fr;gap:24px;margin-bottom:24px">
+        <div style="background:var(--gradient-hero);border-radius:var(--radius-lg);padding:32px;color:white">
+          <div style="font-size:0.85rem;color:rgba(255,255,255,0.7);margin-bottom:8px">September 2026 — Net Salary</div>
+          <div style="font-size:3rem;font-weight:800;font-family:var(--font-heading);line-height:1">₹28,000</div>
+          <div style="margin-top:16px;display:flex;gap:32px">
+            <div><div style="font-size:0.78rem;color:rgba(255,255,255,0.6)">Gross Salary</div><div style="font-weight:700;font-size:1.1rem">₹30,000</div></div>
+            <div><div style="font-size:0.78rem;color:rgba(255,255,255,0.6)">Deductions</div><div style="font-weight:700;font-size:1.1rem;color:#fca5a5">-₹2,000</div></div>
+            <div><div style="font-size:0.78rem;color:rgba(255,255,255,0.6)">Credit Date</div><div style="font-weight:700;font-size:1.1rem">01 Oct 2026</div></div>
+          </div>
+          <span class="badge" style="margin-top:16px;background:rgba(255,255,255,0.2);color:white;border:1px solid rgba(255,255,255,0.3)">✅ Salary Credited</span>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div class="stat-card" style="flex:1">
+            <div class="stat-card-icon blue">📊</div>
+            <div class="stat-card-info">
+              <div class="stat-card-value">₹3.36L</div>
+              <div class="stat-card-label">YTD Total (Apr–Sep)</div>
+            </div>
+          </div>
+          <div class="stat-card" style="flex:1">
+            <div class="stat-card-icon green">💸</div>
+            <div class="stat-card-info">
+              <div class="stat-card-value">₹12,000</div>
+              <div class="stat-card-label">Total Deductions (YTD)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+        <!-- Salary Breakdown -->
+        <div class="table-container">
+          <div class="table-header"><div class="table-title">💰 September 2026 Breakdown</div></div>
+          <div style="padding:20px">
+            <div style="margin-bottom:20px">
+              <div style="font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--gray-400);margin-bottom:12px">Earnings</div>
+              <div class="salary-detail-row"><span style="color:var(--gray-600)">Basic Salary</span><strong>₹16,800</strong></div>
+              <div class="salary-detail-row"><span style="color:var(--gray-600)">House Rent Allowance (HRA)</span><strong>₹6,720</strong></div>
+              <div class="salary-detail-row"><span style="color:var(--gray-600)">Transport Allowance</span><strong>₹1,600</strong></div>
+              <div class="salary-detail-row"><span style="color:var(--gray-600)">Medical Allowance</span><strong>₹1,250</strong></div>
+              <div class="salary-detail-row"><span style="color:var(--gray-600)">Special Allowance</span><strong>₹3,630</strong></div>
+              <div class="salary-detail-row" style="border-top:2px solid var(--gray-200);padding-top:12px;margin-top:4px"><span style="font-weight:700;color:var(--primary)">Gross Salary</span><strong style="color:var(--primary)">₹30,000</strong></div>
+            </div>
+            <div style="margin-top:20px">
+              <div style="font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--gray-400);margin-bottom:12px">Deductions</div>
+              <div class="salary-detail-row"><span style="color:var(--gray-600)">Provident Fund (PF) — 12%</span><strong style="color:var(--danger)">-₹1,120</strong></div>
+              <div class="salary-detail-row"><span style="color:var(--gray-600)">Professional Tax</span><strong style="color:var(--danger)">-₹200</strong></div>
+              <div class="salary-detail-row"><span style="color:var(--gray-600)">ESIC (if applicable)</span><strong style="color:var(--gray-400)">Nil</strong></div>
+              <div class="salary-detail-row"><span style="color:var(--gray-600)">TDS (Income Tax)</span><strong style="color:var(--danger)">-₹680</strong></div>
+              <div class="salary-detail-row" style="border-top:2px solid var(--gray-200);padding-top:12px;margin-top:4px"><span style="font-weight:700;color:var(--danger)">Total Deductions</span><strong style="color:var(--danger)">-₹2,000</strong></div>
+            </div>
+            <div style="background:linear-gradient(135deg,#d1fae5,#a7f3d0);border-radius:10px;padding:16px 20px;margin-top:20px;display:flex;justify-content:space-between;align-items:center">
+              <div style="font-weight:700;font-size:1rem;color:#065f46">Net Take-Home Salary</div>
+              <div style="font-size:1.6rem;font-weight:800;font-family:var(--font-heading);color:#065f46">₹28,000</div>
+            </div>
+            <button class="btn btn-primary w-full" style="margin-top:16px;justify-content:center" onclick="downloadSlip()">📄 Download September Slip (PDF)</button>
+          </div>
+        </div>
+
+        <!-- Salary History -->
+        <div class="table-container">
+          <div class="table-header"><div class="table-title">📋 Salary Slip History</div></div>
+          <div style="padding:16px">
+            <div id="slipHistory"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const session = JSON.parse(localStorage.getItem('employeeSession') || '{}');
+  if (!session.empId) window.location.href = 'login.html';
+  const name = session.name || 'Employee';
+  document.getElementById('sidebarName').textContent = name;
+  document.getElementById('avatarInitials').textContent = name.split(' ').map(n=>n[0]).join('').toUpperCase().slice(0,2);
+
+  const history = [
+    { month:'September 2026', gross:'₹30,000', deductions:'₹2,000', net:'₹28,000', status:'Credited', date:'01 Oct 2026' },
+    { month:'August 2026', gross:'₹30,000', deductions:'₹2,000', net:'₹28,000', status:'Credited', date:'01 Sep 2026' },
+    { month:'July 2026', gross:'₹30,000', deductions:'₹2,000', net:'₹28,000', status:'Credited', date:'01 Aug 2026' },
+    { month:'June 2026', gross:'₹30,000', deductions:'₹2,000', net:'₹28,000', status:'Credited', date:'01 Jul 2026' },
+    { month:'May 2026', gross:'₹30,000', deductions:'₹2,000', net:'₹28,000', status:'Credited', date:'01 Jun 2026' },
+    { month:'April 2026', gross:'₹30,000', deductions:'₹2,000', net:'₹28,000', status:'Credited', date:'01 May 2026' },
+  ];
+
+  document.getElementById('slipHistory').innerHTML = history.map((h,i) => `
+    <div class="slip-card">
+      <div style="display:flex;align-items:center;gap:16px">
+        <div style="width:40px;height:40px;background:linear-gradient(135deg,#dbeafe,#ede9fe);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem">📄</div>
+        <div>
+          <div style="font-weight:700;font-size:0.9rem;color:var(--gray-800)">${h.month}</div>
+          <div style="font-size:0.78rem;color:var(--gray-400)">Net: <strong style="color:var(--primary)">${h.net}</strong> • Credited: ${h.date}</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <span class="badge badge-success">${h.status}</span>
+        <button class="btn btn-outline btn-sm" onclick="downloadSlipMonth('${h.month}')">⬇ Download</button>
+      </div>
+    </div>`).join('');
+
+  function downloadSlip() {
+    alert('📄 Downloading September 2026 Salary Slip...\n\n(In production, this would generate a real PDF using a backend API)');
+  }
+
+  function downloadSlipMonth(month) {
+    alert(`📄 Downloading ${month} Salary Slip...\n\n(In production, this would generate a real PDF from the server)`);
+  }
+</script>
+</body>
+</html>

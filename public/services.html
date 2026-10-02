@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Services | AXYTES Solutions Pvt. Ltd.</title>
+  <meta name="description" content="Explore AXYTES staffing, executive recruitment, temporary manpower supply, and payroll outsourcing solutions customized for growing enterprises across India." />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .service-hero {
+      background: var(--gradient-hero);
+      color: white;
+      padding: 80px 0 60px;
+      text-align: center;
+      position: relative;
+    }
+    .service-nav-pills {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+    .service-pill {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 10px 20px;
+      border-radius: 50px;
+      color: white;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: var(--transition);
+      backdrop-filter: blur(8px);
+    }
+    .service-pill:hover, .service-pill.active {
+      background: white;
+      color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    }
+    .service-detail-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 48px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--gray-100);
+      margin-bottom: 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      transition: var(--transition);
+    }
+    .service-detail-card:hover {
+      box-shadow: var(--shadow-xl);
+      border-color: var(--primary-light);
+    }
+    .service-detail-card.reverse {
+      direction: rtl;
+    }
+    .service-detail-card.reverse > * {
+      direction: ltr;
+    }
+    .feature-check-list {
+      list-style: none;
+      padding: 0;
+      margin: 24px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .feature-check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.95rem;
+      color: var(--gray-700);
+    }
+    .feature-check-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #dcfce7;
+      color: #15803d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: bold;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .badge-service {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+    .calc-box {
+      background: var(--gray-50);
+      border: 1.5px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      margin-top: 48px;
+    }
+    @media (max-width: 900px) {
+      .service-detail-card {
+        grid-template-columns: 1fr;
+        padding: 28px;
+        gap: 32px;
+      }
+      .service-detail-card.reverse {
+        direction: ltr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="mainNav" role="navigation">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon">AX</div>
+        <div class="nav-logo-text">
+          <span>AXYTES</span>
+          <span>Solutions Pvt. Ltd.</span>
+        </div>
+      </a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <div class="nav-dropdown">
+          <a href="services.html" class="nav-link active">Services ▾</a>
+          <div class="dropdown-menu">
+            <a href="services.html#staffing" class="dropdown-item">🏢 Staffing Solutions</a>
+            <a href="services.html#recruitment" class="dropdown-item">🔍 Permanent Recruitment</a>
+            <a href="services.html#payroll" class="dropdown-item">💰 Payroll Processing</a>
+            <a href="services.html#manpower" class="dropdown-item">👥 Manpower Supply</a>
+            <a href="services.html#executive" class="dropdown-item">👔 Executive Search</a>
+            <a href="services.html#training" class="dropdown-item">📚 Training & Upskilling</a>
+          </div>
+        </div>
+        <a href="industries.html" class="nav-link">Industries</a>
+        <a href="employers.html" class="nav-link">For Employers</a>
+        <a href="jobs.html" class="nav-link">Jobs</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </div>
+
+      <div class="nav-actions">
+        <a href="candidate/login.html" class="btn btn-outline btn-sm">Job Seeker Login</a>
+        <a href="employee/login.html" class="btn btn-primary btn-sm">Employee Portal</a>
+        <a href="admin/login.html" class="btn btn-sm" style="background:var(--gray-800);color:white">Admin</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="service-hero">
+    <div class="container">
+      <div class="section-label" style="background:rgba(255,255,255,0.2);color:white;display:inline-block;padding:4px 14px;border-radius:20px;font-size:0.85rem;margin-bottom:14px">Our Core Offerings</div>
+      <h1 style="font-size:2.8rem;margin-bottom:16px">Comprehensive Workforce & Staffing Solutions</h1>
+      <p style="max-width:720px;margin:0 auto;color:rgba(255,255,255,0.85);font-size:1.1rem">Empowering India's leading organizations with agile manpower, compliant payroll outsourcing, executive hiring, and turnkey human capital solutions.</p>
+
+      <div class="service-nav-pills">
+        <a href="#staffing" class="service-pill">🏢 Staffing Solutions</a>
+        <a href="#recruitment" class="service-pill">🔍 Permanent Recruitment</a>
+        <a href="#payroll" class="service-pill">💰 Payroll Outsourcing</a>
+        <a href="#manpower" class="service-pill">👥 Manpower Supply</a>
+        <a href="#executive" class="service-pill">👔 Executive Search</a>
+        <a href="#training" class="service-pill">📚 Training & Development</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN SERVICES CONTENT -->
+  <main class="section">
+    <div class="container">
+
+      <!-- SERVICE 1: Staffing Solutions -->
+      <section class="service-detail-card" id="staffing">
+        <div>
+          <span class="badge-service" style="background:#e0f2fe;color:#0369a1">Flexible Workforce</span>
+          <h2 style="color:var(--primary);font-size:2rem;margin-bottom:16px">Staffing Solutions</h2>
+          <p style="color:var(--gray-600);line-height:1.7;font-size:1rem">
+            Adapt swiftly to market demands, seasonal spikes, or specific project milestones with our flexible general and temporary staffing solutions. We take care of end-to-end employee onboarding, statutory compliance, and operational lifecycle management.
+          </p>
+          <ul class="feature-check-list">
+            <li class="feature-check-item">
+              <span class="feature-check-icon">✓</span>
+              <span><strong>Temporary & Contract Staffing:</strong> Agile contingent staff for peak workloads and project deliverables.</span>
+            </li>
+            <li class="feature-check-item">
+              <span class="feature-check-icon">✓</span>
+              <span><strong>Contract-to-Hire (C2H):</strong> Evaluate candidate capabilities on-site before extending permanent offers.</span>
+            </li>
+            <li class="feature-check-item">
+              <span class="feature-check-icon">✓</span>
+              <span><strong>100% Statutory Compliance:</strong> Complete management of PF, ESIC, Professional Tax, and Bonus obligations.</span>
+            </li>
+            <li class="feature-check-item">
+              <span class="feature-check-icon">✓</span>
+              <span><strong>Fast Turnaround Time:</strong> Mobilize qualified resources across India within 48 to 72 hours.</span>
+            </li>
+          </ul>
+          <div style="margin-top:28px;display:flex;gap:16px;flex-wrap:wrap">
+            <a href="employers.html?service=staffing" class="btn btn-primary">Hire Staff Today</a>
+            <a href="contact.html?subject=Staffing+Inquiry" class="btn btn-outline">Request Brochure</a>
+          </div>
+        </div>
+        <div style="background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:var(--radius-lg);padding:36px;display:flex;flex-direction:column;gap:18px">
+          <div style="background:white;padding:20px;border-radius:12px;box-shadow:var(--shadow-sm);border-left:4px solid #0284c7">
+            <div style="font-size:1.6rem;font-weight:800;color:var(--primary)">12,500+</div>
+            <div style="font-size:0.88rem;color:var(--gray-600)">Deputed Associates on AXYTES Payroll</div>
+          </div>
+          <div style="background:white;padding:20px;border-radius:12px;box-shadow:var(--shadow-sm);border-left:4px solid #10b981">
+            <div style="font-size:1.6rem;font-weight:800;color:#10b981">0% Non-Compliance</div>
+            <div style="font-size:0.88rem;color:var(--gray-600)">Flawless track record across state & central labour audits</div>
+          </div>
+          <div style="background:white;padding:20px;border-radius:12px;box-shadow:var(--shadow-sm);border-left:4px solid #f59e0b">
+            <div style="font-size:1.6rem;font-weight:800;color:#f59e0b">48 Hrs SLA</div>
+            <div style="font-size:0.88rem;color:var(--gray-600)">Emergency replacement guarantee for critical roles</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICE 2: Permanent Recruitment -->
+      <section class="service-detail-card reverse" id="recruitment">
+        <div>
+          <span class="badge-service" style="background:#fef3c7;color:#b45309">Direct Hiring</span>
+          <h2 style="color:var(--primary);font-size:2rem;margin-bottom:16px">Permanent Recruitment</h2>
+          <p style="color:var(--gray-600);line-height:1.7;font-size:1rem">
+            Finding high-calibre full-time talent requires deep industry connections and precise candidate screening. Our dedicated recruitment consultants match technical competence with cultural compatibility.
+          </p>
+          <ul class="feature-check-list">
+            <li class="feature-check-item">
+              <span class="feature-check-icon">✓</span>
+              <span><strong>Domain-Specialized Headhunters:</strong> Sector specialists dedicated to Engineering, IT, BFSI, and Retail.</span>
+            </li>
+            <li class="feature-check-item">
+              <span class="feature-check-icon">✓</span>
+              <span><strong>Pre-Screened Talent Pool:</strong> Rigorous 3-tier assessment covering aptitude, skills, and background verification.</span>
+            </li>
+            <li class="feature-check-item">
+              <span class="feature-check-icon">✓</span>
+              <span><strong>90-Day Replacement Guarantee:</strong> Zero financial risk with our free replacement warranty.</span>
+            </li>
+            <li class="feature-check-item">
+              <span class="feature-check-icon">✓</span>
+              <span><strong>Volume Hiring Drives:</strong> Capability to interview and select 100+ candidates in dedicated campus/walk-in drives.</span>
+            </li>
+          </ul>
+          <div style="margin-top:28px;display:flex;gap:16px;flex-wrap:wrap">
+            <a href="employers.html?service=recruitment" class="btn btn-primary">Submit Job Vacancy</a>
+            <a href="contact.html?subject=Permanent+Recruitment" class="btn btn-outline">Speak to a Recruiter</a>
+          </div>
+        </div>
+        <div style="background:linear-gradient(135deg,#fefce8,#fef08a);border-radius:var(--radius-lg);padding:36px;display:flex;flex-direction:column;gap:18px">
+          <div style="background:white;padding:20px;border-radius:12px;box-shadow:var(--shadow-sm);border-left:4px solid #ca8a04">
+            <div style="font-size:1.6rem;font-weight:800;color:var(--primary)">94.2%</div>
+            <div style="font-size:0.88rem;color:var(--gray-600)">First-Interview Shortlist to Offer Conversion</div>
+          </div>
+          <div style="background:white;padding:20px;border-radius:12px;box-shadow:var(--shadow-sm);border-left:4px solid #059669">
+            <div style="font-size:1.6rem;font-weight:800;color:#059669">18 Days</div>
+            <div style="font-size:0.88rem;color:var(--gray-600)">Average Time-to-Hire from job briefing to offer letter</div>
+          </div>
+          <div style="background:white;padding:20px;border-radius:12px;box-shadow:var(--shadow-sm);border-left:4px solid #2563eb">
+            <div style="font-size:1.6rem;font-weight:800;color:#2563eb">15,000+</div>
+            <div style="font-size:0.88rem;color:var(--gray-600)">Careers shaped through AXYTES permanent placements</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICE 3: Payroll Outsourcing -->
+      <section class="service-detail-card" id="payroll">
+        <div>
+          <span class="badge-service" style="background:#dcfce7;color:#15803d">Compliance & Finance</span>
+          <h2 style="color:var(--primary);font-size:2rem;margin-bottom:16px">Payroll Processing & Management</h2>
+          <p style="color:var(--gray-600);line-height:1.7;font-size:1rem">
+            Eliminate complex payroll errors, late filings, and statutory penalties. AXYTES delivers an automated, transparent, cloud-backed payroll engine supporting biometric time-tracking, multi-state tax computations, and prompt salary disbursements.
+          </p>
+          <ul class="feature-check-list">
+            <li class="feature-check-item">
+              <span class="feature-check-icon">✓</span>
+              <span><strong>End-to-End Salary Computation:</strong> Precise calculations for basic pay, allowances, overtime, TDS, and incentives.</span>
+            </li>
+            <li class="feature-check-item">
+              <span class="feature-check-icon">✓</span>
+              <span><strong>Statutory Filings & Remittances:</strong> Timely deposits of EPF, ESI, Professional Tax, LWF, and Form 16 issuance.</span>
+            </li>
+            <li class="feature-check-item">
+              <span class="feature-check-icon">✓</span>
+              <span><strong>Employee Self-Service (ESS):</strong> Self-service digital access to monthly payslips, tax sheets, and leave requests.</span>
+            </li>
+            <li class="feature-check-item">
+              <span class="feature-check-icon">✓</span>
+              <span><strong>Custom Enterprise Reporting:</strong> Ledger sync, bank transfer text files, and custom HR analytics.</span>
+            </li>
+          </ul>
+          <div style="margin-top:28px;display:flex;gap:16px;flex-wrap:wrap">
+            <a href="contact.html?subject=Payroll+Outsourcing" class="btn btn-primary">Get Payroll Quotation</a>
+            <a href="employee/login.html" class="btn btn-outline">ESS Portal Login</a>
+          </div>
+        </div>
+        <div style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-radius:var(--radius-lg);padding:36px;display:flex;flex-direction:column;gap:18px">
+          <div style="background:white;padding:20px;border-radius:12px;box-shadow:var(--shadow-sm);border-left:4px solid #16a34a">
+            <div style="font-size:1.6rem;font-weight:800;color:var(--primary)">₹45+ Crores</div>
+            <div style="font-size:0.88rem;color:var(--gray-600)">Monthly payroll volume processed accurately</div>
+          </div>
+          <div style="background:white;padding:20px;border-radius:12px;box-shadow:var(--shadow-sm);border-left:4px solid #2563eb">
+            <div style="font-size:1.6rem;font-weight:800;color:#2563eb">99.99%</div>
+            <div style="font-size:0.88rem;color:var(--gray-600)">Payroll calculation accuracy & on-time credit guarantee</div>
+          </div>
+          <div style="background:white;padding:20px;border-radius:12px;box-shadow:var(--shadow-sm);border-left:4px solid #9333ea">
+            <div style="font-size:1.6rem;font-weight:800;color:#9333ea">Bank Integrated</div>
+            <div style="font-size:0.88rem;color:var(--gray-600)">Direct NEFT/RTGS disbursement files for all nationalized banks</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICE 4: Manpower Supply -->
+      <section class="service-detail-card reverse" id="manpower">
+        <div>
+          <span class="badge-service" style="background:#fae8ff;color:#86198f">Skilled & Industrial</span>
+          <h2 style="color:var(--primary);font-size:2rem;margin-bottom:16px">Manpower Supply & Facility Staff</h2>
+          <p style="color:var(--gray-600);line-height:1.7;font-size:1rem">
+            From factory shop-floors to warehousing, logistics hubs, and corporate facilities, AXYTES provides vetted, safety-trained, and certified blue-collar and grey-collar personnel.
+          </p>
+          <ul class="feature-check-list">
+            <li class="feature-check-item">
+              <span class="feature-check-icon">✓</span>
+              <span><strong>Skilled Technicians & Operators:</strong> CNC operators, welders, electricians, fitters, and line supervisors.</span>
+            </li>
+            <li class="feature-check-item">
+              <span class="feature-check-icon">✓</span>
+              <span><strong>Logistics & Warehouse Workforce:</strong> Pickers, packers, forklift operators, dispatch associates, and inventory staff.</span>
+            </li>
+            <li class="feature-check-item">
+              <span class="feature-check-icon">✓</span>
+              <span><strong>Facility & Support Staff:</strong> Administrative attendants, security coordination, and house-keeping manpower.</span>
+            </li>
+            <li class="feature-check-item">
+              <span class="feature-check-icon">✓</span>
+              <span><strong>Safety & Compliance Orientation:</strong> Mandatory PPE training, workplace safety drills, and verified documentation.</span>
+            </li>
+          </ul>
+          <div style="margin-top:28px;display:flex;gap:16px;flex-wrap:wrap">
+            <a href="employers.html?service=manpower" class="btn btn-primary">Request Industrial Manpower</a>
+            <a href="contact.html?subject=Manpower+Contract" class="btn btn-outline">Consult Operations Team</a>
+          </div>
+        </div>
+        <div style="background:linear-gradient(135deg,#fdf4ff,#f5d0fe);border-radius:var(--radius-lg);padding:36px;display:flex;flex-direction:column;gap:18px">
+          <div style="background:white;padding:20px;border-radius:12px;box-shadow:var(--shadow-sm);border-left:4px solid #c026d3">
+            <div style="font-size:1.6rem;font-weight:800;color:var(--primary)">5,000+</div>
+            <div style="font-size:0.88rem;color:var(--gray-600)">Active field & warehouse associates across India</div>
+          </div>
+          <div style="background:white;padding:20px;border-radius:12px;box-shadow:var(--shadow-sm);border-left:4px solid #0891b2">
+            <div style="font-size:1.6rem;font-weight:800;color:#0891b2">Strict Background Verification</div>
+            <div style="font-size:0.88rem;color:var(--gray-600)">Aadhaar, police verification, and address validation</div>
+          </div>
+          <div style="background:white;padding:20px;border-radius:12px;box-shadow:var(--shadow-sm);border-left:4px solid #ea580c">
+            <div style="font-size:1.6rem;font-weight:800;color:#ea580c">Zero Downtime</div>
+            <div style="font-size:0.88rem;color:var(--gray-600)">Buffer pool maintained for seamless factory shifts</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICE 5: Executive Search -->
+      <section class="service-detail-card" id="executive">
+        <div>
+          <span class="badge-service" style="background:#fee2e2;color:#991b1b">Leadership Hiring</span>
+          <h2 style="color:var(--primary);font-size:2rem;margin-bottom:16px">Executive Search & Leadership Hiring</h2>
+          <p style="color:var(--gray-600);line-height:1.7;font-size:1rem">
+            Appointing strategic leaders demands total confidentiality, deep market intelligence, and discerning cultural evaluation. Our leadership practice places CXOs, VPs, and Functional Heads who drive sustainable transformation.
+          </p>
+          <ul class="feature-check-list">
+            <li class="feature-check-item">
+              <span class="feature-check-icon">✓</span>
+              <span><strong>C-Suite & Board Appointments:</strong> CEO, COO, CFO, CTO, and Independent Board Member recruitment.</span>
+            </li>
+            <li class="feature-check-item">
+              <span class="feature-check-icon">✓</span>
+              <span><strong>Discreet & Confidential Search:</strong> Strict NDAs and private headhunting methodologies.</span>
+            </li>
+            <li class="feature-check-item">
+              <span class="feature-check-icon">✓</span>
+              <span><strong>Competency & Leadership Benchmarking:</strong> In-depth evaluation of track record, strategic vision, and crisis leadership.</span>
+            </li>
+            <li class="feature-check-item">
+              <span class="feature-check-icon">✓</span>
+              <span><strong>Compensation Benchmarking:</strong> Market-calibrated ESOP, bonus, and base package structuring advisory.</span>
+            </li>
+          </ul>
+          <div style="margin-top:28px;display:flex;gap:16px;flex-wrap:wrap">
+            <a href="contact.html?subject=Executive+Search" class="btn btn-primary">Connect with Practice Head</a>
+          </div>
+        </div>
+        <div style="background:linear-gradient(135deg,#fff1f2,#fecdd3);border-radius:var(--radius-lg);padding:36px;display:flex;flex-direction:column;gap:18px">
+          <div style="background:white;padding:20px;border-radius:12px;box-shadow:var(--shadow-sm);border-left:4px solid #e11d48">
+            <div style="font-size:1.6rem;font-weight:800;color:var(--primary)">180+</div>
+            <div style="font-size:0.88rem;color:var(--gray-600)">Leadership & CXO appointments successfully concluded</div>
+          </div>
+          <div style="background:white;padding:20px;border-radius:12px;box-shadow:var(--shadow-sm);border-left:4px solid #2563eb">
+            <div style="font-size:1.6rem;font-weight:800;color:#2563eb">96%</div>
+            <div style="font-size:0.88rem;color:var(--gray-600)">Executive retention rate beyond 24 months</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICE 6: Training & Upskilling -->
+      <section class="service-detail-card reverse" id="training">
+        <div>
+          <span class="badge-service" style="background:#e0e7ff;color:#3730a3">Skill Enhancement</span>
+          <h2 style="color:var(--primary);font-size:2rem;margin-bottom:16px">Training & Corporate Development</h2>
+          <p style="color:var(--gray-600);line-height:1.7;font-size:1rem">
+            Bridge the gap between talent capabilities and industry standards. AXYTES delivers targeted corporate training, technical certifications, and soft-skills bootcamps to elevate team productivity.
+          </p>
+          <ul class="feature-check-list">
+            <li class="feature-check-item">
+              <span class="feature-check-icon">✓</span>
+              <span><strong>New Hire Induction & Onboarding:</strong> Accelerate time-to-productivity with structured orientation programs.</span>
+            </li>
+            <li class="feature-check-item">
+              <span class="feature-check-icon">✓</span>
+              <span><strong>Technical & Digital Skills:</strong> Practical workshops in modern software tools, industrial automation, and safety standards.</span>
+            </li>
+            <li class="feature-check-item">
+              <span class="feature-check-icon">✓</span>
+              <span><strong>Leadership & Soft Skills:</strong> Communication mastery, team management, customer delight, and conflict resolution.</span>
+            </li>
+          </ul>
+          <div style="margin-top:28px;display:flex;gap:16px;flex-wrap:wrap">
+            <a href="contact.html?subject=Corporate+Training" class="btn btn-primary">Customize a Workshop</a>
+          </div>
+        </div>
+        <div style="background:linear-gradient(135deg,#eef2ff,#e0e7ff);border-radius:var(--radius-lg);padding:36px;display:flex;flex-direction:column;gap:18px">
+          <div style="background:white;padding:20px;border-radius:12px;box-shadow:var(--shadow-sm);border-left:4px solid #4f46e5">
+            <div style="font-size:1.6rem;font-weight:800;color:var(--primary)">8,000+</div>
+            <div style="font-size:0.88rem;color:var(--gray-600)">Professionals upskilled and certified in our sessions</div>
+          </div>
+          <div style="background:white;padding:20px;border-radius:12px;box-shadow:var(--shadow-sm);border-left:4px solid #10b981">
+            <div style="font-size:1.6rem;font-weight:800;color:#10b981">4.8 / 5</div>
+            <div style="font-size:0.88rem;color:var(--gray-600)">Average participant feedback rating</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- INTERACTIVE SERVICE COST ESTIMATOR -->
+      <section class="calc-box">
+        <div style="max-width:750px;margin:0 auto;text-align:center">
+          <span class="badge badge-info" style="margin-bottom:8px">Interactive Tool</span>
+          <h3 style="color:var(--primary);font-size:1.8rem;margin-bottom:8px">Staffing & Payroll Cost Estimator</h3>
+          <p style="color:var(--gray-600);margin-bottom:28px;font-size:0.95rem">Get an instant preliminary estimate for outsourcing your workforce requirements.</p>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;text-align:left;margin-bottom:24px">
+            <div class="form-group">
+              <label class="form-label">Service Type</label>
+              <select class="form-control" id="estService" onchange="calculateEstimate()">
+                <option value="temp">Contract / Temporary Staffing</option>
+                <option value="perm">Permanent Recruitment</option>
+                <option value="payroll">Payroll Processing Only</option>
+                <option value="manpower">Industrial Manpower Supply</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Headcount / Number of Positions</label>
+              <input type="number" class="form-control" id="estCount" value="10" min="1" max="1000" oninput="calculateEstimate()" />
+            </div>
+          </div>
+
+          <div style="background:white;padding:24px;border-radius:var(--radius-md);border:1px dashed var(--primary-light);display:flex;justify-content:space-around;align-items:center;flex-wrap:wrap;gap:16px">
+            <div>
+              <div style="font-size:0.85rem;color:var(--gray-500)">Estimated Turnaround</div>
+              <div style="font-size:1.4rem;font-weight:700;color:var(--primary)" id="estTime">3 – 5 Days</div>
+            </div>
+            <div style="width:1px;height:40px;background:var(--gray-200)"></div>
+            <div>
+              <div style="font-size:0.85rem;color:var(--gray-500)">Indicative Management Fee</div>
+              <div style="font-size:1.4rem;font-weight:700;color:var(--success)" id="estFee">Competitive Rate</div>
+            </div>
+          </div>
+
+          <div style="margin-top:24px">
+            <a href="employers.html" class="btn btn-primary btn-lg">Request Official Proposal & Custom Quote →</a>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- CTA STRIP -->
+  <section class="cta-strip">
+    <div class="container">
+      <h2>Let’s Build Your Dream Team</h2>
+      <p>Consult with our workforce experts today and receive a customized staffing roadmap within 24 hours.</p>
+      <div class="cta-btns">
+        <a href="employers.html" class="btn btn-white btn-lg">Hire Through AXYTES</a>
+        <a href="contact.html" class="btn btn-lg" style="background:rgba(255,255,255,0.15);color:white;border:2px solid rgba(255,255,255,0.4)">Schedule a Call</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <div class="footer-logo-icon">AX</div>
+            <div class="footer-logo-text">AXYTES</div>
+          </div>
+          <p>AXYTES Solutions Pvt. Ltd. is a leading staffing, recruitment, and payroll solutions company committed to connecting top talent with leading organizations.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Our Services</a></li>
+            <li><a href="industries.html">Industries</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="careers.html">Careers at AXYTES</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Portals</h4>
+          <ul>
+            <li><a href="candidate/login.html">Candidate Login</a></li>
+            <li><a href="candidate/register.html">Register as Candidate</a></li>
+            <li><a href="employee/login.html">Employee Portal</a></li>
+            <li><a href="employers.html">Employer Solutions</a></li>
+            <li><a href="admin/login.html">Admin Panel</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="jobs.html">Browse Jobs</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms & Conditions</a></li>
+            <li><a href="disclaimer.html">Disclaimer</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2024 AXYTES Solutions Pvt. Ltd. All Rights Reserved.</div>
+        <div>📞 +91-XXXX-XXXXXX | ✉ info@axytes.in | 📍 Mumbai, India</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function calculateEstimate() {
+      const type = document.getElementById('estService').value;
+      const count = parseInt(document.getElementById('estCount').value) || 1;
+      const timeEl = document.getElementById('estTime');
+      const feeEl = document.getElementById('estFee');
+
+      if (type === 'temp') {
+        timeEl.textContent = count > 50 ? '7 – 10 Days' : '3 – 5 Days';
+        feeEl.textContent = 'Customized % Margin';
+      } else if (type === 'perm') {
+        timeEl.textContent = '10 – 14 Days';
+        feeEl.textContent = '8.33% – 12.5% of CTC';
+      } else if (type === 'payroll') {
+        timeEl.textContent = '24 – 48 Hours Onboarding';
+        feeEl.textContent = '₹120 – ₹250 / employee / month';
+      } else {
+        timeEl.textContent = count > 30 ? '5 – 7 Days' : '48 – 72 Hours';
+        feeEl.textContent = 'Standard Shift Rates';
+      }
+    }
+  </script>
+</body>
+</html>

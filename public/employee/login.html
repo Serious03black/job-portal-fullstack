@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Employee Login | AXYTES Employee Portal</title>
+  <meta name="description" content="AXYTES Employee Self-Service Portal. Manage your attendance, salary, leave and documents." />
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+<div class="auth-page">
+  <div class="auth-panel-left" style="background:linear-gradient(135deg,#102a52 0%,#1a3a6b 60%,#1e4d9e 100%)">
+    <div>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:40px">
+        <div style="width:44px;height:44px;background:rgba(255,255,255,0.2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;color:white;font-size:1rem">AX</div>
+        <div>
+          <div style="font-family:var(--font-heading);font-size:1.2rem;font-weight:800;color:white">AXYTES</div>
+          <div style="font-size:0.65rem;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.08em">Employee Portal</div>
+        </div>
+      </div>
+      <h2>Employee Self-Service Portal</h2>
+      <p>Access your complete employment information — salary slips, attendance, leave applications and official documents — all in one secure place.</p>
+      <div class="auth-features" style="margin-top:36px">
+        <div class="auth-feature"><div class="auth-feature-icon">💰</div><span>View & download salary slips</span></div>
+        <div class="auth-feature"><div class="auth-feature-icon">📅</div><span>Check-in / Check-out attendance</span></div>
+        <div class="auth-feature"><div class="auth-feature-icon">🏖</div><span>Apply for leave online</span></div>
+        <div class="auth-feature"><div class="auth-feature-icon">📁</div><span>Download offer & appointment letters</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="auth-panel-right">
+    <div class="auth-form-container">
+      <div class="auth-form-logo">
+        <div style="width:36px;height:36px;background:var(--gradient-hero);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;color:white">AX</div>
+        <span style="font-family:var(--font-heading);font-size:1.05rem;font-weight:700;color:var(--primary)">Employee Login</span>
+      </div>
+      <h2 style="margin-bottom:6px">Welcome, Employee</h2>
+      <p class="text-muted text-small" style="margin-bottom:28px">Sign in with your Employee ID and password</p>
+
+      <div id="alertMsg" style="display:none;padding:14px;border-radius:8px;margin-bottom:20px;font-size:0.9rem"></div>
+
+      <form id="empLoginForm" novalidate>
+        <div class="form-group">
+          <label class="form-label">Employee ID</label>
+          <div class="search-bar" style="border:1.5px solid var(--gray-200)">
+            <span style="color:var(--gray-400)">🆔</span>
+            <input type="text" id="empId" placeholder="e.g. AX-EMP-1001" style="border:none;outline:none;flex:1;padding:12px 0;font-family:var(--font-main);font-size:0.95rem;background:transparent" autocomplete="username" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <div style="position:relative">
+            <input type="password" id="empPass" class="form-control" placeholder="Enter your password" required style="padding-right:48px" autocomplete="current-password" />
+            <button type="button" onclick="document.getElementById('empPass').type=document.getElementById('empPass').type==='password'?'text':'password'" style="position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--gray-400);cursor:pointer;background:none;border:none">👁</button>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px">
+          <label style="display:flex;align-items:center;gap:8px;font-size:0.88rem;color:var(--gray-600);cursor:pointer"><input type="checkbox" /> Remember me</label>
+          <a href="#" style="font-size:0.88rem;color:var(--primary-light);font-weight:600">Forgot Password?</a>
+        </div>
+        <button type="submit" class="btn btn-primary w-full" id="loginBtn" style="justify-content:center;font-size:1rem;padding:14px">Sign In to Portal</button>
+      </form>
+
+      <div style="margin-top:24px;padding:14px;background:var(--gray-50);border-radius:8px;font-size:0.8rem;color:var(--gray-500);text-align:center">
+        🔒 Secure & Confidential | For AXYTES employees only<br/>
+        <span style="color:var(--gray-400)">Contact HR if you have login issues: hr@axytes.in</span>
+      </div>
+
+      <div style="text-align:center;margin-top:16px">
+        <a href="../index.html" style="font-size:0.85rem;color:var(--gray-400)">← Back to AXYTES Website</a>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  document.getElementById('empLoginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const empId = document.getElementById('empId').value.trim();
+    const pass = document.getElementById('empPass').value;
+    const btn = document.getElementById('loginBtn');
+    const msg = document.getElementById('alertMsg');
+
+    if (!empId || !pass) {
+      msg.style.display = 'block';
+      msg.style.background = '#fee2e2';
+      msg.style.color = '#991b1b';
+      msg.textContent = 'Please enter your Employee ID and Password.';
+      return;
+    }
+
+    btn.textContent = 'Signing in...';
+    btn.disabled = true;
+
+    setTimeout(() => {
+      localStorage.setItem('employeeSession', JSON.stringify({ empId, name: 'Rahul Sharma', designation: 'Senior Executive', department: 'Operations', role: 'employee', loginTime: Date.now() }));
+      window.location.href = 'dashboard.html';
+    }, 1200);
+  });
+</script>
+</body>
+</html>

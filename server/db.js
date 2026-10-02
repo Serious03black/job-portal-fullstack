@@ -1,0 +1,243 @@
+const fs = require('fs');
+const path = require('path');
+
+const DB_FILE = path.join(__dirname, 'data', 'db.json');
+
+// Initial seed dataset
+const initialData = {
+  users: [
+    {
+      id: "usr_admin_1",
+      role: "admin",
+      name: "Super Admin",
+      email: "admin@axytes.in",
+      password: "admin123",
+      designation: "HR Operations Head"
+    },
+    {
+      id: "usr_emp_1",
+      role: "employee",
+      code: "AXY-2024-089",
+      name: "Rahul Sharma",
+      email: "rahul.sharma@axytes.in",
+      password: "emp123",
+      designation: "Senior Production Supervisor",
+      clientSite: "Tata Motors Plant, Pune",
+      joiningDate: "2023-01-12",
+      grossSalary: 35000,
+      basicSalary: 18000,
+      hra: 9000,
+      conveyance: 3000,
+      specialAllowance: 5000,
+      pfNumber: "101489201948",
+      esicNumber: "31049281900010",
+      panNumber: "ABCPS8492K",
+      bankName: "HDFC Bank Ltd.",
+      bankAccount: "50100239847112",
+      ifscCode: "HDFC0001824"
+    },
+    {
+      id: "usr_cand_1",
+      role: "candidate",
+      name: "Rahul Sharma",
+      email: "candidate@example.com",
+      password: "candidate123",
+      phone: "+91 98765 43210",
+      location: "Pune, Maharashtra",
+      experience: "5 Years",
+      currentCtc: "₹ 4,80,000 / year",
+      expectedCtc: "₹ 6,50,000 / year",
+      noticePeriod: "15 Days",
+      skills: ["CNC Programming", "Shop Floor Management", "Lean Six Sigma", "ISO 9001", "5S & Kaizen"],
+      resumeName: "Rahul_Sharma_Resume_2024.pdf"
+    }
+  ],
+  jobs: [
+    {
+      id: "JOB-2024-001",
+      title: "Production Supervisor",
+      company: "Leading Automotive OEM",
+      location: "Pune, Maharashtra",
+      type: "Full-time",
+      category: "Manufacturing",
+      salary: "₹25,000 – ₹35,000 / mo",
+      experience: "3 – 5 Years",
+      openings: 4,
+      status: "Active",
+      description: "Manage daily manufacturing shop floor operations, oversee CNC machinery lines, ensure worker safety and daily output quotas.",
+      skills: ["Shop Floor Management", "5S", "CNC", "Quality Audits"],
+      postedDate: "2024-09-15"
+    },
+    {
+      id: "JOB-2024-002",
+      title: "Full Stack Java Developer",
+      company: "FinTech Client Services",
+      location: "Mumbai, Maharashtra (Hybrid)",
+      type: "Full-time",
+      category: "IT & Technology",
+      salary: "₹65,000 – ₹90,000 / mo",
+      experience: "4 – 7 Years",
+      openings: 2,
+      status: "Active",
+      description: "Develop enterprise banking microservices using Spring Boot, React.js, PostgreSQL, and AWS Cloud infrastructure.",
+      skills: ["Java", "Spring Boot", "React", "Microservices", "PostgreSQL"],
+      postedDate: "2024-09-18"
+    },
+    {
+      id: "JOB-2024-003",
+      title: "Warehouse & Logistics Executive",
+      company: "3PL Supply Chain Leader",
+      location: "Bhiwandi, Thane",
+      type: "Contract",
+      category: "Logistics",
+      salary: "₹18,000 – ₹25,000 / mo",
+      experience: "2 – 4 Years",
+      openings: 8,
+      status: "Active",
+      description: "Oversee inventory stocking, barcode inbound/outbound scanning, warehouse management systems (WMS) and vendor dispatch coordination.",
+      skills: ["WMS", "Inventory Control", "Dispatch", "Logistics"],
+      postedDate: "2024-09-22"
+    },
+    {
+      id: "JOB-2024-004",
+      title: "Branch Relationship Manager",
+      company: "Private Sector Bank",
+      location: "Navi Mumbai, Maharashtra",
+      type: "Full-time",
+      category: "BFSI",
+      salary: "₹28,000 – ₹40,000 / mo",
+      experience: "2 – 5 Years",
+      openings: 5,
+      status: "Active",
+      description: "Drive retail banking client relationships, cross-sell insurance and mutual funds products, maintain high client satisfaction scores.",
+      skills: ["Banking Operations", "KYC", "Wealth Products", "Sales"],
+      postedDate: "2024-09-25"
+    },
+    {
+      id: "JOB-2024-005",
+      title: "Quality Control (QC) Inspector",
+      company: "Precision Engineering Works",
+      location: "Chakan, Pune",
+      type: "Full-time",
+      category: "Manufacturing",
+      salary: "₹20,000 – ₹28,000 / mo",
+      experience: "1 – 3 Years",
+      openings: 3,
+      status: "Active",
+      description: "Perform precision measurements using Vernier calipers, micrometers, and CMM machines on automotive pressed parts.",
+      skills: ["QC Inspection", "Instruments", "ISO 9001", "Reports"],
+      postedDate: "2024-09-28"
+    }
+  ],
+  applications: [
+    {
+      id: "APP-1001",
+      candidateId: "usr_cand_1",
+      candidateName: "Rahul Sharma",
+      candidateEmail: "candidate@example.com",
+      jobId: "JOB-2024-001",
+      jobTitle: "Production Supervisor",
+      company: "Leading Automotive OEM",
+      appliedDate: "2024-09-20",
+      status: "Interview Scheduled",
+      interviewDate: "2024-10-08 at 11:30 AM",
+      interviewMode: "In-Person Client Site"
+    },
+    {
+      id: "APP-1002",
+      candidateId: "usr_cand_1",
+      candidateName: "Rahul Sharma",
+      candidateEmail: "candidate@example.com",
+      jobId: "JOB-2024-005",
+      jobTitle: "Quality Control (QC) Inspector",
+      company: "Precision Engineering Works",
+      appliedDate: "2024-09-29",
+      status: "Shortlisted",
+      interviewDate: null,
+      interviewMode: null
+    }
+  ],
+  leaves: [
+    {
+      id: "LEV-101",
+      employeeCode: "AXY-2024-089",
+      employeeName: "Rahul Sharma",
+      clientSite: "Tata Motors Plant",
+      leaveType: "Casual Leave",
+      fromDate: "2024-10-14",
+      toDate: "2024-10-15",
+      days: 2,
+      reason: "Family religious function",
+      status: "Pending",
+      appliedOn: "2024-10-01"
+    },
+    {
+      id: "LEV-102",
+      employeeCode: "AXY-2024-112",
+      employeeName: "Priya Patel",
+      clientSite: "Bajaj Auto Logistics",
+      leaveType: "Sick Leave",
+      fromDate: "2024-10-10",
+      toDate: "2024-10-11",
+      days: 2,
+      reason: "Severe seasonal viral fever",
+      status: "Pending",
+      appliedOn: "2024-10-01"
+    }
+  ],
+  attendance: [
+    {
+      id: "ATT-1001",
+      employeeCode: "AXY-2024-089",
+      date: new Date().toISOString().split('T')[0],
+      checkIn: "09:05 AM",
+      checkOut: null,
+      status: "Present"
+    }
+  ],
+  employerLeads: [],
+  contactInquiries: []
+};
+
+// Ensure data directory exists
+const dataDir = path.join(__dirname, 'data');
+if (!fs.existsSync(dataDir)) {
+  fs.mkdirSync(dataDir, { recursive: true });
+}
+
+// Load from file or initialize
+let db = null;
+function loadDb() {
+  if (fs.existsSync(DB_FILE)) {
+    try {
+      db = JSON.parse(fs.readFileSync(DB_FILE, 'utf8'));
+    } catch (err) {
+      console.warn('Could not read existing db.json, reinitializing seed data.');
+      db = JSON.parse(JSON.stringify(initialData));
+      saveDb();
+    }
+  } else {
+    db = JSON.parse(JSON.stringify(initialData));
+    saveDb();
+  }
+  return db;
+}
+
+function saveDb() {
+  if (db) {
+    fs.writeFileSync(DB_FILE, JSON.stringify(db, null, 2), 'utf8');
+  }
+}
+
+// Singleton getter
+function getDb() {
+  if (!db) {
+    loadDb();
+  }
+  return db;
+}
+
+module.exports = {
+  getDb,
+  saveDb
+};

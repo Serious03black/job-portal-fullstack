@@ -1,0 +1,23 @@
+{
+  "name": "axytes-staffing-portal",
+  "version": "1.0.0",
+  "description": "Full-stack Website, Recruitment Platform & Employee ESS Portal for AXYTES Solutions Pvt. Ltd.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2"
+  },
+  "keywords": [
+    "recruitment",
+    "staffing",
+    "payroll",
+    "ess",
+    "axytes"
+  ],
+  "author": "AXYTES Solutions Pvt. Ltd.",
+  "license": "ISC"
+}
